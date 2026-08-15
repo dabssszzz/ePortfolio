@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engelbert R. Morales | Software Developer</title>
+    <meta name="description" content="Portfolio of Engelbert R. Morales - Software Developer & BSIT Professional specializing in ReactJS, ASP.NET Core, and Web Applications.">
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Remix Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Header / Navigation -->
+    <header class="header" id="header">
+        <div class="container nav-container">
+            <div class="nav-indicator-top" id="nav-indicator-top"></div>
+            <a href="#hero" class="logo">Engelbert.</a>
+
+            <nav class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <div class="nav-indicator-pill" id="nav-indicator-pill"></div>
+                    <li class="nav-item"><a href="#hero" class="nav-link active-link">Home</a></li>
+                    <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
+                    <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
+                    <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+                    <li class="nav-item"><a href="#certifications" class="nav-link">Certification</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="nav-close" id="nav-close" role="button" tabindex="0" aria-label="Close navigation menu">
+                    <i class="ri-close-line"></i>
+                </div>
+            </nav>
+
+            <!-- Theme Toggle Button -->
+            <button class="nav-theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
+                <i class="ri-moon-line" id="theme-icon"></i>
+            </button>
+
+            <div class="nav-toggle" id="nav-toggle" role="button" tabindex="0" aria-label="Open navigation menu"
+                aria-expanded="false" aria-controls="nav-menu">
+                <i class="ri-menu-4-line"></i>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <!-- Hero Section -->
+        <section class="home section" id="hero">
+            <div class="container home-container">
+                <div class="home-content reveal-on-scroll">
+                    <div class="home-badge">
+                        <span class="home-badge-dot"></span> Software Developer & BSIT Graduate
+                    </div>
+                    <h1 class="home-title">Hi, I'm <br> <span class="highlight">Engelbert R. Morales</span></h1>
+                    <h3 class="home-subtitle">Software Developer | Full-Stack & Web Applications</h3>
+                    <p class="home-description">
+                        Building responsive, scalable web applications and intuitive digital interfaces with ReactJS, ASP.NET Core Web API, and SQL Server. Based in Plaridel, Quezon.
+                    </p>
+                    <div class="home-buttons">
+                        <a href="#projects" class="button">View Projects <i class="ri-arrow-right-line button-icon"></i></a>
+                        <a href="#contact" class="button button--ghost">Get in Touch <i class="ri-mail-send-line button-icon"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about section" id="about">
+            <div class="container section-header reveal-on-scroll">
+                <h2 class="section-title">About Me</h2>
+                <span class="section-subtitle">Background & Focus</span>
+            </div>
+
+            <div class="container about-container grid">
+                <div class="about-data reveal-on-scroll">
+                    <p class="about-description">
+                        I am a Bachelor of Science in Information Technology (BSIT) graduate from the Polytechnic University of the Philippines – Lopez Campus. I focus on developing clean, responsive frontend interfaces and high-performance backend APIs. With hands-on experience spanning ReactJS, ASP.NET Core, and relational database systems, I take pride in building scalable digital solutions, solving complex technical challenges, and delivering seamless user experiences through continuous learning and collaborative engineering.
+                    </p>
+
+                    <div class="about-info">
+                        <div class="about-info-item">
+                            <i class="ri-graduation-cap-line about-info-icon"></i>
+                            <span class="about-info-title">BSIT</span>
+                            <span class="about-info-name">PUP Lopez Campus (2022 – Present)</span>
+                        </div>
+                        <div class="about-info-item">
+                            <i class="ri-code-s-slash-line about-info-icon"></i>
+                            <span class="about-info-title">Full-Stack</span>
+                            <span class="about-info-name">ReactJS & ASP.NET Core</span>
+                        </div>
+                        <div class="about-info-item">
+                            <i class="ri-briefcase-line about-info-icon"></i>
+                            <span class="about-info-title">Experience</span>
+                            <span class="about-info-name">System Development Intern</span>
+                        </div>
+                    </div>
+
+                    <div class="about-buttons">
+                        <a href="#contact" class="button button--ghost">Download Resume <i
+                                class="ri-download-line button-icon"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Professional Experience Section -->
+        <section class="experience section" id="experience">
+            <div class="container section-header reveal-on-scroll">
+                <h2 class="section-title">Professional Experience</h2>
+                <span class="section-subtitle">Career Journey</span>
+            </div>
+
+            <div class="container experience-container grid">
+                <div class="experience-card reveal-on-scroll">
+                    <div class="experience-header">
+                        <div class="experience-title-group">
+                            <h3 class="experience-company"><i class="ri-building-line experience-icon"></i> One CoreDev IT (CORE®)</h3>
+                            <span class="experience-role">System Development Intern</span>
+                        </div>
+                        <span class="experience-date"><i class="ri-calendar-line"></i> February 2026 – May 2026</span>
+                    </div>
+
+                    <div class="experience-body">
+                        <p class="experience-description">
+                            Completed hands-on software development engineering contributing to modern web application ecosystems, frontend component architecture, and API integration.
+                        </p>
+
+                        <ul class="experience-list">
+                            <li>
+                                <i class="ri-check-line"></i>
+                                <span><strong>Marketing Project Tracker:</strong> Developed responsive ReactJS interfaces, analytics dashboards, Kanban boards, and mobile-friendly UI components.</span>
+                            </li>
+                            <li>
+                                <i class="ri-check-line"></i>
+                                <span><strong>Full-Stack & API Integration:</strong> Integrated frontend components with ASP.NET Core Web APIs and SQL Server databases for efficient data handling and validation.</span>
+                            </li>
+                            <li>
+                                <i class="ri-check-line"></i>
+                                <span><strong>Architecture & Migration:</strong> Contributed to the migration toward modern React and ASP.NET Core architecture, optimizing performance, maintainability, and scalability.</span>
+                            </li>
+                            <li>
+                                <i class="ri-check-line"></i>
+                                <span><strong>Core Recruit Module:</strong> Optimized reusable React components, refined responsive workflows, and collaborated using GitHub, SourceTree, Figma, and ClickUp.</span>
+                            </li>
+                        </ul>
+
+                        <div class="experience-tags">
+                            <span class="experience-tag">ReactJS</span>
+                            <span class="experience-tag">ASP.NET Core Web API</span>
+                            <span class="experience-tag">SQL Server</span>
+                            <span class="experience-tag">JavaScript</span>
+                            <span class="experience-tag">Tailwind CSS</span>
+                            <span class="experience-tag">GitHub & SourceTree</span>
+                            <span class="experience-tag">Figma</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Skills Section -->
+        <section class="skills section" id="skills">
+            <div class="container section-header reveal-on-scroll">
+                <h2 class="section-title">Technical Skills</h2>
+                <span class="section-subtitle">Technologies & Capabilities</span>
+            </div>
+
+            <div class="container skills-container grid">
+
+                <!-- Frontend & Web Development -->
+                <div class="skills-content reveal-on-scroll reveal-delay-1">
+                    <h3 class="skills-title">Frontend & Web Development</h3>
+                    <div class="skills-box">
+                        <div class="skills-group">
+                            <div class="skills-data">
+                                <i class="ri-reactjs-line"></i>
+                                <div>
+                                    <h3 class="skills-name">ReactJS</h3>
+                                </div>
+                            </div>
+                            <div class="skills-data">
+                                <i class="ri-javascript-line"></i>
+                                <div>
+                                    <h3 class="skills-name">JavaScript</h3>
+                                </div>
+                            </div>
+                            <div class="skills-data">
+                                <i class="ri-html5-line"></i>
+                                <div>
+                                    <h3 class="skills-name">HTML & CSS</h3>
+                                </div>
+                            </div>
+                            <div class="skills-data">
+                                <i class="ri-palette-line"></i>
+                                <div>
+                                    <h3 class="skills-name">Tailwind CSS</h3>
+                                </div>
+                            </div>
+                            <div class="skills-data">
+                                <i class="ri-layout-2-line"></i>
+                                <div>
+                                    <h3 class="skills-name">Responsive Web Design</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Backend / API & Database -->
+                <div class="skills-content reveal-on-scroll reveal-delay-2">
+                    <h3 class="skills-title">Backend & Database</h3>
+                    <div class="skills-box">
+                        <div class="skills-group">
+                            <div class="skills-data">
+                                <i class="ri-server-line"></i>
+                                <div>
+                                    <h3 class="skills-name">ASP.NET Core Web API</h3>
+                                </div>
+                            </div>
+                            <div class="skills-data">
+                                <i class="ri-cpu-line"></i>
+                                <div>
+                                    <h3 class="skills-name">Entity Framework Core</h3>
+                                </div>
+                            </div>
+                            <div class="skills-data">
+                                <i class="ri-database-2-line"></i>
+                                <div>
+                                    <h3 class="skills-name">SQL Server</h3>
+                                </div>
+                            </div>
+                            <div class="skills-data">
+                                <i class="ri-database-line"></i>
+                                <div>
+                                    <h3 class="skills-name">MySQL</h3>
+                                </div>
+                            </div>
+                            <div class="skills-data">
+                                <i class="ri-table-line"></i>
+                                <div>
+                                    <h3 class="skills-name">Database Design</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Development Tools -->
+                <div class="skills-content reveal-on-scroll reveal-delay-3">
+                    <h3 class="skills-title">Development Tools</h3>
+                    <div class="skills-box">
+                        <div class="skills-group">
+                            <div class="skills-data">
+                                <i class="ri-git-branch-line"></i>
+                                <div>
+                                    <h3 class="skills-name">Git</h3>
+                                </div>
+                            </div>
+                            <div class="skills-data">
+                                <i class="ri-github-line"></i>
+                                <div>
+                                    <h3 class="skills-name">GitHub</h3>
+                                </div>
+                            </div>
+                            <div class="skills-data">
+                                <i class="ri-git-merge-line"></i>
+                                <div>
+                                    <h3 class="skills-name">SourceTree</h3>
+                                </div>
+                            </div>
+                            <div class="skills-data">
+                                <i class="ri-pencil-ruler-2-line"></i>
+                                <div>
+                                    <h3 class="skills-name">Figma</h3>
+                                </div>
+                            </div>
+                            <div class="skills-data">
+                                <i class="ri-checkbox-multiple-line"></i>
+                                <div>
+                                    <h3 class="skills-name">ClickUp</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Software Development & Practices -->
+                <div class="skills-content reveal-on-scroll reveal-delay-4">
+                    <h3 class="skills-title">Software Development & Practices</h3>
+                    <div class="skills-box">
+                        <div class="skills-group">
+                            <div class="skills-data">
+                                <i class="ri-layout-masonry-line"></i>
+                                <div>
+                                    <h3 class="skills-name">UI/UX Design</h3>
+                                </div>
+                            </div>
+                            <div class="skills-data">
+                                <i class="ri-bug-line"></i>
+                                <div>
+                                    <h3 class="skills-name">Debugging & Troubleshooting</h3>
+                                </div>
+                            </div>
+                            <div class="skills-data">
+                                <i class="ri-shield-check-line"></i>
+                                <div>
+                                    <h3 class="skills-name">Software Testing</h3>
+                                </div>
+                            </div>
+                            <div class="skills-data">
+                                <i class="ri-lightbulb-line"></i>
+                                <div>
+                                    <h3 class="skills-name">Problem Solving</h3>
+                                </div>
+                            </div>
+                            <div class="skills-data">
+                                <i class="ri-team-line"></i>
+                                <div>
+                                    <h3 class="skills-name">Team Collaboration</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="projects section" id="projects">
+            <div class="container section-header reveal-on-scroll">
+                <h2 class="section-title">Key Projects</h2>
+                <span class="section-subtitle">Featured Engineering Work</span>
+            </div>
+
+            <div class="container projects-container grid">
+                <!-- Project 1 -->
+                <article class="projects-card reveal-on-scroll reveal-delay-1">
+                    <div class="projects-image-placeholder">
+                        <i class="ri-android-line projects-placeholder-icon"></i>
+                    </div>
+
+                    <div class="projects-content">
+                        <span class="projects-subtitle">Capstone Project • 2025</span>
+                        <h3 class="projects-title">MATHtatag</h3>
+                        <p class="projects-description">
+                            An Android mathematics assessment system featuring Filipino text-to-speech, curriculum-aligned modules, automated scoring, and real-time student analytics.
+                        </p>
+                        <div class="projects-tags">
+                            <span class="projects-tag">Android</span>
+                            <span class="projects-tag">Text-to-Speech</span>
+                            <span class="projects-tag">Analytics</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 2 -->
+                <article class="projects-card reveal-on-scroll reveal-delay-2">
+                    <div class="projects-image-placeholder">
+                        <i class="ri-global-line projects-placeholder-icon"></i>
+                    </div>
+
+                    <div class="projects-content">
+                        <span class="projects-subtitle">System Development • 2025</span>
+                        <h3 class="projects-title">Barangay ID Application System</h3>
+                        <p class="projects-description">
+                            A database-driven administrative system providing centralized resident registration, appointment scheduling, secure digital ID generation, and role-based access.
+                        </p>
+                        <div class="projects-tags">
+                            <span class="projects-tag">Web System</span>
+                            <span class="projects-tag">Database</span>
+                            <span class="projects-tag">RBAC</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 3 -->
+                <article class="projects-card reveal-on-scroll reveal-delay-3">
+                    <div class="projects-image-placeholder">
+                        <i class="ri-community-line projects-placeholder-icon"></i>
+                    </div>
+
+                    <div class="projects-content">
+                        <span class="projects-subtitle">System Development • 2024</span>
+                        <h3 class="projects-title">One Camohaguin</h3>
+                        <p class="projects-description">
+                            An Android community platform delivering real-time emergency alert broadcasts, local government announcements, and municipal resident appointment coordination.
+                        </p>
+                        <div class="projects-tags">
+                            <span class="projects-tag">Android</span>
+                            <span class="projects-tag">Emergency Alerts</span>
+                            <span class="projects-tag">Services</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Seminars & Certifications Section -->
+        <section class="section" id="certifications">
+            <div class="container section-header reveal-on-scroll">
+                <h2 class="section-title">Certification</h2>
+                <span class="section-subtitle">Seminars & Training</span>
+            </div>
+
+            <div class="container grid certification-container">
+                <div class="skills-content certification-content reveal-on-scroll">
+                    <div class="skills-group certification-group">
+
+                        <div class="certification-data">
+                            <i class="ri-award-line certification-icon"></i>
+                            <div>
+                                <h3 class="certification-name">Preparing Future IT Professionals Through Enterprise Networking, Cybersecurity, and Security Operations Center (SOC) Exposure Seminar</h3>
+                                <span class="certification-date">January 2026</span>
+                            </div>
+                        </div>
+
+                        <div class="certification-data">
+                            <i class="ri-award-line certification-icon"></i>
+                            <div>
+                                <h3 class="certification-name">Kwentuhang Cybersecurity: The Role of Artificial Intelligence in Predicting and Mitigating Cyber Threats</h3>
+                                <span class="certification-date">October 2025</span>
+                            </div>
+                        </div>
+
+                        <div class="certification-data">
+                            <i class="ri-award-line certification-icon"></i>
+                            <div>
+                                <h3 class="certification-name">Networking Foundations: Networking Basics</h3>
+                                <span class="certification-date">November 2023</span>
+                            </div>
+                        </div>
+
+                        <div class="certification-data">
+                            <i class="ri-award-line certification-icon"></i>
+                            <div>
+                                <h3 class="certification-name">Digital Literacy Training: Introduction to Data Analytics</h3>
+                                <span class="certification-date">January 2023</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact section" id="contact">
+            <div class="container section-header reveal-on-scroll">
+                <h2 class="section-title">Contact Me</h2>
+                <span class="section-subtitle">Let's Connect</span>
+            </div>
+
+            <div class="container contact-container grid">
+                <div class="contact-content reveal-on-scroll reveal-delay-1">
+                    <h3 class="contact-title">Contact Details</h3>
+
+                    <div class="contact-info">
+                        <div class="contact-card">
+                            <i class="ri-mail-line contact-card-icon"></i>
+                            <h3 class="contact-card-title">Email</h3>
+                            <span class="contact-card-data">engelbert17dm@gmail.com</span>
+                            <a href="mailto:engelbert17dm@gmail.com" class="contact-button">Write me <i
+                                    class="ri-arrow-right-line"></i></a>
+                        </div>
+
+                        <div class="contact-card">
+                            <i class="ri-linkedin-box-line contact-card-icon"></i>
+                            <h3 class="contact-card-title">LinkedIn</h3>
+                            <span class="contact-card-data">Engelbert Morales</span>
+                            <a href="https://www.linkedin.com/in/engelbertmorales17" target="_blank"
+                                class="contact-button">Connect <i class="ri-arrow-right-line"></i></a>
+                        </div>
+
+                        <div class="contact-card">
+                            <i class="ri-phone-line contact-card-icon"></i>
+                            <h3 class="contact-card-title">Phone</h3>
+                            <span class="contact-card-data">+63 947 310 4851</span>
+                            <a href="tel:+639473104851" class="contact-button">Call / Text <i class="ri-arrow-right-line"></i></a>
+                        </div>
+
+                        <div class="contact-card">
+                            <i class="ri-map-pin-line contact-card-icon"></i>
+                            <h3 class="contact-card-title">Location</h3>
+                            <span class="contact-card-data">Brgy. M.L. Tumagay, Plaridel, Quezon</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-content reveal-on-scroll reveal-delay-2">
+                    <h3 class="contact-title">Send a message</h3>
+
+                    <form action="" class="contact-form">
+                        <div class="contact-form-group">
+                            <label class="contact-form-label" for="contact-name">Your Name</label>
+                            <div class="contact-input-wrapper">
+                                <i class="ri-user-line contact-input-icon"></i>
+                                <input type="text" id="contact-name" placeholder="John Doe" class="contact-form-input" required>
+                            </div>
+                        </div>
+
+                        <div class="contact-form-group">
+                            <label class="contact-form-label" for="contact-email">Your Email</label>
+                            <div class="contact-input-wrapper">
+                                <i class="ri-mail-line contact-input-icon"></i>
+                                <input type="email" id="contact-email" placeholder="john@example.com" class="contact-form-input" required>
+                            </div>
+                        </div>
+
+                        <div class="contact-form-group">
+                            <label class="contact-form-label" for="contact-message">Your Message</label>
+                            <div class="contact-input-wrapper">
+                                <textarea id="contact-message" cols="30" rows="5" placeholder="Write your message here..." class="contact-form-input contact-form-area" required></textarea>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="button contact-submit-btn">Send Message <i class="ri-send-plane-fill button-icon"></i></button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container container">
+            <div class="footer-brand">
+                <h2 class="footer-title">Engelbert R. Morales</h2>
+                <p class="footer-subtitle">Software Developer | Full-Stack & Web Applications</p>
+            </div>
+
+            <ul class="footer-list">
+                <li><a href="#hero" class="footer-link">Home</a></li>
+                <li><a href="#about" class="footer-link">About</a></li>
+                <li><a href="#experience" class="footer-link">Experience</a></li>
+                <li><a href="#skills" class="footer-link">Skills</a></li>
+                <li><a href="#projects" class="footer-link">Projects</a></li>
+                <li><a href="#contact" class="footer-link">Contact</a></li>
+            </ul>
+
+            <ul class="footer-social">
+                <a href="https://www.linkedin.com/in/engelbertmorales17" target="_blank" class="footer-social-link" aria-label="LinkedIn"><i class="ri-linkedin-fill"></i></a>
+                <a href="mailto:engelbert17dm@gmail.com" class="footer-social-link" aria-label="Email"><i class="ri-mail-fill"></i></a>
+                <a href="tel:+639473104851" class="footer-social-link" aria-label="Phone"><i class="ri-phone-fill"></i></a>
+            </ul>
+
+            <span class="footer-copy">
+                &#169; 2026 Engelbert R. Morales. All rights reserved.
+            </span>
+        </div>
+    </footer>
+
+    <!-- Scroll Up Button -->
+    <a href="#" class="scrollup" id="scroll-up">
+        <i class="ri-arrow-up-line"></i>
+    </a>
+
+    <!-- Main JS -->
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>
