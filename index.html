@@ -83,33 +83,160 @@
                 <span class="section-subtitle">Background & Focus</span>
             </div>
 
-            <div class="container about-container grid">
-                <div class="about-data reveal-on-scroll">
-                    <p class="about-description">
-                        I am a Bachelor of Science in Information Technology (BSIT) graduate from the Polytechnic University of the Philippines – Lopez Campus. I focus on developing clean, responsive frontend interfaces and high-performance backend APIs. With hands-on experience spanning ReactJS, ASP.NET Core, and relational database systems, I take pride in building scalable digital solutions, solving complex technical challenges, and delivering seamless user experiences through continuous learning and collaborative engineering.
-                    </p>
+            <div class="container about-container">
+                <div class="about-grid">
+                    <!-- Left Column: About Details & Content -->
+                    <div class="about-left reveal-on-scroll">
+                        <p class="about-description">
+                            I am a Bachelor of Science in Information Technology (BSIT) graduate from the Polytechnic University of the Philippines – Lopez Campus. I focus on developing clean, responsive frontend interfaces and high-performance backend APIs. With hands-on experience spanning ReactJS, ASP.NET Core, and relational database systems, I take pride in building scalable digital solutions, solving complex technical challenges, and delivering seamless user experiences through continuous learning and collaborative engineering.
+                        </p>
 
-                    <div class="about-info">
-                        <div class="about-info-item">
-                            <i class="ri-graduation-cap-line about-info-icon"></i>
-                            <span class="about-info-title">BSIT</span>
-                            <span class="about-info-name">PUP Lopez Campus (2022 – Present)</span>
+                        <div class="about-info">
+                            <div class="about-info-item">
+                                <i class="ri-graduation-cap-line about-info-icon"></i>
+                                <span class="about-info-title">BSIT</span>
+                                <span class="about-info-name">PUP Lopez Campus (2022 – Present)</span>
+                            </div>
+                            <div class="about-info-item">
+                                <i class="ri-code-s-slash-line about-info-icon"></i>
+                                <span class="about-info-title">Full-Stack</span>
+                                <span class="about-info-name">ReactJS & ASP.NET Core</span>
+                            </div>
+                            <div class="about-info-item">
+                                <i class="ri-briefcase-line about-info-icon"></i>
+                                <span class="about-info-title">Experience</span>
+                                <span class="about-info-name">System Development Intern</span>
+                            </div>
                         </div>
-                        <div class="about-info-item">
-                            <i class="ri-code-s-slash-line about-info-icon"></i>
-                            <span class="about-info-title">Full-Stack</span>
-                            <span class="about-info-name">ReactJS & ASP.NET Core</span>
-                        </div>
-                        <div class="about-info-item">
-                            <i class="ri-briefcase-line about-info-icon"></i>
-                            <span class="about-info-title">Experience</span>
-                            <span class="about-info-name">System Development Intern</span>
+
+                        <div class="about-buttons">
+                            <a href="#contact" class="button button--ghost">Download Resume <i
+                                    class="ri-download-line button-icon"></i></a>
                         </div>
                     </div>
 
-                    <div class="about-buttons">
-                        <a href="#contact" class="button button--ghost">Download Resume <i
-                                class="ri-download-line button-icon"></i></a>
+                    <!-- Right Column: Reserved Space for Future Profile Picture -->
+                    <div class="about-right" aria-hidden="true"></div>
+                </div>
+            </div>
+
+            <!-- Education Subsection Inside About -->
+            <div class="about-education-wrapper">
+                <div class="container section-header education-header reveal-on-scroll">
+                    <h3 class="section-title education-title">Education</h3>
+                    <span class="section-subtitle education-subtitle">Academic Journey</span>
+                </div>
+
+                <div class="container education-container">
+                    <div class="education-timeline" id="education-timeline">
+                        <!-- Continuous Vertical Progress Line -->
+                        <div class="education-track-bg" id="education-track-bg" aria-hidden="true"></div>
+                        <div class="education-track-fill" id="education-track-fill" aria-hidden="true"></div>
+
+                        <!-- Milestone 1: Elementary Education (2010–2016) -->
+                        <div class="education-milestone reveal-on-scroll" data-milestone="1">
+                            <div class="education-milestone-node" aria-hidden="true">
+                                <span class="node-dot"></span>
+                            </div>
+                            <div class="education-milestone-body">
+                                <div class="education-milestone-header">
+                                    <div class="education-logo-box">
+                                        <img src="assets/img/gwcs-logo.png" alt="Gumaca West Central School Logo" class="education-logo" loading="lazy">
+                                    </div>
+                                    <div class="education-meta">
+                                        <div class="education-meta-row">
+                                            <h4 class="education-degree">Elementary Education</h4>
+                                            <span class="education-years">2010–2016</span>
+                                        </div>
+                                        <p class="education-school">Gumaca West Central School (GWCS)</p>
+                                        <div class="education-achievement">
+                                            <span class="education-distinction distinction-blue">
+                                                <i class="ri-medal-line"></i> With Honor
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Milestone 2: Junior High School (2016–2020) -->
+                        <div class="education-milestone reveal-on-scroll" data-milestone="2">
+                            <div class="education-milestone-node" aria-hidden="true">
+                                <span class="node-dot"></span>
+                            </div>
+                            <div class="education-milestone-body">
+                                <div class="education-milestone-header">
+                                    <div class="education-logo-box">
+                                        <img src="assets/img/gnhs-logo.png" alt="Gumaca National High School Logo" class="education-logo" loading="lazy">
+                                    </div>
+                                    <div class="education-meta">
+                                        <div class="education-meta-row">
+                                            <h4 class="education-degree">Junior High School</h4>
+                                            <span class="education-years">2016–2020</span>
+                                        </div>
+                                        <p class="education-school">Gumaca National High School (GNHS)</p>
+                                        <div class="education-achievement">
+                                            <span class="education-distinction distinction-blue">
+                                                <i class="ri-medal-line"></i> With Honor
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Milestone 3: Senior High School (2020–2022) -->
+                        <div class="education-milestone reveal-on-scroll" data-milestone="3">
+                            <div class="education-milestone-node" aria-hidden="true">
+                                <span class="node-dot"></span>
+                            </div>
+                            <div class="education-milestone-body">
+                                <div class="education-milestone-header">
+                                    <div class="education-logo-box">
+                                        <img src="assets/img/gnhs-logo.png" alt="Gumaca National High School Logo" class="education-logo" loading="lazy">
+                                    </div>
+                                    <div class="education-meta">
+                                        <div class="education-meta-row">
+                                            <h4 class="education-degree">Senior High School</h4>
+                                            <span class="education-years">2020–2022</span>
+                                        </div>
+                                        <p class="education-school">Gumaca National High School (GNHS)</p>
+                                        <div class="education-achievement">
+                                            <span class="education-distinction distinction-blue">
+                                                <i class="ri-medal-line"></i> With Honor
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Milestone 4: Bachelor's Degree (2022–2026) -->
+                        <div class="education-milestone reveal-on-scroll" data-milestone="4">
+                            <div class="education-milestone-node" aria-hidden="true">
+                                <span class="node-dot"></span>
+                            </div>
+                            <div class="education-milestone-body">
+                                <div class="education-milestone-header">
+                                    <div class="education-logo-box">
+                                        <img src="assets/img/pup-logo.png" alt="Polytechnic University of the Philippines Logo" class="education-logo" loading="lazy">
+                                    </div>
+                                    <div class="education-meta">
+                                        <div class="education-meta-row">
+                                            <h4 class="education-degree">Bachelor of Science in Information Technology</h4>
+                                            <span class="education-years">2022–2026</span>
+                                        </div>
+                                        <p class="education-school">Polytechnic University of the Philippines – Lopez Campus</p>
+                                        <div class="education-achievement">
+                                            <span class="education-distinction distinction-gold">
+                                                <i class="ri-award-fill"></i> Dean’s Lister
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -179,158 +306,198 @@
 
             <div class="container skills-container grid">
 
-                <!-- Frontend & Web Development -->
+                <!-- 1. Frontend & Web Development -->
                 <div class="skills-content reveal-on-scroll reveal-delay-1">
-                    <h3 class="skills-title">Frontend & Web Development</h3>
-                    <div class="skills-box">
-                        <div class="skills-group">
-                            <div class="skills-data">
-                                <i class="ri-reactjs-line"></i>
-                                <div>
-                                    <h3 class="skills-name">ReactJS</h3>
-                                </div>
-                            </div>
-                            <div class="skills-data">
-                                <i class="ri-javascript-line"></i>
-                                <div>
-                                    <h3 class="skills-name">JavaScript</h3>
-                                </div>
-                            </div>
-                            <div class="skills-data">
-                                <i class="ri-html5-line"></i>
-                                <div>
-                                    <h3 class="skills-name">HTML & CSS</h3>
-                                </div>
-                            </div>
-                            <div class="skills-data">
-                                <i class="ri-palette-line"></i>
-                                <div>
-                                    <h3 class="skills-name">Tailwind CSS</h3>
-                                </div>
-                            </div>
-                            <div class="skills-data">
-                                <i class="ri-layout-2-line"></i>
-                                <div>
-                                    <h3 class="skills-name">Responsive Web Design</h3>
-                                </div>
-                            </div>
+                    <div class="skills-header">
+                        <div class="skills-title-group">
+                            <i class="ri-layout-line skills-category-icon"></i>
+                            <h3 class="skills-title">Frontend & Web Development</h3>
+                        </div>
+                    </div>
+                    <div class="skills-list">
+                        <div class="skills-data">
+                            <i class="ri-reactjs-line"></i>
+                            <span class="skills-name">ReactJS</span>
+                        </div>
+                        <div class="skills-data">
+                            <i class="ri-javascript-line"></i>
+                            <span class="skills-name">JavaScript</span>
+                        </div>
+                        <div class="skills-data">
+                            <i class="ri-flashlight-line"></i>
+                            <span class="skills-name">Vite</span>
+                        </div>
+                        <div class="skills-data">
+                            <i class="ri-html5-line"></i>
+                            <span class="skills-name">HTML5 & CSS3</span>
+                        </div>
+                        <div class="skills-data">
+                            <i class="ri-palette-line"></i>
+                            <span class="skills-name">Tailwind CSS</span>
+                        </div>
+                        <div class="skills-data">
+                            <i class="ri-layout-2-line"></i>
+                            <span class="skills-name">Responsive Web Design</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Backend / API & Database -->
+                <!-- 2. Programming Languages -->
                 <div class="skills-content reveal-on-scroll reveal-delay-2">
-                    <h3 class="skills-title">Backend & Database</h3>
-                    <div class="skills-box">
-                        <div class="skills-group">
-                            <div class="skills-data">
-                                <i class="ri-server-line"></i>
-                                <div>
-                                    <h3 class="skills-name">ASP.NET Core Web API</h3>
-                                </div>
-                            </div>
-                            <div class="skills-data">
-                                <i class="ri-cpu-line"></i>
-                                <div>
-                                    <h3 class="skills-name">Entity Framework Core</h3>
-                                </div>
-                            </div>
-                            <div class="skills-data">
-                                <i class="ri-database-2-line"></i>
-                                <div>
-                                    <h3 class="skills-name">SQL Server</h3>
-                                </div>
-                            </div>
-                            <div class="skills-data">
-                                <i class="ri-database-line"></i>
-                                <div>
-                                    <h3 class="skills-name">MySQL</h3>
-                                </div>
-                            </div>
-                            <div class="skills-data">
-                                <i class="ri-table-line"></i>
-                                <div>
-                                    <h3 class="skills-name">Database Design</h3>
-                                </div>
-                            </div>
+                    <div class="skills-header">
+                        <div class="skills-title-group">
+                            <i class="ri-code-s-slash-line skills-category-icon"></i>
+                            <h3 class="skills-title">Programming Languages</h3>
+                        </div>
+                    </div>
+                    <div class="skills-list">
+                        <div class="skills-data">
+                            <i class="ri-javascript-line"></i>
+                            <span class="skills-name">JavaScript</span>
+                        </div>
+                        <div class="skills-data">
+                            <i class="ri-cup-line"></i>
+                            <span class="skills-name">Java</span>
+                        </div>
+                        <div class="skills-data">
+                            <i class="ri-hashtag"></i>
+                            <span class="skills-name">C#</span>
+                        </div>
+                        <div class="skills-data">
+                            <i class="ri-code-s-slash-line"></i>
+                            <span class="skills-name">Python</span>
+                        </div>
+                        <div class="skills-data">
+                            <i class="ri-braces-line"></i>
+                            <span class="skills-name">C++</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Development Tools -->
-                <div class="skills-content reveal-on-scroll reveal-delay-3">
-                    <h3 class="skills-title">Development Tools</h3>
-                    <div class="skills-box">
-                        <div class="skills-group">
-                            <div class="skills-data">
-                                <i class="ri-git-branch-line"></i>
-                                <div>
-                                    <h3 class="skills-name">Git</h3>
-                                </div>
-                            </div>
-                            <div class="skills-data">
-                                <i class="ri-github-line"></i>
-                                <div>
-                                    <h3 class="skills-name">GitHub</h3>
-                                </div>
-                            </div>
-                            <div class="skills-data">
-                                <i class="ri-git-merge-line"></i>
-                                <div>
-                                    <h3 class="skills-name">SourceTree</h3>
-                                </div>
-                            </div>
-                            <div class="skills-data">
-                                <i class="ri-pencil-ruler-2-line"></i>
-                                <div>
-                                    <h3 class="skills-name">Figma</h3>
-                                </div>
-                            </div>
-                            <div class="skills-data">
-                                <i class="ri-checkbox-multiple-line"></i>
-                                <div>
-                                    <h3 class="skills-name">ClickUp</h3>
-                                </div>
-                            </div>
+                <!-- 3. Backend & Database -->
+                <div class="skills-content reveal-on-scroll reveal-delay-1">
+                    <div class="skills-header">
+                        <div class="skills-title-group">
+                            <i class="ri-server-line skills-category-icon"></i>
+                            <h3 class="skills-title">Backend & Database</h3>
+                        </div>
+                    </div>
+                    <div class="skills-list">
+                        <div class="skills-data">
+                            <i class="ri-server-line"></i>
+                            <span class="skills-name">ASP.NET Core Web API</span>
+                        </div>
+                        <div class="skills-data">
+                            <i class="ri-cpu-line"></i>
+                            <span class="skills-name">Entity Framework Core</span>
+                        </div>
+                        <div class="skills-data">
+                            <i class="ri-database-2-line"></i>
+                            <span class="skills-name">SQL Server</span>
+                        </div>
+                        <div class="skills-data">
+                            <i class="ri-database-line"></i>
+                            <span class="skills-name">MySQL</span>
+                        </div>
+                        <div class="skills-data">
+                            <i class="ri-fire-line"></i>
+                            <span class="skills-name">Firebase</span>
+                        </div>
+                        <div class="skills-data">
+                            <i class="ri-table-line"></i>
+                            <span class="skills-name">Microsoft Access</span>
+                        </div>
+                        <div class="skills-data">
+                            <i class="ri-node-tree"></i>
+                            <span class="skills-name">Database Design</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Software Development & Practices -->
-                <div class="skills-content reveal-on-scroll reveal-delay-4">
-                    <h3 class="skills-title">Software Development & Practices</h3>
-                    <div class="skills-box">
-                        <div class="skills-group">
-                            <div class="skills-data">
-                                <i class="ri-layout-masonry-line"></i>
-                                <div>
-                                    <h3 class="skills-name">UI/UX Design</h3>
-                                </div>
-                            </div>
-                            <div class="skills-data">
-                                <i class="ri-bug-line"></i>
-                                <div>
-                                    <h3 class="skills-name">Debugging & Troubleshooting</h3>
-                                </div>
-                            </div>
-                            <div class="skills-data">
-                                <i class="ri-shield-check-line"></i>
-                                <div>
-                                    <h3 class="skills-name">Software Testing</h3>
-                                </div>
-                            </div>
-                            <div class="skills-data">
-                                <i class="ri-lightbulb-line"></i>
-                                <div>
-                                    <h3 class="skills-name">Problem Solving</h3>
-                                </div>
-                            </div>
-                            <div class="skills-data">
-                                <i class="ri-team-line"></i>
-                                <div>
-                                    <h3 class="skills-name">Team Collaboration</h3>
-                                </div>
-                            </div>
+                <!-- 4. Development Tools -->
+                <div class="skills-content reveal-on-scroll reveal-delay-2">
+                    <div class="skills-header">
+                        <div class="skills-title-group">
+                            <i class="ri-tools-line skills-category-icon"></i>
+                            <h3 class="skills-title">Development Tools</h3>
+                        </div>
+                    </div>
+                    <div class="skills-list">
+                        <div class="skills-data">
+                            <i class="ri-git-branch-line"></i>
+                            <span class="skills-name">Git</span>
+                        </div>
+                        <div class="skills-data">
+                            <i class="ri-github-line"></i>
+                            <span class="skills-name">GitHub</span>
+                        </div>
+                        <div class="skills-data">
+                            <i class="ri-git-merge-line"></i>
+                            <span class="skills-name">SourceTree</span>
+                        </div>
+                        <div class="skills-data">
+                            <i class="ri-box-3-line"></i>
+                            <span class="skills-name">Docker</span>
+                        </div>
+                        <div class="skills-data">
+                            <i class="ri-pencil-ruler-2-line"></i>
+                            <span class="skills-name">Figma</span>
+                        </div>
+                        <div class="skills-data">
+                            <i class="ri-checkbox-multiple-line"></i>
+                            <span class="skills-name">ClickUp</span>
+                        </div>
+                        <div class="skills-data">
+                            <i class="ri-code-box-line"></i>
+                            <span class="skills-name">Visual Studio Code</span>
+                        </div>
+                        <div class="skills-data">
+                            <i class="ri-window-line"></i>
+                            <span class="skills-name">Visual Studio</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Software Development & Practices (Widescreen Span) -->
+                <div class="skills-content skills-content--wide reveal-on-scroll reveal-delay-3">
+                    <div class="skills-header">
+                        <div class="skills-title-group">
+                            <i class="ri-shield-check-line skills-category-icon"></i>
+                            <h3 class="skills-title">Software Development & Practices</h3>
+                        </div>
+                    </div>
+                    <div class="skills-list skills-list--wide">
+                        <div class="skills-data">
+                            <i class="ri-layout-masonry-line"></i>
+                            <span class="skills-name">UI/UX Design</span>
+                        </div>
+                        <div class="skills-data">
+                            <i class="ri-stack-line"></i>
+                            <span class="skills-name">Clean Architecture</span>
+                        </div>
+                        <div class="skills-data">
+                            <i class="ri-archive-line"></i>
+                            <span class="skills-name">Repository Pattern</span>
+                        </div>
+                        <div class="skills-data">
+                            <i class="ri-loop-right-line"></i>
+                            <span class="skills-name">Unit of Work Pattern</span>
+                        </div>
+                        <div class="skills-data">
+                            <i class="ri-shield-check-line"></i>
+                            <span class="skills-name">Software Testing</span>
+                        </div>
+                        <div class="skills-data">
+                            <i class="ri-bug-line"></i>
+                            <span class="skills-name">Debugging & Troubleshooting</span>
+                        </div>
+                        <div class="skills-data">
+                            <i class="ri-lightbulb-line"></i>
+                            <span class="skills-name">Problem Solving</span>
+                        </div>
+                        <div class="skills-data">
+                            <i class="ri-team-line"></i>
+                            <span class="skills-name">Team Collaboration</span>
                         </div>
                     </div>
                 </div>

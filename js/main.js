@@ -73,7 +73,7 @@ function setActiveLink(sectionId) {
 }
 
 function scrollToSection(target) {
-    const targetTop = target.getBoundingClientRect().top + window.pageYOffset - getHeaderOffset()
+    const targetTop = target.id === 'hero' ? 0 : Math.round(target.getBoundingClientRect().top + window.pageYOffset)
     const nextScrollY = Math.max(targetTop, 0)
 
     startProgrammaticScroll()
@@ -105,10 +105,11 @@ function scrollToSection(target) {
     scrollAnimationFrame = requestAnimationFrame(animateScroll)
 }
 
-/*==================== NAVIGATION LINK ACTIONS ====================*/
-navLinks.forEach(link => {
+/*==================== NAVIGATION & ANCHOR LINK ACTIONS ====================*/
+document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', event => {
         const targetId = link.getAttribute('href')
+        if (!targetId || targetId === '#') return
         const target = document.querySelector(targetId)
 
         if (!target) return
@@ -120,15 +121,51 @@ navLinks.forEach(link => {
     })
 })
 
-/*==================== SCROLL SECTIONS ACTIVE LINK ====================*/
+/*==================== SCROLL SECTIONS ACTIVE LINK & TIMELINE PROGRESS ====================*/
 let ticking = false
 
+/* Education Timeline Continuous Scroll-Driven Progress */
+function updateEducationTimelineProgress() {
+    const timeline = document.getElementById('education-timeline')
+    const trackFill = document.getElementById('education-track-fill')
+    if (!timeline || !trackFill) return
+
+    const milestones = timeline.querySelectorAll('.education-milestone')
+    if (!milestones.length) return
+
+    const firstNode = milestones[0].querySelector('.education-milestone-node')
+    const lastNode = milestones[milestones.length - 1].querySelector('.education-milestone-node')
+    if (!firstNode || !lastNode) return
+
+    const firstRect = firstNode.getBoundingClientRect()
+    const lastRect = lastNode.getBoundingClientRect()
+    const totalDistance = lastRect.top - firstRect.top
+
+    if (totalDistance <= 0) return
+
+    // Trigger line in viewport: ~62% down from viewport top
+    const triggerY = window.innerHeight * 0.62
+    const currentProgressPx = Math.min(Math.max(triggerY - firstRect.top, 0), totalDistance)
+    const progressPercent = (currentProgressPx / totalDistance) * 100
+
+    trackFill.style.height = `${progressPercent}%`
+
+    // Activate milestone nodes reached by scroll progress
+    milestones.forEach(milestone => {
+        const node = milestone.querySelector('.education-milestone-node')
+        if (!node) return
+        const nodeRect = node.getBoundingClientRect()
+        const isReached = triggerY >= nodeRect.top - 8
+        milestone.classList.toggle('is-active', isReached)
+    })
+}
+
 function updateActiveSection() {
-    const activationPoint = window.scrollY + getHeaderOffset() + Math.min(window.innerHeight * .28, 220)
+    const scrollPosition = window.scrollY + 120
     let activeSectionId = sections[0] ? sections[0].id : null
 
     sections.forEach(section => {
-        if (activationPoint >= section.offsetTop) {
+        if (scrollPosition >= section.offsetTop) {
             activeSectionId = section.id
         }
     })
@@ -147,6 +184,7 @@ function requestActiveSectionUpdate() {
 
     window.requestAnimationFrame(() => {
         updateActiveSection()
+        updateEducationTimelineProgress()
         ticking = false
     })
 
@@ -159,7 +197,7 @@ window.addEventListener('resize', () => {
     updateIndicators()
 })
 window.addEventListener('load', () => {
-    updateActiveSection()
+    requestActiveSectionUpdate()
     updateIndicators()
 })
 
