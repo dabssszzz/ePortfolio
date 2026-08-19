@@ -576,48 +576,1021 @@
         </section>
 
         <!-- Seminars & Certifications Section -->
-        <section class="section" id="certifications">
+        <section class="certifications section" id="certifications">
             <div class="container section-header reveal-on-scroll">
                 <h2 class="section-title">Certification</h2>
                 <span class="section-subtitle">Seminars & Training</span>
             </div>
 
-            <div class="container grid certification-container">
-                <div class="skills-content certification-content reveal-on-scroll">
-                    <div class="skills-group certification-group">
+            <!-- Compact View Switcher -->
+            <div class="container cert-toggle-wrapper reveal-on-scroll">
+                <div class="cert-view-toggle" role="tablist" aria-label="Certification display mode">
+                    <button type="button" class="cert-toggle-btn active" id="cert-toggle-list" role="tab" aria-selected="true" aria-controls="cert-list-view">
+                        <i class="ri-list-check-2"></i> <span>List View</span>
+                    </button>
+                    <button type="button" class="cert-toggle-btn" id="cert-toggle-gallery" role="tab" aria-selected="false" aria-controls="cert-gallery-view">
+                        <i class="ri-grid-fill"></i> <span>Gallery View</span>
+                    </button>
+                </div>
+            </div>
 
-                        <div class="certification-data">
-                            <i class="ri-award-line certification-icon"></i>
-                            <div>
-                                <h3 class="certification-name">Preparing Future IT Professionals Through Enterprise Networking, Cybersecurity, and Security Operations Center (SOC) Exposure Seminar</h3>
-                                <span class="certification-date">January 2026</span>
+            <div class="container certification-container">
+                <!-- 1. LIST VIEW -->
+                <div class="cert-view-content active" id="cert-list-view" role="tabpanel" aria-labelledby="cert-toggle-list">
+                    <div class="skills-content certification-content reveal-on-scroll">
+                        <div class="certification-list-group" id="cert-list-group">
+
+                            <!-- Item 1 -->
+                            <div class="cert-list-item" data-cert-index="0" role="button" tabindex="0" aria-label="View certificate: Preparing Future IT Professionals">
+                                <div class="cert-list-main">
+                                    <div class="cert-list-icon-wrapper">
+                                        <i class="ri-award-line cert-list-icon"></i>
+                                    </div>
+                                    <div class="cert-list-text">
+                                        <h3 class="cert-list-title">Preparing Future IT Professionals Through Enterprise Networking, Cybersecurity And Security Operations Center (SOC) Exposure Seminar</h3>
+                                        <div class="cert-list-meta">
+                                            <span class="cert-list-issuer"><i class="ri-building-line"></i> Ardent Networks Inc.</span>
+                                            <span class="cert-meta-dot">&bull;</span>
+                                            <span class="cert-list-date"><i class="ri-calendar-line"></i> Jan 2026</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="cert-list-action"><i class="ri-eye-line"></i> View</span>
+                            </div>
+
+                            <!-- Item 2 -->
+                            <div class="cert-list-item" data-cert-index="1" role="button" tabindex="0" aria-label="View certificate: Machine Learning using Python">
+                                <div class="cert-list-main">
+                                    <div class="cert-list-icon-wrapper">
+                                        <i class="ri-award-line cert-list-icon"></i>
+                                    </div>
+                                    <div class="cert-list-text">
+                                        <h3 class="cert-list-title">Machine Learning using Python</h3>
+                                        <div class="cert-list-meta">
+                                            <span class="cert-list-issuer"><i class="ri-building-line"></i> Simplilearn</span>
+                                            <span class="cert-meta-dot">&bull;</span>
+                                            <span class="cert-list-date"><i class="ri-calendar-line"></i> Apr 2025</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="cert-list-action"><i class="ri-eye-line"></i> View</span>
+                            </div>
+
+                            <!-- Item 3 -->
+                            <div class="cert-list-item" data-cert-index="2" role="button" tabindex="0" aria-label="View certificate: Kwentuhang Cybersecurity: AI in Cyber Threats">
+                                <div class="cert-list-main">
+                                    <div class="cert-list-icon-wrapper">
+                                        <i class="ri-award-line cert-list-icon"></i>
+                                    </div>
+                                    <div class="cert-list-text">
+                                        <h3 class="cert-list-title">Kwentuhang Cybersecurity: The Role of Artificial Intelligence in Predicting and Mitigating Cyber Threats</h3>
+                                        <div class="cert-list-meta">
+                                            <span class="cert-list-issuer"><i class="ri-building-line"></i> PICSPro (Philippine Institute of Cybersecurity Professionals)</span>
+                                            <span class="cert-meta-dot">&bull;</span>
+                                            <span class="cert-list-date"><i class="ri-calendar-line"></i> Oct 2025</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="cert-list-action"><i class="ri-eye-line"></i> View</span>
+                            </div>
+
+                            <!-- Item 4 -->
+                            <div class="cert-list-item" data-cert-index="3" role="button" tabindex="0" aria-label="View certificate: 10th National Research Conference on Information Technology Education">
+                                <div class="cert-list-main">
+                                    <div class="cert-list-icon-wrapper">
+                                        <i class="ri-award-line cert-list-icon"></i>
+                                    </div>
+                                    <div class="cert-list-text">
+                                        <h3 class="cert-list-title">10th National Research Conference on Information Technology Education</h3>
+                                        <div class="cert-list-meta">
+                                            <span class="cert-list-issuer"><i class="ri-building-line"></i> Integrated Society of Information Technology Enthusiasts (SITE) Inc.</span>
+                                            <span class="cert-meta-dot">&bull;</span>
+                                            <span class="cert-list-date"><i class="ri-calendar-line"></i> May 2025</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="cert-list-action"><i class="ri-eye-line"></i> View</span>
+                            </div>
+
+                            <!-- Item 5 -->
+                            <div class="cert-list-item" data-cert-index="4" role="button" tabindex="0" aria-label="View certificate: Kwentuhang Cybersecurity: Digital Privacy and Cyber Laws">
+                                <div class="cert-list-main">
+                                    <div class="cert-list-icon-wrapper">
+                                        <i class="ri-award-line cert-list-icon"></i>
+                                    </div>
+                                    <div class="cert-list-text">
+                                        <h3 class="cert-list-title">Kwentuhang Cybersecurity: Digital Privacy and Cyber Laws in the Philippines: Understanding Your Rights Under RA 10173 and RA 10175</h3>
+                                        <div class="cert-list-meta">
+                                            <span class="cert-list-issuer"><i class="ri-building-line"></i> PICSPro (Philippine Institute of Cybersecurity Professionals)</span>
+                                            <span class="cert-meta-dot">&bull;</span>
+                                            <span class="cert-list-date"><i class="ri-calendar-line"></i> Mar 2025</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="cert-list-action"><i class="ri-eye-line"></i> View</span>
+                            </div>
+
+                            <!-- Item 6 -->
+                            <div class="cert-list-item" data-cert-index="5" role="button" tabindex="0" aria-label="View certificate: Networking Foundations">
+                                <div class="cert-list-main">
+                                    <div class="cert-list-icon-wrapper">
+                                        <i class="ri-award-line cert-list-icon"></i>
+                                    </div>
+                                    <div class="cert-list-text">
+                                        <h3 class="cert-list-title">Networking Foundations: Networking Basics</h3>
+                                        <div class="cert-list-meta">
+                                            <span class="cert-list-issuer"><i class="ri-building-line"></i> LinkedIn</span>
+                                            <span class="cert-meta-dot">&bull;</span>
+                                            <span class="cert-list-date"><i class="ri-calendar-line"></i> Nov 2023</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="cert-list-action"><i class="ri-eye-line"></i> View</span>
+                            </div>
+
+                            <!-- Item 7 -->
+                            <div class="cert-list-item" data-cert-index="6" role="button" tabindex="0" aria-label="View certificate: AI Foundations Thinking Machines">
+                                <div class="cert-list-main">
+                                    <div class="cert-list-icon-wrapper">
+                                        <i class="ri-award-line cert-list-icon"></i>
+                                    </div>
+                                    <div class="cert-list-text">
+                                        <h3 class="cert-list-title">Artificial Intelligence Foundations: Thinking Machines</h3>
+                                        <div class="cert-list-meta">
+                                            <span class="cert-list-issuer"><i class="ri-building-line"></i> LinkedIn</span>
+                                            <span class="cert-meta-dot">&bull;</span>
+                                            <span class="cert-list-date"><i class="ri-calendar-line"></i> Nov 2023</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="cert-list-action"><i class="ri-eye-line"></i> View</span>
+                            </div>
+
+                            <!-- Item 8 -->
+                            <div class="cert-list-item" data-cert-index="7" role="button" tabindex="0" aria-label="View certificate: Data Analytics & Mobile App">
+                                <div class="cert-list-main">
+                                    <div class="cert-list-icon-wrapper">
+                                        <i class="ri-award-line cert-list-icon"></i>
+                                    </div>
+                                    <div class="cert-list-text">
+                                        <h3 class="cert-list-title">"Data Analytics & How to become a Data Analyst and Creating a Video Presentation and "Developing a Mobile Cross-Platform Application"</h3>
+                                        <div class="cert-list-meta">
+                                            <span class="cert-list-issuer"><i class="ri-building-line"></i> Polytechnic University of the Philippines</span>
+                                            <span class="cert-meta-dot">&bull;</span>
+                                            <span class="cert-list-date"><i class="ri-calendar-line"></i> Jan 2023</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="cert-list-action"><i class="ri-eye-line"></i> View</span>
+                            </div>
+
+                            <!-- Item 9 -->
+                            <div class="cert-list-item" data-cert-index="8" role="button" tabindex="0" aria-label="View certificate: Digital Literacy Training: Data Analytics">
+                                <div class="cert-list-main">
+                                    <div class="cert-list-icon-wrapper">
+                                        <i class="ri-award-line cert-list-icon"></i>
+                                    </div>
+                                    <div class="cert-list-text">
+                                        <h3 class="cert-list-title">Digital Literacy Training: Introduction to Data Analytics</h3>
+                                        <div class="cert-list-meta">
+                                            <span class="cert-list-issuer"><i class="ri-building-line"></i> Department of Information and Communications Technology - Philippines</span>
+                                            <span class="cert-meta-dot">&bull;</span>
+                                            <span class="cert-list-date"><i class="ri-calendar-line"></i> Jan 2023</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="cert-list-action"><i class="ri-eye-line"></i> View</span>
+                            </div>
+
+                            <!-- Item 10 -->
+                            <div class="cert-list-item" data-cert-index="9" role="button" tabindex="0" aria-label="View certificate: Internet Media and Information Literacy Training">
+                                <div class="cert-list-main">
+                                    <div class="cert-list-icon-wrapper">
+                                        <i class="ri-award-line cert-list-icon"></i>
+                                    </div>
+                                    <div class="cert-list-text">
+                                        <h3 class="cert-list-title">Internet Media and Information Literacy Training</h3>
+                                        <div class="cert-list-meta">
+                                            <span class="cert-list-issuer"><i class="ri-building-line"></i> Department of Information and Communications Technology - Philippines</span>
+                                            <span class="cert-meta-dot">&bull;</span>
+                                            <span class="cert-list-date"><i class="ri-calendar-line"></i> Jan 2023</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="cert-list-action"><i class="ri-eye-line"></i> View</span>
+                            </div>
+
+                            <!-- Item 11 -->
+                            <div class="cert-list-item" data-cert-index="10" role="button" tabindex="0" aria-label="View certificate: 16th EdukCircle International Convention">
+                                <div class="cert-list-main">
+                                    <div class="cert-list-icon-wrapper">
+                                        <i class="ri-award-line cert-list-icon"></i>
+                                    </div>
+                                    <div class="cert-list-text">
+                                        <h3 class="cert-list-title">16th EdukCircle International Convention On Engineering and Computer Technology</h3>
+                                        <div class="cert-list-meta">
+                                            <span class="cert-list-issuer"><i class="ri-building-line"></i> The EdukCircle</span>
+                                            <span class="cert-meta-dot">&bull;</span>
+                                            <span class="cert-list-date"><i class="ri-calendar-line"></i> May 2024</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="cert-list-action"><i class="ri-eye-line"></i> View</span>
+                            </div>
+
+                            <!-- Item 12 -->
+                            <div class="cert-list-item" data-cert-index="11" role="button" tabindex="0" aria-label="View certificate: Tech Career Skills: Effective Technical Communication">
+                                <div class="cert-list-main">
+                                    <div class="cert-list-icon-wrapper">
+                                        <i class="ri-award-line cert-list-icon"></i>
+                                    </div>
+                                    <div class="cert-list-text">
+                                        <h3 class="cert-list-title">Tech Career Skills: Effective Technical Communication</h3>
+                                        <div class="cert-list-meta">
+                                            <span class="cert-list-issuer"><i class="ri-building-line"></i> LinkedIn</span>
+                                            <span class="cert-meta-dot">&bull;</span>
+                                            <span class="cert-list-date"><i class="ri-calendar-line"></i> Nov 2023</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="cert-list-action"><i class="ri-eye-line"></i> View</span>
+                            </div>
+
+                            <!-- Item 13 -->
+                            <div class="cert-list-item" data-cert-index="12" role="button" tabindex="0" aria-label="View certificate: Tech Career Skills: Communication for Developers">
+                                <div class="cert-list-main">
+                                    <div class="cert-list-icon-wrapper">
+                                        <i class="ri-award-line cert-list-icon"></i>
+                                    </div>
+                                    <div class="cert-list-text">
+                                        <h3 class="cert-list-title">Tech Career Skills: Communication for Developers</h3>
+                                        <div class="cert-list-meta">
+                                            <span class="cert-list-issuer"><i class="ri-building-line"></i> LinkedIn</span>
+                                            <span class="cert-meta-dot">&bull;</span>
+                                            <span class="cert-list-date"><i class="ri-calendar-line"></i> Nov 2023</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="cert-list-action"><i class="ri-eye-line"></i> View</span>
+                            </div>
+
+                            <!-- Item 14 -->
+                            <div class="cert-list-item" data-cert-index="13" role="button" tabindex="0" aria-label="View certificate: Python Quick Start">
+                                <div class="cert-list-main">
+                                    <div class="cert-list-icon-wrapper">
+                                        <i class="ri-award-line cert-list-icon"></i>
+                                    </div>
+                                    <div class="cert-list-text">
+                                        <h3 class="cert-list-title">Python Quick Start</h3>
+                                        <div class="cert-list-meta">
+                                            <span class="cert-list-issuer"><i class="ri-building-line"></i> LinkedIn</span>
+                                            <span class="cert-meta-dot">&bull;</span>
+                                            <span class="cert-list-date"><i class="ri-calendar-line"></i> Nov 2023</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="cert-list-action"><i class="ri-eye-line"></i> View</span>
+                            </div>
+
+                            <!-- Item 15 -->
+                            <div class="cert-list-item" data-cert-index="14" role="button" tabindex="0" aria-label="View certificate: The Future of Work">
+                                <div class="cert-list-main">
+                                    <div class="cert-list-icon-wrapper">
+                                        <i class="ri-award-line cert-list-icon"></i>
+                                    </div>
+                                    <div class="cert-list-text">
+                                        <h3 class="cert-list-title">The Future of Work: The Necessary Skills of Your Future Workforce</h3>
+                                        <div class="cert-list-meta">
+                                            <span class="cert-list-issuer"><i class="ri-building-line"></i> LinkedIn</span>
+                                            <span class="cert-meta-dot">&bull;</span>
+                                            <span class="cert-list-date"><i class="ri-calendar-line"></i> Nov 2023</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="cert-list-action"><i class="ri-eye-line"></i> View</span>
+                            </div>
+
+                            <!-- Item 16 -->
+                            <div class="cert-list-item" data-cert-index="15" role="button" tabindex="0" aria-label="View certificate: Develop Interpersonal Skills for Inclusive Workplaces">
+                                <div class="cert-list-main">
+                                    <div class="cert-list-icon-wrapper">
+                                        <i class="ri-award-line cert-list-icon"></i>
+                                    </div>
+                                    <div class="cert-list-text">
+                                        <h3 class="cert-list-title">Develop Interpersonal Skills for Inclusive Workplaces</h3>
+                                        <div class="cert-list-meta">
+                                            <span class="cert-list-issuer"><i class="ri-building-line"></i> LinkedIn</span>
+                                            <span class="cert-meta-dot">&bull;</span>
+                                            <span class="cert-list-date"><i class="ri-calendar-line"></i> Nov 2023</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="cert-list-action"><i class="ri-eye-line"></i> View</span>
+                            </div>
+
+                            <!-- Item 17 -->
+                            <div class="cert-list-item" data-cert-index="16" role="button" tabindex="0" aria-label="View certificate: Communication Skills for Modern Management">
+                                <div class="cert-list-main">
+                                    <div class="cert-list-icon-wrapper">
+                                        <i class="ri-award-line cert-list-icon"></i>
+                                    </div>
+                                    <div class="cert-list-text">
+                                        <h3 class="cert-list-title">Communication Skills for Modern Management</h3>
+                                        <div class="cert-list-meta">
+                                            <span class="cert-list-issuer"><i class="ri-building-line"></i> LinkedIn</span>
+                                            <span class="cert-meta-dot">&bull;</span>
+                                            <span class="cert-list-date"><i class="ri-calendar-line"></i> Nov 2023</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="cert-list-action"><i class="ri-eye-line"></i> View</span>
+                            </div>
+
+                            <!-- Item 18 -->
+                            <div class="cert-list-item" data-cert-index="17" role="button" tabindex="0" aria-label="View certificate: Communication Foundations">
+                                <div class="cert-list-main">
+                                    <div class="cert-list-icon-wrapper">
+                                        <i class="ri-award-line cert-list-icon"></i>
+                                    </div>
+                                    <div class="cert-list-text">
+                                        <h3 class="cert-list-title">Communication Foundations (2018)</h3>
+                                        <div class="cert-list-meta">
+                                            <span class="cert-list-issuer"><i class="ri-building-line"></i> LinkedIn</span>
+                                            <span class="cert-meta-dot">&bull;</span>
+                                            <span class="cert-list-date"><i class="ri-calendar-line"></i> Nov 2023</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="cert-list-action"><i class="ri-eye-line"></i> View</span>
+                            </div>
+
+                            <!-- Item 19 -->
+                            <div class="cert-list-item" data-cert-index="18" role="button" tabindex="0" aria-label="View certificate: Business Writing Principles">
+                                <div class="cert-list-main">
+                                    <div class="cert-list-icon-wrapper">
+                                        <i class="ri-award-line cert-list-icon"></i>
+                                    </div>
+                                    <div class="cert-list-text">
+                                        <h3 class="cert-list-title">Business Writing Principles</h3>
+                                        <div class="cert-list-meta">
+                                            <span class="cert-list-issuer"><i class="ri-building-line"></i> LinkedIn</span>
+                                            <span class="cert-meta-dot">&bull;</span>
+                                            <span class="cert-list-date"><i class="ri-calendar-line"></i> Nov 2023</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="cert-list-action"><i class="ri-eye-line"></i> View</span>
+                            </div>
+
+                            <!-- Item 20 -->
+                            <div class="cert-list-item" data-cert-index="19" role="button" tabindex="0" aria-label="View certificate: Writing Formal Business Letters and Emails">
+                                <div class="cert-list-main">
+                                    <div class="cert-list-icon-wrapper">
+                                        <i class="ri-award-line cert-list-icon"></i>
+                                    </div>
+                                    <div class="cert-list-text">
+                                        <h3 class="cert-list-title">Writing Formal Business Letters and Emails</h3>
+                                        <div class="cert-list-meta">
+                                            <span class="cert-list-issuer"><i class="ri-building-line"></i> LinkedIn</span>
+                                            <span class="cert-meta-dot">&bull;</span>
+                                            <span class="cert-list-date"><i class="ri-calendar-line"></i> Nov 2023</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="cert-list-action"><i class="ri-eye-line"></i> View</span>
+                            </div>
+
+                            <!-- Item 21 -->
+                            <div class="cert-list-item" data-cert-index="20" role="button" tabindex="0" aria-label="View certificate: Tips for Writing Business Emails">
+                                <div class="cert-list-main">
+                                    <div class="cert-list-icon-wrapper">
+                                        <i class="ri-award-line cert-list-icon"></i>
+                                    </div>
+                                    <div class="cert-list-text">
+                                        <h3 class="cert-list-title">Tips for Writing Business Emails</h3>
+                                        <div class="cert-list-meta">
+                                            <span class="cert-list-issuer"><i class="ri-building-line"></i> LinkedIn</span>
+                                            <span class="cert-meta-dot">&bull;</span>
+                                            <span class="cert-list-date"><i class="ri-calendar-line"></i> Nov 2023</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="cert-list-action"><i class="ri-eye-line"></i> View</span>
+                            </div>
+
+                            <!-- Item 22 -->
+                            <div class="cert-list-item" data-cert-index="21" role="button" tabindex="0" aria-label="View certificate: Design a Compelling Presentation">
+                                <div class="cert-list-main">
+                                    <div class="cert-list-icon-wrapper">
+                                        <i class="ri-award-line cert-list-icon"></i>
+                                    </div>
+                                    <div class="cert-list-text">
+                                        <h3 class="cert-list-title">Design a Compelling Presentation</h3>
+                                        <div class="cert-list-meta">
+                                            <span class="cert-list-issuer"><i class="ri-building-line"></i> LinkedIn</span>
+                                            <span class="cert-meta-dot">&bull;</span>
+                                            <span class="cert-list-date"><i class="ri-calendar-line"></i> Nov 2023</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="cert-list-action"><i class="ri-eye-line"></i> View</span>
+                            </div>
+
+                            <!-- Item 23 -->
+                            <div class="cert-list-item" data-cert-index="22" role="button" tabindex="0" aria-label="View certificate: Video Writing: Using Humor to Communicate and Persuade">
+                                <div class="cert-list-main">
+                                    <div class="cert-list-icon-wrapper">
+                                        <i class="ri-award-line cert-list-icon"></i>
+                                    </div>
+                                    <div class="cert-list-text">
+                                        <h3 class="cert-list-title">Video Writing: Using Humor to Communicate and Persuade</h3>
+                                        <div class="cert-list-meta">
+                                            <span class="cert-list-issuer"><i class="ri-building-line"></i> LinkedIn</span>
+                                            <span class="cert-meta-dot">&bull;</span>
+                                            <span class="cert-list-date"><i class="ri-calendar-line"></i> Nov 2023</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="cert-list-action"><i class="ri-eye-line"></i> View</span>
+                            </div>
+
+                            <!-- Item 24 -->
+                            <div class="cert-list-item" data-cert-index="23" role="button" tabindex="0" aria-label="View certificate: Skills for Inclusive Conversations">
+                                <div class="cert-list-main">
+                                    <div class="cert-list-icon-wrapper">
+                                        <i class="ri-award-line cert-list-icon"></i>
+                                    </div>
+                                    <div class="cert-list-text">
+                                        <h3 class="cert-list-title">Skills for Inclusive Conversations</h3>
+                                        <div class="cert-list-meta">
+                                            <span class="cert-list-issuer"><i class="ri-building-line"></i> LinkedIn</span>
+                                            <span class="cert-meta-dot">&bull;</span>
+                                            <span class="cert-list-date"><i class="ri-calendar-line"></i> Nov 2023</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="cert-list-action"><i class="ri-eye-line"></i> View</span>
+                            </div>
+
+                            <!-- Item 25 -->
+                            <div class="cert-list-item" data-cert-index="24" role="button" tabindex="0" aria-label="View certificate: Learning Premiere Pro (2019)">
+                                <div class="cert-list-main">
+                                    <div class="cert-list-icon-wrapper">
+                                        <i class="ri-award-line cert-list-icon"></i>
+                                    </div>
+                                    <div class="cert-list-text">
+                                        <h3 class="cert-list-title">Learning Premiere Pro (2019)</h3>
+                                        <div class="cert-list-meta">
+                                            <span class="cert-list-issuer"><i class="ri-building-line"></i> LinkedIn</span>
+                                            <span class="cert-meta-dot">&bull;</span>
+                                            <span class="cert-list-date"><i class="ri-calendar-line"></i> Nov 2023</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="cert-list-action"><i class="ri-eye-line"></i> View</span>
+                            </div>
+
+                            <!-- Item 26 -->
+                            <div class="cert-list-item" data-cert-index="25" role="button" tabindex="0" aria-label="View certificate: Introduction to Photography">
+                                <div class="cert-list-main">
+                                    <div class="cert-list-icon-wrapper">
+                                        <i class="ri-award-line cert-list-icon"></i>
+                                    </div>
+                                    <div class="cert-list-text">
+                                        <h3 class="cert-list-title">Introduction to Photography: Lightroom Classic CC and Photoshop</h3>
+                                        <div class="cert-list-meta">
+                                            <span class="cert-list-issuer"><i class="ri-building-line"></i> LinkedIn</span>
+                                            <span class="cert-meta-dot">&bull;</span>
+                                            <span class="cert-list-date"><i class="ri-calendar-line"></i> Nov 2023</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="cert-list-action"><i class="ri-eye-line"></i> View</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. GALLERY VIEW -->
+                <div class="cert-view-content" id="cert-gallery-view" role="tabpanel" aria-labelledby="cert-toggle-gallery" hidden>
+                    <div class="cert-gallery-grid" id="cert-gallery-grid">
+
+                        <!-- Gallery Card 1 -->
+                        <div class="cert-gallery-card reveal-on-scroll" data-cert-index="0" role="button" tabindex="0" aria-label="View certificate: Preparing Future IT Professionals">
+                            <div class="cert-card-media">
+                                <img src="assets/certification/previews/Preparing Future IT Professionals Through Enterprise Networking, Cybersecurity, and Security Operations Center (SOC) Exposure Seminar.pdf.png" alt="Preparing Future IT Professionals" class="cert-card-img" loading="lazy">
+                                <div class="cert-card-overlay">
+                                    <span class="cert-card-badge"><i class="ri-eye-line"></i> View Certificate</span>
+                                </div>
+                            </div>
+                            <div class="cert-card-body">
+                                <h3 class="cert-card-title">Preparing Future IT Professionals Through Enterprise Networking, Cybersecurity And Security Operations Center (SOC) Exposure Seminar</h3>
+                                <div class="cert-card-meta">
+                                    <span class="cert-card-issuer">Ardent Networks Inc.</span>
+                                    <span class="cert-meta-dot">&bull;</span>
+                                    <span class="cert-card-date">Jan 2026</span>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="certification-data">
-                            <i class="ri-award-line certification-icon"></i>
-                            <div>
-                                <h3 class="certification-name">Kwentuhang Cybersecurity: The Role of Artificial Intelligence in Predicting and Mitigating Cyber Threats</h3>
-                                <span class="certification-date">October 2025</span>
+                        <!-- Gallery Card 2 -->
+                        <div class="cert-gallery-card reveal-on-scroll" data-cert-index="1" role="button" tabindex="0" aria-label="View certificate: Machine Learning using Python">
+                            <div class="cert-card-media">
+                                <img src="assets/certification/previews/Machine Learning using Python.pdf.png" alt="Machine Learning using Python" class="cert-card-img" loading="lazy">
+                                <div class="cert-card-overlay">
+                                    <span class="cert-card-badge"><i class="ri-eye-line"></i> View Certificate</span>
+                                </div>
+                            </div>
+                            <div class="cert-card-body">
+                                <h3 class="cert-card-title">Machine Learning using Python</h3>
+                                <div class="cert-card-meta">
+                                    <span class="cert-card-issuer">Simplilearn</span>
+                                    <span class="cert-meta-dot">&bull;</span>
+                                    <span class="cert-card-date">Apr 2025</span>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="certification-data">
-                            <i class="ri-award-line certification-icon"></i>
-                            <div>
-                                <h3 class="certification-name">Networking Foundations: Networking Basics</h3>
-                                <span class="certification-date">November 2023</span>
+                        <!-- Gallery Card 3 -->
+                        <div class="cert-gallery-card reveal-on-scroll" data-cert-index="2" role="button" tabindex="0" aria-label="View certificate: Kwentuhang Cybersecurity: AI in Cyber Threats">
+                            <div class="cert-card-media">
+                                <img src="assets/certification/previews/Kwentuhang Cybersecurity The Role of Artificial Intelligence in Predicting and Mitigating Cyber Threats.pdf.png" alt="Kwentuhang Cybersecurity AI" class="cert-card-img" loading="lazy">
+                                <div class="cert-card-overlay">
+                                    <span class="cert-card-badge"><i class="ri-eye-line"></i> View Certificate</span>
+                                </div>
+                            </div>
+                            <div class="cert-card-body">
+                                <h3 class="cert-card-title">Kwentuhang Cybersecurity: The Role of Artificial Intelligence in Predicting and Mitigating Cyber Threats</h3>
+                                <div class="cert-card-meta">
+                                    <span class="cert-card-issuer">PICSPro</span>
+                                    <span class="cert-meta-dot">&bull;</span>
+                                    <span class="cert-card-date">Oct 2025</span>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="certification-data">
-                            <i class="ri-award-line certification-icon"></i>
-                            <div>
-                                <h3 class="certification-name">Digital Literacy Training: Introduction to Data Analytics</h3>
-                                <span class="certification-date">January 2023</span>
+                        <!-- Gallery Card 4 -->
+                        <div class="cert-gallery-card reveal-on-scroll" data-cert-index="3" role="button" tabindex="0" aria-label="View certificate: 10th National Research Conference">
+                            <div class="cert-card-media">
+                                <img src="assets/certification/previews/10th National Research Conference on Information Technology Education.jpg" alt="10th National Research Conference on Information Technology Education" class="cert-card-img" loading="lazy">
+                                <div class="cert-card-overlay">
+                                    <span class="cert-card-badge"><i class="ri-eye-line"></i> View Certificate</span>
+                                </div>
+                            </div>
+                            <div class="cert-card-body">
+                                <h3 class="cert-card-title">10th National Research Conference on Information Technology Education</h3>
+                                <div class="cert-card-meta">
+                                    <span class="cert-card-issuer">SITE Inc.</span>
+                                    <span class="cert-meta-dot">&bull;</span>
+                                    <span class="cert-card-date">May 2025</span>
+                                </div>
                             </div>
                         </div>
 
+                        <!-- Gallery Card 5 -->
+                        <div class="cert-gallery-card reveal-on-scroll" data-cert-index="4" role="button" tabindex="0" aria-label="View certificate: Kwentuhang Cybersecurity: Digital Privacy and Cyber Laws">
+                            <div class="cert-card-media">
+                                <img src="assets/certification/previews/Kwentuhang Cybersecurity Digital Privacy and Cyber Laws in the Philippines Understanding Your Rights Under RA 10173 and RA 10175.pdf.png" alt="Kwentuhang Cybersecurity Digital Privacy" class="cert-card-img" loading="lazy">
+                                <div class="cert-card-overlay">
+                                    <span class="cert-card-badge"><i class="ri-eye-line"></i> View Certificate</span>
+                                </div>
+                            </div>
+                            <div class="cert-card-body">
+                                <h3 class="cert-card-title">Kwentuhang Cybersecurity: Digital Privacy and Cyber Laws in the Philippines</h3>
+                                <div class="cert-card-meta">
+                                    <span class="cert-card-issuer">PICSPro</span>
+                                    <span class="cert-meta-dot">&bull;</span>
+                                    <span class="cert-card-date">Mar 2025</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gallery Card 6 -->
+                        <div class="cert-gallery-card reveal-on-scroll" data-cert-index="5" role="button" tabindex="0" aria-label="View certificate: Networking Foundations">
+                            <div class="cert-card-media">
+                                <img src="assets/certification/previews/Networking Foundations Networking Basics.pdf.png" alt="Networking Foundations: Networking Basics" class="cert-card-img" loading="lazy">
+                                <div class="cert-card-overlay">
+                                    <span class="cert-card-badge"><i class="ri-eye-line"></i> View Certificate</span>
+                                </div>
+                            </div>
+                            <div class="cert-card-body">
+                                <h3 class="cert-card-title">Networking Foundations: Networking Basics</h3>
+                                <div class="cert-card-meta">
+                                    <span class="cert-card-issuer">LinkedIn</span>
+                                    <span class="cert-meta-dot">&bull;</span>
+                                    <span class="cert-card-date">Nov 2023</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gallery Card 7 -->
+                        <div class="cert-gallery-card reveal-on-scroll" data-cert-index="6" role="button" tabindex="0" aria-label="View certificate: AI Foundations Thinking Machines">
+                            <div class="cert-card-media">
+                                <img src="assets/certification/previews/Artificial Intelligence Foundations Thinking Machines.jpeg" alt="Artificial Intelligence Foundations: Thinking Machines" class="cert-card-img" loading="lazy">
+                                <div class="cert-card-overlay">
+                                    <span class="cert-card-badge"><i class="ri-eye-line"></i> View Certificate</span>
+                                </div>
+                            </div>
+                            <div class="cert-card-body">
+                                <h3 class="cert-card-title">Artificial Intelligence Foundations: Thinking Machines</h3>
+                                <div class="cert-card-meta">
+                                    <span class="cert-card-issuer">LinkedIn</span>
+                                    <span class="cert-meta-dot">&bull;</span>
+                                    <span class="cert-card-date">Nov 2023</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gallery Card 8 -->
+                        <div class="cert-gallery-card reveal-on-scroll" data-cert-index="7" role="button" tabindex="0" aria-label="View certificate: Data Analytics & Mobile App">
+                            <div class="cert-card-media">
+                                <img src="assets/certification/previews/Data Analytics and Mobile App.png" alt="Data Analytics & Mobile App" class="cert-card-img" loading="lazy">
+                                <div class="cert-card-overlay">
+                                    <span class="cert-card-badge"><i class="ri-eye-line"></i> View Certificate</span>
+                                </div>
+                            </div>
+                            <div class="cert-card-body">
+                                <h3 class="cert-card-title">"Data Analytics & How to become a Data Analyst" and "Developing a Mobile Cross-Platform Application"</h3>
+                                <div class="cert-card-meta">
+                                    <span class="cert-card-issuer">PUP</span>
+                                    <span class="cert-meta-dot">&bull;</span>
+                                    <span class="cert-card-date">Jan 2023</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gallery Card 9 -->
+                        <div class="cert-gallery-card reveal-on-scroll" data-cert-index="8" role="button" tabindex="0" aria-label="View certificate: Digital Literacy Training">
+                            <div class="cert-card-media">
+                                <img src="assets/certification/previews/Digital Literacy Training Introduction to Data Analytics.pdf.png" alt="Digital Literacy Training: Introduction to Data Analytics" class="cert-card-img" loading="lazy">
+                                <div class="cert-card-overlay">
+                                    <span class="cert-card-badge"><i class="ri-eye-line"></i> View Certificate</span>
+                                </div>
+                            </div>
+                            <div class="cert-card-body">
+                                <h3 class="cert-card-title">Digital Literacy Training: Introduction to Data Analytics</h3>
+                                <div class="cert-card-meta">
+                                    <span class="cert-card-issuer">DICT - Philippines</span>
+                                    <span class="cert-meta-dot">&bull;</span>
+                                    <span class="cert-card-date">Jan 2023</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gallery Card 10 -->
+                        <div class="cert-gallery-card reveal-on-scroll" data-cert-index="9" role="button" tabindex="0" aria-label="View certificate: Internet Media and Information Literacy">
+                            <div class="cert-card-media">
+                                <img src="assets/certification/previews/Internet Media and Information Literacy Training.pdf.png" alt="Internet Media and Information Literacy Training" class="cert-card-img" loading="lazy">
+                                <div class="cert-card-overlay">
+                                    <span class="cert-card-badge"><i class="ri-eye-line"></i> View Certificate</span>
+                                </div>
+                            </div>
+                            <div class="cert-card-body">
+                                <h3 class="cert-card-title">Internet Media and Information Literacy Training</h3>
+                                <div class="cert-card-meta">
+                                    <span class="cert-card-issuer">DICT - Philippines</span>
+                                    <span class="cert-meta-dot">&bull;</span>
+                                    <span class="cert-card-date">Jan 2023</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gallery Card 11 -->
+                        <div class="cert-gallery-card reveal-on-scroll" data-cert-index="10" role="button" tabindex="0" aria-label="View certificate: 16th EdukCircle International Convention">
+                            <div class="cert-card-media">
+                                <img src="assets/certification/previews/16th EdukCircle International Convention On Engineering and Computer Technology.pdf.png" alt="16th EdukCircle International Convention" class="cert-card-img" loading="lazy">
+                                <div class="cert-card-overlay">
+                                    <span class="cert-card-badge"><i class="ri-eye-line"></i> View Certificate</span>
+                                </div>
+                            </div>
+                            <div class="cert-card-body">
+                                <h3 class="cert-card-title">16th EdukCircle International Convention On Engineering and Computer Technology</h3>
+                                <div class="cert-card-meta">
+                                    <span class="cert-card-issuer">The EdukCircle</span>
+                                    <span class="cert-meta-dot">&bull;</span>
+                                    <span class="cert-card-date">May 2024</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gallery Card 12 -->
+                        <div class="cert-gallery-card reveal-on-scroll" data-cert-index="11" role="button" tabindex="0" aria-label="View certificate: Tech Career Skills: Effective Technical Communication">
+                            <div class="cert-card-media">
+                                <img src="assets/certification/previews/Tech Career Skills Effective Technical Communication.pdf.png" alt="Tech Career Skills: Effective Technical Communication" class="cert-card-img" loading="lazy">
+                                <div class="cert-card-overlay">
+                                    <span class="cert-card-badge"><i class="ri-eye-line"></i> View Certificate</span>
+                                </div>
+                            </div>
+                            <div class="cert-card-body">
+                                <h3 class="cert-card-title">Tech Career Skills: Effective Technical Communication</h3>
+                                <div class="cert-card-meta">
+                                    <span class="cert-card-issuer">LinkedIn</span>
+                                    <span class="cert-meta-dot">&bull;</span>
+                                    <span class="cert-card-date">Nov 2023</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gallery Card 13 -->
+                        <div class="cert-gallery-card reveal-on-scroll" data-cert-index="12" role="button" tabindex="0" aria-label="View certificate: Tech Career Skills: Communication for Developers">
+                            <div class="cert-card-media">
+                                <img src="assets/certification/previews/Tech Career Skills Communication for Developers.jpeg" alt="Tech Career Skills: Communication for Developers" class="cert-card-img" loading="lazy">
+                                <div class="cert-card-overlay">
+                                    <span class="cert-card-badge"><i class="ri-eye-line"></i> View Certificate</span>
+                                </div>
+                            </div>
+                            <div class="cert-card-body">
+                                <h3 class="cert-card-title">Tech Career Skills: Communication for Developers</h3>
+                                <div class="cert-card-meta">
+                                    <span class="cert-card-issuer">LinkedIn</span>
+                                    <span class="cert-meta-dot">&bull;</span>
+                                    <span class="cert-card-date">Nov 2023</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gallery Card 14 -->
+                        <div class="cert-gallery-card reveal-on-scroll" data-cert-index="13" role="button" tabindex="0" aria-label="View certificate: Python Quick Start">
+                            <div class="cert-card-media">
+                                <img src="assets/certification/previews/Python Quick Start.jpeg" alt="Python Quick Start" class="cert-card-img" loading="lazy">
+                                <div class="cert-card-overlay">
+                                    <span class="cert-card-badge"><i class="ri-eye-line"></i> View Certificate</span>
+                                </div>
+                            </div>
+                            <div class="cert-card-body">
+                                <h3 class="cert-card-title">Python Quick Start</h3>
+                                <div class="cert-card-meta">
+                                    <span class="cert-card-issuer">LinkedIn</span>
+                                    <span class="cert-meta-dot">&bull;</span>
+                                    <span class="cert-card-date">Nov 2023</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gallery Card 15 -->
+                        <div class="cert-gallery-card reveal-on-scroll" data-cert-index="14" role="button" tabindex="0" aria-label="View certificate: The Future of Work">
+                            <div class="cert-card-media">
+                                <img src="assets/certification/previews/The Future of Work The Necessary Skills of Your Future Workforce.pdf.png" alt="The Future of Work: The Necessary Skills of Your Future Workforce" class="cert-card-img" loading="lazy">
+                                <div class="cert-card-overlay">
+                                    <span class="cert-card-badge"><i class="ri-eye-line"></i> View Certificate</span>
+                                </div>
+                            </div>
+                            <div class="cert-card-body">
+                                <h3 class="cert-card-title">The Future of Work: The Necessary Skills of Your Future Workforce</h3>
+                                <div class="cert-card-meta">
+                                    <span class="cert-card-issuer">LinkedIn</span>
+                                    <span class="cert-meta-dot">&bull;</span>
+                                    <span class="cert-card-date">Nov 2023</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gallery Card 16 -->
+                        <div class="cert-gallery-card reveal-on-scroll" data-cert-index="15" role="button" tabindex="0" aria-label="View certificate: Develop Interpersonal Skills for Inclusive Workplaces">
+                            <div class="cert-card-media">
+                                <img src="assets/certification/previews/Develop Interpersonal Skills for Inclusive Workplaces.pdf.png" alt="Develop Interpersonal Skills for Inclusive Workplaces" class="cert-card-img" loading="lazy">
+                                <div class="cert-card-overlay">
+                                    <span class="cert-card-badge"><i class="ri-eye-line"></i> View Certificate</span>
+                                </div>
+                            </div>
+                            <div class="cert-card-body">
+                                <h3 class="cert-card-title">Develop Interpersonal Skills for Inclusive Workplaces</h3>
+                                <div class="cert-card-meta">
+                                    <span class="cert-card-issuer">LinkedIn</span>
+                                    <span class="cert-meta-dot">&bull;</span>
+                                    <span class="cert-card-date">Nov 2023</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gallery Card 17 -->
+                        <div class="cert-gallery-card reveal-on-scroll" data-cert-index="16" role="button" tabindex="0" aria-label="View certificate: Communication Skills for Modern Management">
+                            <div class="cert-card-media">
+                                <img src="assets/certification/previews/Communication Skills for Modern Management.pdf.png" alt="Communication Skills for Modern Management" class="cert-card-img" loading="lazy">
+                                <div class="cert-card-overlay">
+                                    <span class="cert-card-badge"><i class="ri-eye-line"></i> View Certificate</span>
+                                </div>
+                            </div>
+                            <div class="cert-card-body">
+                                <h3 class="cert-card-title">Communication Skills for Modern Management</h3>
+                                <div class="cert-card-meta">
+                                    <span class="cert-card-issuer">LinkedIn</span>
+                                    <span class="cert-meta-dot">&bull;</span>
+                                    <span class="cert-card-date">Nov 2023</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gallery Card 18 -->
+                        <div class="cert-gallery-card reveal-on-scroll" data-cert-index="17" role="button" tabindex="0" aria-label="View certificate: Communication Foundations (2018)">
+                            <div class="cert-card-media">
+                                <img src="assets/certification/previews/Communication Foundations (2018).pdf.png" alt="Communication Foundations (2018)" class="cert-card-img" loading="lazy">
+                                <div class="cert-card-overlay">
+                                    <span class="cert-card-badge"><i class="ri-eye-line"></i> View Certificate</span>
+                                </div>
+                            </div>
+                            <div class="cert-card-body">
+                                <h3 class="cert-card-title">Communication Foundations (2018)</h3>
+                                <div class="cert-card-meta">
+                                    <span class="cert-card-issuer">LinkedIn</span>
+                                    <span class="cert-meta-dot">&bull;</span>
+                                    <span class="cert-card-date">Nov 2023</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gallery Card 19 -->
+                        <div class="cert-gallery-card reveal-on-scroll" data-cert-index="18" role="button" tabindex="0" aria-label="View certificate: Business Writing Principles">
+                            <div class="cert-card-media">
+                                <img src="assets/certification/previews/Business Writing Principles.pdf.png" alt="Business Writing Principles" class="cert-card-img" loading="lazy">
+                                <div class="cert-card-overlay">
+                                    <span class="cert-card-badge"><i class="ri-eye-line"></i> View Certificate</span>
+                                </div>
+                            </div>
+                            <div class="cert-card-body">
+                                <h3 class="cert-card-title">Business Writing Principles</h3>
+                                <div class="cert-card-meta">
+                                    <span class="cert-card-issuer">LinkedIn</span>
+                                    <span class="cert-meta-dot">&bull;</span>
+                                    <span class="cert-card-date">Nov 2023</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gallery Card 20 -->
+                        <div class="cert-gallery-card reveal-on-scroll" data-cert-index="19" role="button" tabindex="0" aria-label="View certificate: Writing Formal Business Letters and Emails">
+                            <div class="cert-card-media">
+                                <img src="assets/certification/previews/Writing Formal Business Letters and Emails.pdf.png" alt="Writing Formal Business Letters and Emails" class="cert-card-img" loading="lazy">
+                                <div class="cert-card-overlay">
+                                    <span class="cert-card-badge"><i class="ri-eye-line"></i> View Certificate</span>
+                                </div>
+                            </div>
+                            <div class="cert-card-body">
+                                <h3 class="cert-card-title">Writing Formal Business Letters and Emails</h3>
+                                <div class="cert-card-meta">
+                                    <span class="cert-card-issuer">LinkedIn</span>
+                                    <span class="cert-meta-dot">&bull;</span>
+                                    <span class="cert-card-date">Nov 2023</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gallery Card 21 -->
+                        <div class="cert-gallery-card reveal-on-scroll" data-cert-index="20" role="button" tabindex="0" aria-label="View certificate: Tips for Writing Business Emails">
+                            <div class="cert-card-media">
+                                <img src="assets/certification/previews/Tips for Writing Business Emails.pdf.png" alt="Tips for Writing Business Emails" class="cert-card-img" loading="lazy">
+                                <div class="cert-card-overlay">
+                                    <span class="cert-card-badge"><i class="ri-eye-line"></i> View Certificate</span>
+                                </div>
+                            </div>
+                            <div class="cert-card-body">
+                                <h3 class="cert-card-title">Tips for Writing Business Emails</h3>
+                                <div class="cert-card-meta">
+                                    <span class="cert-card-issuer">LinkedIn</span>
+                                    <span class="cert-meta-dot">&bull;</span>
+                                    <span class="cert-card-date">Nov 2023</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gallery Card 22 -->
+                        <div class="cert-gallery-card reveal-on-scroll" data-cert-index="21" role="button" tabindex="0" aria-label="View certificate: Design a Compelling Presentation">
+                            <div class="cert-card-media">
+                                <img src="assets/certification/previews/Design a Compelling Presentation.pdf.png" alt="Design a Compelling Presentation" class="cert-card-img" loading="lazy">
+                                <div class="cert-card-overlay">
+                                    <span class="cert-card-badge"><i class="ri-eye-line"></i> View Certificate</span>
+                                </div>
+                            </div>
+                            <div class="cert-card-body">
+                                <h3 class="cert-card-title">Design a Compelling Presentation</h3>
+                                <div class="cert-card-meta">
+                                    <span class="cert-card-issuer">LinkedIn</span>
+                                    <span class="cert-meta-dot">&bull;</span>
+                                    <span class="cert-card-date">Nov 2023</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gallery Card 23 -->
+                        <div class="cert-gallery-card reveal-on-scroll" data-cert-index="22" role="button" tabindex="0" aria-label="View certificate: Video Writing: Using Humor to Communicate and Persuade">
+                            <div class="cert-card-media">
+                                <img src="assets/certification/previews/Video Writing Using Humor to Communicate and Persuade.pdf.png" alt="Video Writing: Using Humor to Communicate and Persuade" class="cert-card-img" loading="lazy">
+                                <div class="cert-card-overlay">
+                                    <span class="cert-card-badge"><i class="ri-eye-line"></i> View Certificate</span>
+                                </div>
+                            </div>
+                            <div class="cert-card-body">
+                                <h3 class="cert-card-title">Video Writing: Using Humor to Communicate and Persuade</h3>
+                                <div class="cert-card-meta">
+                                    <span class="cert-card-issuer">LinkedIn</span>
+                                    <span class="cert-meta-dot">&bull;</span>
+                                    <span class="cert-card-date">Nov 2023</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gallery Card 24 -->
+                        <div class="cert-gallery-card reveal-on-scroll" data-cert-index="23" role="button" tabindex="0" aria-label="View certificate: Skills for Inclusive Conversations">
+                            <div class="cert-card-media">
+                                <img src="assets/certification/previews/Skills for Inclusive Conversations.pdf.png" alt="Skills for Inclusive Conversations" class="cert-card-img" loading="lazy">
+                                <div class="cert-card-overlay">
+                                    <span class="cert-card-badge"><i class="ri-eye-line"></i> View Certificate</span>
+                                </div>
+                            </div>
+                            <div class="cert-card-body">
+                                <h3 class="cert-card-title">Skills for Inclusive Conversations</h3>
+                                <div class="cert-card-meta">
+                                    <span class="cert-card-issuer">LinkedIn</span>
+                                    <span class="cert-meta-dot">&bull;</span>
+                                    <span class="cert-card-date">Nov 2023</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gallery Card 25 -->
+                        <div class="cert-gallery-card reveal-on-scroll" data-cert-index="24" role="button" tabindex="0" aria-label="View certificate: Learning Premiere Pro (2019)">
+                            <div class="cert-card-media">
+                                <img src="assets/certification/previews/Learning Premiere Pro (2019).jpeg" alt="Learning Premiere Pro (2019)" class="cert-card-img" loading="lazy">
+                                <div class="cert-card-overlay">
+                                    <span class="cert-card-badge"><i class="ri-eye-line"></i> View Certificate</span>
+                                </div>
+                            </div>
+                            <div class="cert-card-body">
+                                <h3 class="cert-card-title">Learning Premiere Pro (2019)</h3>
+                                <div class="cert-card-meta">
+                                    <span class="cert-card-issuer">LinkedIn</span>
+                                    <span class="cert-meta-dot">&bull;</span>
+                                    <span class="cert-card-date">Nov 2023</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gallery Card 26 -->
+                        <div class="cert-gallery-card reveal-on-scroll" data-cert-index="25" role="button" tabindex="0" aria-label="View certificate: Introduction to Photography">
+                            <div class="cert-card-media">
+                                <img src="assets/certification/previews/Introduction to Photography Lightroom Classic CC and Photoshop.jpeg" alt="Introduction to Photography: Lightroom Classic CC and Photoshop" class="cert-card-img" loading="lazy">
+                                <div class="cert-card-overlay">
+                                    <span class="cert-card-badge"><i class="ri-eye-line"></i> View Certificate</span>
+                                </div>
+                            </div>
+                            <div class="cert-card-body">
+                                <h3 class="cert-card-title">Introduction to Photography: Lightroom Classic CC and Photoshop</h3>
+                                <div class="cert-card-meta">
+                                    <span class="cert-card-issuer">LinkedIn</span>
+                                    <span class="cert-meta-dot">&bull;</span>
+                                    <span class="cert-card-date">Nov 2023</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Unified Synchronized Pagination Bar -->
+                <div class="cert-pagination-container" id="cert-pagination-container">
+                    <button type="button" class="cert-page-btn cert-page-prev" id="cert-prev-page" aria-label="Previous page">
+                        <i class="ri-arrow-left-s-line"></i> <span>Prev</span>
+                    </button>
+                    <div class="cert-page-numbers" id="cert-page-numbers">
+                        <!-- Dynamic page numbers injected here -->
+                    </div>
+                    <button type="button" class="cert-page-btn cert-page-next" id="cert-next-page" aria-label="Next page">
+                        <span>Next</span> <i class="ri-arrow-right-s-line"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Interactive Lightbox Modal -->
+            <div class="cert-modal" id="cert-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Certificate Viewer">
+                <div class="cert-modal-backdrop" id="cert-modal-backdrop"></div>
+                <div class="cert-modal-dialog">
+                    <button type="button" class="cert-modal-close" id="cert-modal-close" aria-label="Close certificate viewer">
+                        <i class="ri-close-line"></i>
+                    </button>
+                    
+                    <button type="button" class="cert-modal-nav cert-modal-prev" id="cert-modal-prev" aria-label="Previous certificate">
+                        <i class="ri-arrow-left-s-line"></i>
+                    </button>
+                    <button type="button" class="cert-modal-nav cert-modal-next" id="cert-modal-next" aria-label="Next certificate">
+                        <i class="ri-arrow-right-s-line"></i>
+                    </button>
+
+                    <div class="cert-modal-content">
+                        <div class="cert-modal-media">
+                            <img src="" alt="Certificate Preview" class="cert-modal-img" id="cert-modal-img">
+                        </div>
+                        <div class="cert-modal-info">
+                            <div class="cert-modal-text">
+                                <h3 class="cert-modal-title" id="cert-modal-title">Certificate Title</h3>
+                                <div class="cert-modal-meta">
+                                    <span class="cert-modal-issuer" id="cert-modal-issuer"><i class="ri-building-line"></i> Issuer</span>
+                                    <span class="cert-meta-dot">&bull;</span>
+                                    <span class="cert-modal-date" id="cert-modal-date"><i class="ri-calendar-line"></i> Date</span>
+                                </div>
+                            </div>
+                            <span class="cert-modal-counter" id="cert-modal-counter">1 of 26</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -631,44 +1604,65 @@
             </div>
 
             <div class="container contact-container grid">
+                <!-- Contact Details Column -->
                 <div class="contact-content reveal-on-scroll reveal-delay-1">
                     <h3 class="contact-title">Contact Details</h3>
 
                     <div class="contact-info">
                         <div class="contact-card">
-                            <i class="ri-mail-line contact-card-icon"></i>
-                            <h3 class="contact-card-title">Email</h3>
-                            <span class="contact-card-data">engelbert17dm@gmail.com</span>
-                            <a href="mailto:engelbert17dm@gmail.com" class="contact-button">Write me <i
-                                    class="ri-arrow-right-line"></i></a>
+                            <div class="contact-card-icon-wrapper">
+                                <i class="ri-mail-line contact-card-icon"></i>
+                            </div>
+                            <div class="contact-card-content">
+                                <h4 class="contact-card-title">Email</h4>
+                                <span class="contact-card-data">engelbert17dm@gmail.com</span>
+                                <a href="mailto:engelbert17dm@gmail.com" class="contact-button">
+                                    Write me <i class="ri-arrow-right-line"></i>
+                                </a>
+                            </div>
                         </div>
 
                         <div class="contact-card">
-                            <i class="ri-linkedin-box-line contact-card-icon"></i>
-                            <h3 class="contact-card-title">LinkedIn</h3>
-                            <span class="contact-card-data">Engelbert Morales</span>
-                            <a href="https://www.linkedin.com/in/engelbertmorales17" target="_blank"
-                                class="contact-button">Connect <i class="ri-arrow-right-line"></i></a>
+                            <div class="contact-card-icon-wrapper">
+                                <i class="ri-linkedin-box-line contact-card-icon"></i>
+                            </div>
+                            <div class="contact-card-content">
+                                <h4 class="contact-card-title">LinkedIn</h4>
+                                <span class="contact-card-data">Engelbert Morales</span>
+                                <a href="https://www.linkedin.com/in/engelbertmorales17" target="_blank" class="contact-button">
+                                    Connect <i class="ri-arrow-right-line"></i>
+                                </a>
+                            </div>
                         </div>
 
                         <div class="contact-card">
-                            <i class="ri-phone-line contact-card-icon"></i>
-                            <h3 class="contact-card-title">Phone</h3>
-                            <span class="contact-card-data">+63 947 310 4851</span>
-                            <a href="tel:+639473104851" class="contact-button">Call / Text <i class="ri-arrow-right-line"></i></a>
+                            <div class="contact-card-icon-wrapper">
+                                <i class="ri-phone-line contact-card-icon"></i>
+                            </div>
+                            <div class="contact-card-content">
+                                <h4 class="contact-card-title">Phone</h4>
+                                <span class="contact-card-data">+63 947 310 4851</span>
+                                <a href="tel:+639473104851" class="contact-button">
+                                    Call / Text <i class="ri-arrow-right-line"></i>
+                                </a>
+                            </div>
                         </div>
 
                         <div class="contact-card">
-                            <i class="ri-map-pin-line contact-card-icon"></i>
-                            <h3 class="contact-card-title">Location</h3>
-                            <span class="contact-card-data">Brgy. M.L. Tumagay, Plaridel, Quezon</span>
+                            <div class="contact-card-icon-wrapper">
+                                <i class="ri-map-pin-line contact-card-icon"></i>
+                            </div>
+                            <div class="contact-card-content">
+                                <h4 class="contact-card-title">Location</h4>
+                                <span class="contact-card-data">Plaridel, Quezon, Philippines</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Contact Form -->
+                <!-- Contact Form Column -->
                 <div class="contact-content reveal-on-scroll reveal-delay-2">
-                    <h3 class="contact-title">Send a message</h3>
+                    <h3 class="contact-title">Send a Message</h3>
 
                     <form action="" class="contact-form">
                         <div class="contact-form-group">
@@ -690,43 +1684,23 @@
                         <div class="contact-form-group">
                             <label class="contact-form-label" for="contact-message">Your Message</label>
                             <div class="contact-input-wrapper">
-                                <textarea id="contact-message" cols="30" rows="5" placeholder="Write your message here..." class="contact-form-input contact-form-area" required></textarea>
+                                <textarea id="contact-message" cols="30" rows="4" placeholder="Write your message here..." class="contact-form-input contact-form-area" required></textarea>
                             </div>
                         </div>
 
-                        <button type="submit" class="button contact-submit-btn">Send Message <i class="ri-send-plane-fill button-icon"></i></button>
+                        <button type="submit" class="button contact-submit-btn">
+                            Send Message <i class="ri-send-plane-fill button-icon"></i>
+                        </button>
                     </form>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
+    <!-- Minimal Footer -->
     <footer class="footer">
         <div class="footer-container container">
-            <div class="footer-brand">
-                <h2 class="footer-title">Engelbert R. Morales</h2>
-                <p class="footer-subtitle">Software Developer | Full-Stack & Web Applications</p>
-            </div>
-
-            <ul class="footer-list">
-                <li><a href="#hero" class="footer-link">Home</a></li>
-                <li><a href="#about" class="footer-link">About</a></li>
-                <li><a href="#experience" class="footer-link">Experience</a></li>
-                <li><a href="#skills" class="footer-link">Skills</a></li>
-                <li><a href="#projects" class="footer-link">Projects</a></li>
-                <li><a href="#contact" class="footer-link">Contact</a></li>
-            </ul>
-
-            <ul class="footer-social">
-                <a href="https://www.linkedin.com/in/engelbertmorales17" target="_blank" class="footer-social-link" aria-label="LinkedIn"><i class="ri-linkedin-fill"></i></a>
-                <a href="mailto:engelbert17dm@gmail.com" class="footer-social-link" aria-label="Email"><i class="ri-mail-fill"></i></a>
-                <a href="tel:+639473104851" class="footer-social-link" aria-label="Phone"><i class="ri-phone-fill"></i></a>
-            </ul>
-
-            <span class="footer-copy">
-                &#169; 2026 Engelbert R. Morales. All rights reserved.
-            </span>
+            <span class="footer-copy">&#169; 2026 Engelbert R. Morales. All rights reserved.</span>
         </div>
     </footer>
 
