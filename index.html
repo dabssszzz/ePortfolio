@@ -21,6 +21,9 @@
 
 <body>
 
+    <!-- Full-Width Liquid Glass Navigation Atmosphere Backdrop -->
+    <div class="nav-glass-backdrop" id="nav-glass-backdrop" aria-hidden="true"></div>
+
     <!-- Header / Navigation -->
     <header class="header" id="header">
         <div class="container nav-container">
@@ -507,71 +510,281 @@
 
         <!-- Projects Section -->
         <section class="projects section" id="projects">
+            <!-- Full-Height Section Liquid Glass Edge Overlays -->
+            <div class="projects-carousel-glass-edge projects-glass-edge-left is-hidden" id="projects-glass-edge-left">
+                <button type="button" class="projects-carousel-nav projects-carousel-prev" id="projects-carousel-prev" aria-label="Previous project" title="Previous Project">
+                    <i class="ri-arrow-left-s-line"></i>
+                </button>
+            </div>
+            <div class="projects-carousel-glass-edge projects-glass-edge-right" id="projects-glass-edge-right">
+                <button type="button" class="projects-carousel-nav projects-carousel-next" id="projects-carousel-next" aria-label="Next project" title="Next Project">
+                    <i class="ri-arrow-right-s-line"></i>
+                </button>
+            </div>
+
             <div class="container section-header reveal-on-scroll">
                 <h2 class="section-title">Key Projects</h2>
                 <span class="section-subtitle">Featured Engineering Work</span>
             </div>
 
-            <div class="container projects-container grid">
-                <!-- Project 1 -->
-                <article class="projects-card reveal-on-scroll reveal-delay-1">
-                    <div class="projects-image-placeholder">
-                        <i class="ri-android-line projects-placeholder-icon"></i>
-                    </div>
+            <div class="projects-carousel-wrapper reveal-on-scroll">
+                <!-- Interactive Carousel Container -->
+                <div class="projects-carousel" id="projects-carousel" aria-roledescription="carousel" aria-label="Key Projects Showcase">
+                    <!-- Carousel Track -->
+                    <div class="projects-carousel-track" id="projects-carousel-track">
+                        
+                        <!-- Project 1: MATHtatag -->
+                        <article class="projects-card" data-project-index="0" tabindex="0" role="group" aria-roledescription="slide" aria-label="Project 1 of 7: MATHtatag">
+                            <!-- Top-Left Compact Category Badge -->
+                            <span class="projects-card-badge">Android Application</span>
 
-                    <div class="projects-content">
-                        <span class="projects-subtitle">Capstone Project • 2025</span>
-                        <h3 class="projects-title">MATHtatag</h3>
-                        <p class="projects-description">
-                            An Android mathematics assessment system featuring Filipino text-to-speech, curriculum-aligned modules, automated scoring, and real-time student analytics.
-                        </p>
-                        <div class="projects-tags">
-                            <span class="projects-tag">Android</span>
-                            <span class="projects-tag">Text-to-Speech</span>
-                            <span class="projects-tag">Analytics</span>
+                            <div class="projects-card-media">
+                                <div class="projects-media-placeholder project-grad-1">
+                                    <div class="projects-media-glow"></div>
+                                    <i class="ri-calculator-line projects-media-icon"></i>
+                                </div>
+                            </div>
+
+                            <!-- Card Info & Interactive Action Area -->
+                            <div class="projects-card-info">
+                                <div class="projects-card-meta">
+                                    <span class="projects-card-category">Capstone Project • 2025</span>
+                                    <h3 class="projects-card-title">MATHtatag</h3>
+                                </div>
+                                <p class="projects-card-desc">
+                                    An Android mathematics assessment system featuring Filipino text-to-speech, curriculum-aligned modules, automated scoring, and real-time student analytics.
+                                </p>
+                                <div class="projects-card-action">
+                                    <button type="button" class="projects-view-btn" data-project-index="0" aria-label="View MATHtatag details">
+                                        <span>View More</span>
+                                        <i class="ri-arrow-right-line"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Project 2: FuelWatchPH -->
+                        <article class="projects-card" data-project-index="1" tabindex="0" role="group" aria-roledescription="slide" aria-label="Project 2 of 7: FuelWatchPH">
+                            <!-- Top-Left Compact Category Badge -->
+                            <span class="projects-card-badge">Web & Mobile Platform</span>
+
+                            <div class="projects-card-media">
+                                <div class="projects-media-placeholder project-grad-2">
+                                    <div class="projects-media-glow"></div>
+                                    <i class="ri-gas-station-line projects-media-icon"></i>
+                                </div>
+                            </div>
+
+                            <!-- Card Info & Interactive Action Area -->
+                            <div class="projects-card-info">
+                                <div class="projects-card-meta">
+                                    <span class="projects-card-category">Web & Mobile Application • 2025</span>
+                                    <h3 class="projects-card-title">FuelWatchPH</h3>
+                                </div>
+                                <p class="projects-card-desc">
+                                    A nationwide fuel price tracker and analytics platform providing real-time pump price updates, station locators, and price trend forecasting.
+                                </p>
+                                <div class="projects-card-action">
+                                    <button type="button" class="projects-view-btn" data-project-index="1" aria-label="View FuelWatchPH details">
+                                        <span>View More</span>
+                                        <i class="ri-arrow-right-line"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Project 3: Barangay ID Application System -->
+                        <article class="projects-card" data-project-index="2" tabindex="0" role="group" aria-roledescription="slide" aria-label="Project 3 of 7: Barangay ID Application System">
+                            <!-- Top-Left Compact Category Badge -->
+                            <span class="projects-card-badge">Administrative System</span>
+
+                            <div class="projects-card-media">
+                                <div class="projects-media-placeholder project-grad-3">
+                                    <div class="projects-media-glow"></div>
+                                    <i class="ri-id-card-line projects-media-icon"></i>
+                                </div>
+                            </div>
+
+                            <!-- Card Info & Interactive Action Area -->
+                            <div class="projects-card-info">
+                                <div class="projects-card-meta">
+                                    <span class="projects-card-category">System Development • 2025</span>
+                                    <h3 class="projects-card-title">Barangay ID Application System</h3>
+                                </div>
+                                <p class="projects-card-desc">
+                                    A database-driven administrative system providing centralized resident registration, appointment scheduling, secure digital ID generation, and role-based access.
+                                </p>
+                                <div class="projects-card-action">
+                                    <button type="button" class="projects-view-btn" data-project-index="2" aria-label="View Barangay ID Application System details">
+                                        <span>View More</span>
+                                        <i class="ri-arrow-right-line"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Project 4: Juan Camohaguin -->
+                        <article class="projects-card" data-project-index="3" tabindex="0" role="group" aria-roledescription="slide" aria-label="Project 4 of 7: Juan Camohaguin">
+                            <!-- Top-Left Compact Category Badge -->
+                            <span class="projects-card-badge">Community Platform</span>
+
+                            <div class="projects-card-media">
+                                <div class="projects-media-placeholder project-grad-4">
+                                    <div class="projects-media-glow"></div>
+                                    <i class="ri-community-line projects-media-icon"></i>
+                                </div>
+                            </div>
+
+                            <!-- Card Info & Interactive Action Area -->
+                            <div class="projects-card-info">
+                                <div class="projects-card-meta">
+                                    <span class="projects-card-category">Community Platform • 2024</span>
+                                    <h3 class="projects-card-title">Juan Camohaguin</h3>
+                                </div>
+                                <p class="projects-card-desc">
+                                    An Android community platform delivering real-time emergency alert broadcasts, local government announcements, and municipal resident appointment coordination.
+                                </p>
+                                <div class="projects-card-action">
+                                    <button type="button" class="projects-view-btn" data-project-index="3" aria-label="View Juan Camohaguin details">
+                                        <span>View More</span>
+                                        <i class="ri-arrow-right-line"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Project 5: Isla Serenidad -->
+                        <article class="projects-card" data-project-index="4" tabindex="0" role="group" aria-roledescription="slide" aria-label="Project 5 of 7: Isla Serenidad">
+                            <!-- Top-Left Compact Category Badge -->
+                            <span class="projects-card-badge">Resort Web Platform</span>
+
+                            <div class="projects-card-media">
+                                <div class="projects-media-placeholder project-grad-5">
+                                    <div class="projects-media-glow"></div>
+                                    <i class="ri-hotel-bed-line projects-media-icon"></i>
+                                </div>
+                            </div>
+
+                            <!-- Card Info & Interactive Action Area -->
+                            <div class="projects-card-info">
+                                <div class="projects-card-meta">
+                                    <span class="projects-card-category">Hospitality & Tourism • 2024</span>
+                                    <h3 class="projects-card-title">Isla Serenidad</h3>
+                                </div>
+                                <p class="projects-card-desc">
+                                    A luxury island resort booking and experiential tourism portal featuring interactive villa tours, reservation workflows, and guest concierge services.
+                                </p>
+                                <div class="projects-card-action">
+                                    <button type="button" class="projects-view-btn" data-project-index="4" aria-label="View Isla Serenidad details">
+                                        <span>View More</span>
+                                        <i class="ri-arrow-right-line"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Project 6: Wikipedia UI -->
+                        <article class="projects-card" data-project-index="5" tabindex="0" role="group" aria-roledescription="slide" aria-label="Project 6 of 7: Wikipedia UI">
+                            <!-- Top-Left Compact Category Badge -->
+                            <span class="projects-card-badge">Reader-First Concept</span>
+
+                            <div class="projects-card-media">
+                                <div class="projects-media-placeholder project-grad-6">
+                                    <div class="projects-media-glow"></div>
+                                    <i class="ri-book-read-line projects-media-icon"></i>
+                                </div>
+                            </div>
+
+                            <!-- Card Info & Interactive Action Area -->
+                            <div class="projects-card-info">
+                                <div class="projects-card-meta">
+                                    <span class="projects-card-category">Modern Web Concept • 2024</span>
+                                    <h3 class="projects-card-title">Wikipedia UI</h3>
+                                </div>
+                                <p class="projects-card-desc">
+                                    A modernized, reader-first redesign of Wikipedia featuring enhanced typography, dark/light reading modes, instant preview cards, and distraction-free layout.
+                                </p>
+                                <div class="projects-card-action">
+                                    <button type="button" class="projects-view-btn" data-project-index="5" aria-label="View Wikipedia UI details">
+                                        <span>View More</span>
+                                        <i class="ri-arrow-right-line"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Project 7: Drudge Report UI -->
+                        <article class="projects-card" data-project-index="6" tabindex="0" role="group" aria-roledescription="slide" aria-label="Project 7 of 7: Drudge Report UI">
+                            <!-- Top-Left Compact Category Badge -->
+                            <span class="projects-card-badge">Editorial Redesign</span>
+
+                            <div class="projects-card-media">
+                                <div class="projects-media-placeholder project-grad-7">
+                                    <div class="projects-media-glow"></div>
+                                    <i class="ri-newspaper-line projects-media-icon"></i>
+                                </div>
+                            </div>
+
+                            <!-- Card Info & Interactive Action Area -->
+                            <div class="projects-card-info">
+                                <div class="projects-card-meta">
+                                    <span class="projects-card-category">Editorial Redesign • 2024</span>
+                                    <h3 class="projects-card-title">Drudge Report UI</h3>
+                                </div>
+                                <p class="projects-card-desc">
+                                    A contemporary news aggregation interface reimagining rapid headline scanning with real-time ticker streams, category filtering, and clean responsive columns.
+                                </p>
+                                <div class="projects-card-action">
+                                    <button type="button" class="projects-view-btn" data-project-index="6" aria-label="View Drudge Report UI details">
+                                        <span>View More</span>
+                                        <i class="ri-arrow-right-line"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Spacious Project Details Showcase Modal -->
+            <div class="projects-modal" id="projects-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Project Showcase Viewer">
+                <div class="projects-modal-backdrop" id="projects-modal-backdrop"></div>
+                
+                <div class="projects-modal-wrapper">
+                    <!-- Minimal Arrow Navigation Controls Floating Beside Modal -->
+                    <button type="button" class="projects-modal-nav projects-modal-prev" id="projects-modal-prev" aria-label="Previous project" title="Previous Project">
+                        <i class="ri-arrow-left-s-line"></i>
+                    </button>
+                    
+                    <div class="projects-modal-dialog">
+                        <button type="button" class="projects-modal-close" id="projects-modal-close" aria-label="Close project showcase">
+                            <i class="ri-close-line"></i>
+                        </button>
+
+                        <!-- Dynamically Populated Project Details Container -->
+                        <div class="projects-modal-content" id="projects-modal-content">
+                            <!-- Populated by JS with App Store Hierarchy & Media Peeking Gallery -->
                         </div>
                     </div>
-                </article>
 
-                <!-- Project 2 -->
-                <article class="projects-card reveal-on-scroll reveal-delay-2">
-                    <div class="projects-image-placeholder">
-                        <i class="ri-global-line projects-placeholder-icon"></i>
-                    </div>
+                    <button type="button" class="projects-modal-nav projects-modal-next" id="projects-modal-next" aria-label="Next project" title="Next Project">
+                        <i class="ri-arrow-right-s-line"></i>
+                    </button>
+                </div>
+            </div>
 
-                    <div class="projects-content">
-                        <span class="projects-subtitle">System Development • 2025</span>
-                        <h3 class="projects-title">Barangay ID Application System</h3>
-                        <p class="projects-description">
-                            A database-driven administrative system providing centralized resident registration, appointment scheduling, secure digital ID generation, and role-based access.
-                        </p>
-                        <div class="projects-tags">
-                            <span class="projects-tag">Web System</span>
-                            <span class="projects-tag">Database</span>
-                            <span class="projects-tag">RBAC</span>
-                        </div>
+            <!-- Expanded Media Lightbox Modal -->
+            <div class="media-lightbox" id="media-lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Expanded Media Showcase">
+                <div class="media-lightbox-backdrop" id="media-lightbox-backdrop"></div>
+                <div class="media-lightbox-dialog">
+                    <button type="button" class="media-lightbox-close" id="media-lightbox-close" aria-label="Close expanded media">
+                        <i class="ri-close-line"></i>
+                    </button>
+                    <div class="media-lightbox-content" id="media-lightbox-content">
+                        <!-- Populated by JS -->
                     </div>
-                </article>
-
-                <!-- Project 3 -->
-                <article class="projects-card reveal-on-scroll reveal-delay-3">
-                    <div class="projects-image-placeholder">
-                        <i class="ri-community-line projects-placeholder-icon"></i>
-                    </div>
-
-                    <div class="projects-content">
-                        <span class="projects-subtitle">System Development • 2024</span>
-                        <h3 class="projects-title">One Camohaguin</h3>
-                        <p class="projects-description">
-                            An Android community platform delivering real-time emergency alert broadcasts, local government announcements, and municipal resident appointment coordination.
-                        </p>
-                        <div class="projects-tags">
-                            <span class="projects-tag">Android</span>
-                            <span class="projects-tag">Emergency Alerts</span>
-                            <span class="projects-tag">Services</span>
-                        </div>
-                    </div>
-                </article>
+                </div>
             </div>
         </section>
 
@@ -1703,11 +1916,6 @@
             <span class="footer-copy">&#169; 2026 Engelbert R. Morales. All rights reserved.</span>
         </div>
     </footer>
-
-    <!-- Scroll Up Button -->
-    <a href="#" class="scrollup" id="scroll-up">
-        <i class="ri-arrow-up-line"></i>
-    </a>
 
     <!-- Main JS -->
     <script type="module" src="js/main.js"></script>
