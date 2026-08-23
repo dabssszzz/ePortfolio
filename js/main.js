@@ -1129,13 +1129,13 @@ const projectsGlassEdgeRight = document.getElementById('projects-glass-edge-righ
 const projectsModal = document.getElementById('projects-modal')
 const projectsModalBackdrop = document.getElementById('projects-modal-backdrop')
 const projectsModalClose = document.getElementById('projects-modal-close')
-const projectsModalPrev = document.getElementById('projects-modal-prev')
-const projectsModalNext = document.getElementById('projects-modal-next')
 const projectsModalContent = document.getElementById('projects-modal-content')
 
 const mediaLightbox = document.getElementById('media-lightbox')
 const mediaLightboxBackdrop = document.getElementById('media-lightbox-backdrop')
 const mediaLightboxClose = document.getElementById('media-lightbox-close')
+const mediaLightboxPrev = document.getElementById('media-lightbox-prev')
+const mediaLightboxNext = document.getElementById('media-lightbox-next')
 const mediaLightboxContent = document.getElementById('media-lightbox-content')
 
 function getVisibleCardsCount() {
@@ -1242,50 +1242,144 @@ if (projectsCarouselTrack) {
     }, { passive: true })
 }
 
-// Window resize handler for carousel & modal gallery
+// Window resize handler for carousels
 window.addEventListener('resize', () => {
     updateProjectsCarousel()
-    updateModalMediaGallery()
+    if (projectsModal && projectsModal.classList.contains('active')) {
+        positionModalTrack(false)
+    }
 })
 
 /*==================== EXPANDED MEDIA LIGHTBOX ENGINE ====================*/
-function openMediaLightbox(projectIndex, mediaIndex) {
-    const project = projectsData[projectIndex]
-    if (!project || !mediaLightbox || !mediaLightboxContent) return
+let currentLightboxMediaIndex = 0
 
-    const mediaItems = project.media && project.media.length > 0 ? project.media : [
-        {
-            type: "screenshot",
-            badge: project.badge,
-            icon: project.icon,
-            caption: project.shortDescription
+function renderLightboxContent() {
+    const project = projectsData[activeProjectModalIndex]
+    if (!project || !mediaLightboxContent) return
+
+    const mediaItems = (project.media && Array.isArray(project.media) && project.media.length > 0) 
+        ? project.media 
+        : []
+
+    const N = mediaItems.length
+    if (N === 0) {
+        mediaLightboxContent.innerHTML = `
+            <div class="lightbox-showcase-view ${project.gradClass}">
+                <div class="modal-media-glow" style="width: 320px; height: 320px; filter: blur(80px); opacity: 0.35;"></div>
+                <i class="${project.icon || 'ri-folder-image-line'} lightbox-media-icon"></i>
+                <span class="media-type-pill" style="position: relative; top: 0; left: 0; margin-bottom: 0.5rem;">
+                    <i class="ri-information-line"></i>
+                    Project Media Coming Soon
+                </span>
+            </div>
+            <div class="lightbox-caption-box">
+                <h4 class="lightbox-title">${project.title} — Media Showcase</h4>
+                <p class="lightbox-desc">${project.fullDescription || project.shortDescription}</p>
+            </div>
+        `
+        if (mediaLightboxPrev) mediaLightboxPrev.style.display = 'none'
+        if (mediaLightboxNext) mediaLightboxNext.style.display = 'none'
+        return
+    }
+
+    currentLightboxMediaIndex = (currentLightboxMediaIndex % N + N) % N
+    const mediaItem = mediaItems[currentLightboxMediaIndex] || mediaItems[0]
+    const isVideo = mediaItem.type === 'video'
+    const mediaTitle = mediaItem.title || mediaItem.label || mediaItem.badge || (isVideo ? 'Demo Video' : 'Screenshot Preview')
+    const mediaCaption = mediaItem.caption || project.fullDescription || project.title
+
+    const dotsHtml = N > 1 ? `
+        <div class="lightbox-dots" role="tablist" aria-label="Media pagination">
+            ${mediaItems.map((_, idx) => `
+                <button type="button" class="lightbox-dot ${idx === currentLightboxMediaIndex ? 'active' : ''}" data-lightbox-index="${idx}" aria-label="Go to media ${idx + 1}" aria-selected="${idx === currentLightboxMediaIndex ? 'true' : 'false'}"></button>
+            `).join('')}
+        </div>
+    ` : ''
+
+    // Dynamic Lightbox Media: Render actual video / image if src is provided, otherwise clean showcase slot
+    let showcaseMediaHtml = ''
+    if (mediaItem.src && mediaItem.src.trim() !== '') {
+        if (isVideo) {
+            showcaseMediaHtml = `
+                <video class="lightbox-real-video" src="${mediaItem.src}" poster="${mediaItem.poster || ''}" controls playsinline autoplay></video>
+            `
+        } else {
+            showcaseMediaHtml = `
+                <img class="lightbox-real-img" src="${mediaItem.src}" alt="${mediaTitle}" />
+            `
         }
-    ]
-    const mediaItem = mediaItems[mediaIndex] || mediaItems[0]
-
-    mediaLightboxContent.innerHTML = `
-        <div class="lightbox-showcase-view ${project.gradClass}">
+    } else {
+        showcaseMediaHtml = `
             <div class="modal-media-glow" style="width: 320px; height: 320px; filter: blur(80px); opacity: 0.35;"></div>
             <i class="${mediaItem.icon || project.icon} lightbox-media-icon"></i>
             <span class="media-type-pill" style="position: relative; top: 0; left: 0; margin-bottom: 0.5rem;">
-                <i class="${mediaItem.type === 'video' ? 'ri-video-line' : 'ri-image-line'}"></i>
-                ${mediaItem.type === 'video' ? 'Expanded Video Demo Presentation' : (mediaItem.badge || 'High-Resolution Project Preview')}
+                <i class="${isVideo ? 'ri-video-line' : 'ri-image-line'}"></i>
+                ${mediaTitle}
             </span>
+        `
+    }
+
+    mediaLightboxContent.innerHTML = `
+        <div class="lightbox-showcase-view ${project.gradClass}">
+            ${showcaseMediaHtml}
         </div>
         <div class="lightbox-caption-box">
-            <h4 class="lightbox-title">${project.title} — ${mediaItem.label || mediaItem.badge}</h4>
-            <p class="lightbox-desc">${mediaItem.caption || project.fullDescription}</p>
+            <h4 class="lightbox-title">${project.title} — ${mediaTitle}</h4>
+            <p class="lightbox-desc">${mediaCaption}</p>
+            ${dotsHtml}
         </div>
     `
 
-    mediaLightbox.classList.add('active')
-    mediaLightbox.setAttribute('aria-hidden', 'false')
+    if (mediaLightboxPrev) {
+        mediaLightboxPrev.style.display = N > 1 ? 'flex' : 'none'
+    }
+    if (mediaLightboxNext) {
+        mediaLightboxNext.style.display = N > 1 ? 'flex' : 'none'
+    }
+
+    // Dot navigation listeners
+    const dots = mediaLightboxContent.querySelectorAll('.lightbox-dot')
+    dots.forEach(dot => {
+        dot.addEventListener('click', (e) => {
+            e.stopPropagation()
+            const idx = parseInt(dot.getAttribute('data-lightbox-index'), 10)
+            if (!isNaN(idx)) {
+                currentLightboxMediaIndex = idx
+                renderLightboxContent()
+            }
+        })
+    })
+}
+
+function openMediaLightbox(projectIndex, mediaIndex) {
+    activeProjectModalIndex = (projectIndex + projectsData.length) % projectsData.length
+    currentLightboxMediaIndex = mediaIndex || 0
+    renderLightboxContent()
+
+    if (mediaLightbox) {
+        mediaLightbox.classList.add('active')
+        mediaLightbox.setAttribute('aria-hidden', 'false')
+    }
 }
 
 function closeMediaLightbox() {
     if (!mediaLightbox) return
     mediaLightbox.classList.remove('active')
     mediaLightbox.setAttribute('aria-hidden', 'true')
+}
+
+function showNextLightboxMedia() {
+    const project = projectsData[activeProjectModalIndex]
+    if (!project || !project.media || project.media.length <= 1) return
+    currentLightboxMediaIndex = (currentLightboxMediaIndex + 1) % project.media.length
+    renderLightboxContent()
+}
+
+function showPrevLightboxMedia() {
+    const project = projectsData[activeProjectModalIndex]
+    if (!project || !project.media || project.media.length <= 1) return
+    currentLightboxMediaIndex = (currentLightboxMediaIndex - 1 + project.media.length) % project.media.length
+    renderLightboxContent()
 }
 
 if (mediaLightboxClose) {
@@ -1296,205 +1390,220 @@ if (mediaLightboxBackdrop) {
     mediaLightboxBackdrop.addEventListener('click', closeMediaLightbox)
 }
 
-/*==================== PROJECT DETAILS MODAL ENGINE ====================*/
-let visualModalSlide = 1
+if (mediaLightboxPrev) {
+    mediaLightboxPrev.addEventListener('click', (e) => {
+        e.stopPropagation()
+        showPrevLightboxMedia()
+    })
+}
 
-function positionModalTrack(slideIndex, animated = true) {
-    if (!projectsModalContent) return
+if (mediaLightboxNext) {
+    mediaLightboxNext.addEventListener('click', (e) => {
+        e.stopPropagation()
+        showNextLightboxMedia()
+    })
+}
+
+/*==================== PROJECT DETAILS MODAL & APP STORE-STYLE CAROUSEL ENGINE ====================*/
+let modalMediaPage = 0
+
+function getModalMediaConfig() {
+    if (!projectsModalContent) return { cardWidth: 0, gap: 15, peek: 52, totalPages: 1, isMobile: false, trackWidth: 0, viewportWidth: 0 }
+    const project = projectsData[activeProjectModalIndex]
+    const N = (project && project.media && Array.isArray(project.media)) ? project.media.length : 0
     const viewport = projectsModalContent.querySelector('#modal-gallery-viewport')
     const track = projectsModalContent.querySelector('#modal-gallery-track')
-    const slides = projectsModalContent.querySelectorAll('.modal-media-card')
-    if (!viewport || !track || !slides.length) return
+    const firstCard = projectsModalContent.querySelector('.modal-media-card')
+    const isMobile = window.innerWidth <= 680
+    const itemsPerPage = isMobile ? 1 : 2
+    const totalPages = Math.max(1, Math.ceil(N / itemsPerPage))
+    
+    if (!viewport || !firstCard || !track) {
+        return { cardWidth: 0, gap: 15, peek: isMobile ? 40 : 52, totalPages, isMobile, trackWidth: 0, viewportWidth: 0 }
+    }
+    
+    const computedTrack = window.getComputedStyle(track)
+    const gap = parseFloat(computedTrack.gap) || (isMobile ? 10.4 : 15.2)
+    const cardWidth = firstCard.offsetWidth
+    const peek = isMobile ? 40 : 52
+    return { cardWidth, gap, peek, totalPages, isMobile, viewportWidth: viewport.offsetWidth, trackWidth: track.scrollWidth }
+}
 
-    const targetSlide = slides[slideIndex] || slides[1] || slides[0]
-    if (targetSlide) {
-        const slideLeft = targetSlide.offsetLeft
-        const slideWidth = targetSlide.offsetWidth
-        const viewportWidth = viewport.offsetWidth
-        const translateX = (slideLeft + (slideWidth / 2)) - (viewportWidth / 2)
+function updateModalNavControls() {
+    if (!projectsModalContent) return
+    const prevBtn = projectsModalContent.querySelector('#modal-gallery-prev')
+    const nextBtn = projectsModalContent.querySelector('#modal-gallery-next')
+    const config = getModalMediaConfig()
+    const { totalPages } = config
 
-        if (!animated) {
-            track.style.transition = 'none'
-            track.style.transform = `translateX(-${translateX}px)`
-            track.offsetHeight // Force reflow
-            track.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)'
-        } else {
-            track.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)'
-            track.style.transform = `translateX(-${translateX}px)`
-        }
+    if (prevBtn) {
+        const isDisabled = modalMediaPage <= 0 || totalPages <= 1
+        prevBtn.classList.toggle('is-disabled', isDisabled)
+        prevBtn.setAttribute('aria-disabled', isDisabled ? 'true' : 'false')
+        prevBtn.tabIndex = isDisabled ? -1 : 0
+    }
+    if (nextBtn) {
+        const isDisabled = modalMediaPage >= totalPages - 1 || totalPages <= 1
+        nextBtn.classList.toggle('is-disabled', isDisabled)
+        nextBtn.setAttribute('aria-disabled', isDisabled ? 'true' : 'false')
+        nextBtn.tabIndex = isDisabled ? -1 : 0
     }
 }
 
-function syncModalMediaUI() {
+function positionModalTrack(animated = true) {
     if (!projectsModalContent) return
-    const slides = projectsModalContent.querySelectorAll('.modal-media-card')
-    const dots = projectsModalContent.querySelectorAll('.modal-media-dot')
+    const track = projectsModalContent.querySelector('#modal-gallery-track')
+    if (!track) return
 
-    // Mark active slide matching visual or logical index
-    slides.forEach((slide) => {
-        const sIdx = parseInt(slide.getAttribute('data-slide-index'), 10)
-        const mIdx = parseInt(slide.getAttribute('data-media-index'), 10)
-        const isActive = sIdx === visualModalSlide || (mIdx === activeModalMediaIndex && sIdx === activeModalMediaIndex + 1)
-        slide.classList.toggle('active', isActive)
-        slide.setAttribute('aria-selected', isActive ? 'true' : 'false')
-        slide.setAttribute('tabindex', isActive ? '0' : '-1')
-    })
+    const config = getModalMediaConfig()
+    const { cardWidth, gap, peek, totalPages, isMobile, trackWidth, viewportWidth } = config
+    modalMediaPage = Math.max(0, Math.min(modalMediaPage, totalPages - 1))
 
-    // Dot navigation strictly follows authoritative activeModalMediaIndex
-    dots.forEach((dot, idx) => {
-        const isActive = idx === activeModalMediaIndex
-        dot.classList.toggle('active', isActive)
-        dot.setAttribute('aria-current', isActive ? 'true' : 'false')
-        dot.setAttribute('aria-selected', isActive ? 'true' : 'false')
-    })
-}
-
-function setModalActiveMedia(newLogicalIndex, direction = 0) {
-    if (!projectsModalContent) return
-    const project = projectsData[activeProjectModalIndex]
-    if (!project) return
-
-    const mediaItems = project.media && project.media.length > 0 ? project.media : [
-        {
-            type: "screenshot",
-            label: "Overview",
-            badge: project.badge,
-            icon: project.icon,
-            caption: project.shortDescription
-        }
-    ]
-
-    const N = mediaItems.length
-    if (N <= 1) {
-        activeModalMediaIndex = 0
-        visualModalSlide = 0
-        positionModalTrack(0, true)
-        syncModalMediaUI()
-        return
-    }
-
-    // Cyclic logical index: [0, N-1]
-    activeModalMediaIndex = (newLogicalIndex % N + N) % N
-
-    // Determine visual slide position in cloned track
-    if (direction === 1 && newLogicalIndex === N && visualModalSlide === N) {
-        visualModalSlide = N + 1
-    } else if (direction === -1 && newLogicalIndex === -1 && visualModalSlide === 1) {
-        visualModalSlide = 0
+    let translateX = 0
+    if (totalPages <= 1 || cardWidth <= 0) {
+        translateX = 0
+    } else if (modalMediaPage === 0) {
+        // Page 1: Media 1 & 2 primary (flush left), Media 3 peeks on right
+        translateX = 0
+    } else if (modalMediaPage === totalPages - 1) {
+        // Final Page: Last media pair flush right, previous media peeks on left
+        translateX = Math.max(0, trackWidth - viewportWidth)
     } else {
-        visualModalSlide = activeModalMediaIndex + 1
+        // Middle Page: Previous media peeks on left, 2 primary media items centered, next media peeks on right
+        const pageFirstCardIndex = isMobile ? modalMediaPage : modalMediaPage * 2
+        translateX = pageFirstCardIndex * (cardWidth + gap) - (peek / 2)
     }
 
-    positionModalTrack(visualModalSlide, true)
-    syncModalMediaUI()
-}
-
-function handleModalTrackTransitionEnd() {
-    if (!projectsModalContent) return
-    const project = projectsData[activeProjectModalIndex]
-    if (!project) return
-    const mediaItems = project.media && project.media.length > 0 ? project.media : []
-    const N = mediaItems.length
-    if (N <= 1) return
-
-    // Seamless instant reset for clones
-    if (visualModalSlide === N + 1) {
-        visualModalSlide = 1
-        positionModalTrack(1, false)
-        syncModalMediaUI()
-    } else if (visualModalSlide === 0) {
-        visualModalSlide = N
-        positionModalTrack(N, false)
-        syncModalMediaUI()
+    if (!animated) {
+        track.style.transition = 'none'
+        track.style.transform = `translateX(-${translateX}px)`
+        track.offsetHeight // Force reflow
+        track.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)'
+    } else {
+        track.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)'
+        track.style.transform = `translateX(-${translateX}px)`
     }
+
+    updateModalNavControls()
 }
 
-function updateModalMediaGallery() {
-    positionModalTrack(visualModalSlide, false)
-    syncModalMediaUI()
-}
+function navigateModalPage(direction) {
+    const config = getModalMediaConfig()
+    const { totalPages } = config
+    if (totalPages <= 1) return
 
-function switchModalMediaSlide(mediaIndex) {
-    setModalActiveMedia(mediaIndex, 0)
+    const targetPage = Math.max(0, Math.min(modalMediaPage + direction, totalPages - 1))
+    if (targetPage !== modalMediaPage) {
+        modalMediaPage = targetPage
+        positionModalTrack(true)
+    }
 }
 
 function renderProjectModal(index) {
     activeProjectModalIndex = (index + projectsData.length) % projectsData.length
-    activeModalMediaIndex = 0
-    visualModalSlide = 1
+    modalMediaPage = 0
+
     const project = projectsData[activeProjectModalIndex]
     if (!project || !projectsModalContent) return
 
-    const mediaItems = project.media && project.media.length > 0 ? project.media : [
-        {
-            type: "screenshot",
-            label: "Overview",
-            badge: project.badge,
-            icon: project.icon,
-            caption: project.shortDescription
-        }
-    ]
-
+    const mediaItems = (project.media && Array.isArray(project.media) && project.media.length > 0) ? project.media : []
     const N = mediaItems.length
 
-    // Build media cards with cyclic clones:
-    // If N > 1: [Clone of Item N-1] + [Item 0..N-1] + [Clone of Item 0]
-    let trackItems = []
-    if (N > 1) {
-        trackItems.push({ item: mediaItems[N - 1], logicalIndex: N - 1, slideIndex: 0, isClone: true })
-        mediaItems.forEach((m, idx) => {
-            trackItems.push({ item: m, logicalIndex: idx, slideIndex: idx + 1, isClone: false })
-        })
-        trackItems.push({ item: mediaItems[0], logicalIndex: 0, slideIndex: N + 1, isClone: true })
-    } else {
-        trackItems.push({ item: mediaItems[0], logicalIndex: 0, slideIndex: 0, isClone: false })
-    }
+    // Data-driven cards: Automatically renders real image/video if `src` is populated, otherwise renders clean reserved placeholder
+    const mediaCardsHtml = mediaItems.map((m, idx) => {
+        const isVideo = m.type === 'video' || (idx === 0 && m.type !== 'screenshot' && m.type !== 'image')
+        const hasRealMedia = Boolean(m.src && m.src.trim() !== '')
+        const mediaTitle = m.title || m.label || m.badge || (isVideo ? 'Demo Video' : 'System Preview')
+        const mediaCaption = m.caption || project.title
 
-    const mediaCardsHtml = trackItems.map((slot) => {
-        const m = slot.item
-        const isVideo = m.type === 'video' || slot.logicalIndex === 0
-        const isPrimaryActive = slot.slideIndex === 1 || (N === 1 && slot.slideIndex === 0)
+        const mediaBgHtml = hasRealMedia ? (
+            isVideo
+                ? `<video class="modal-card-media-bg" src="${m.src}" poster="${m.poster || ''}" preload="metadata" playsinline muted></video><div class="modal-card-media-overlay"></div>`
+                : `<img class="modal-card-media-bg" src="${m.src}" alt="${mediaTitle}" loading="lazy" /><div class="modal-card-media-overlay"></div>`
+        ) : ''
+
         return `
-            <div class="modal-media-card ${isPrimaryActive ? 'active' : ''} ${project.gradClass}" data-slide-index="${slot.slideIndex}" data-media-index="${slot.logicalIndex}" tabindex="${isPrimaryActive ? '0' : '-1'}" role="button" aria-label="View ${m.label || m.badge}">
-                <span class="media-type-pill">
+            <div class="modal-media-card ${project.gradClass}" data-media-index="${idx}" tabindex="0" role="button" aria-label="View ${mediaTitle}">
+                ${mediaBgHtml}
+                <span class="modal-media-pill">
                     <i class="${isVideo ? 'ri-video-line' : 'ri-image-line'}"></i>
-                    ${isVideo ? 'Demo Video Presentation' : (m.badge || 'System Screenshot')}
+                    ${mediaTitle}
                 </span>
-                <div class="modal-media-glow"></div>
+                ${!hasRealMedia ? '<div class="modal-media-glow"></div>' : ''}
                 <div class="modal-media-card-inner">
-                    <div class="media-action-trigger" data-media-index="${slot.logicalIndex}" aria-hidden="true">
+                    <div class="modal-media-trigger" aria-hidden="true">
                         <i class="${isVideo ? 'ri-play-fill' : 'ri-fullscreen-line'}"></i>
                     </div>
-                    <p class="media-card-caption">${m.caption || project.title}</p>
+                    <p class="modal-media-caption">${mediaCaption}</p>
                 </div>
             </div>
         `
     }).join('')
 
-    // Compact, Subtle Dot Navigation
-    const mediaDotsHtml = N > 1 ? `
-        <div class="modal-media-dots" id="modal-media-dots" role="tablist" aria-label="Media navigation">
-            ${mediaItems.map((_, mIdx) => `
-                <button type="button" class="modal-media-dot ${mIdx === 0 ? 'active' : ''}" data-media-index="${mIdx}" role="tab" aria-label="Go to media slide ${mIdx + 1}" aria-selected="${mIdx === 0 ? 'true' : 'false'}"></button>
-            `).join('')}
-        </div>
-    ` : ''
+    // Gallery container: Adapts cleanly if 0 media, 1-2 media, or 3+ media
+    let galleryHtml = ''
+    if (N === 0) {
+        galleryHtml = `
+            <div class="modal-empty-gallery">
+                <i class="ri-folder-image-line modal-empty-icon"></i>
+                <h4 class="modal-empty-title">Project media coming soon</h4>
+                <p class="modal-empty-desc">Video walkthroughs and high-resolution interface previews will be available here.</p>
+            </div>
+        `
+    } else {
+        const isMobile = window.innerWidth <= 680
+        const totalPages = Math.max(1, Math.ceil(N / (isMobile ? 1 : 2)))
+        const showNav = totalPages > 1
 
-    const featuresHtml = project.features.map(f => `
+        galleryHtml = `
+            <div class="modal-gallery-wrapper">
+                <div class="modal-gallery-viewport" id="modal-gallery-viewport">
+                    ${showNav ? `
+                        <button type="button" class="modal-gallery-nav modal-gallery-prev is-disabled" id="modal-gallery-prev" aria-label="Previous media page" title="Previous Page">
+                            <i class="ri-arrow-left-s-line"></i>
+                        </button>
+                    ` : ''}
+                    <div class="modal-gallery-track" id="modal-gallery-track">
+                        ${mediaCardsHtml}
+                    </div>
+                    ${showNav ? `
+                        <button type="button" class="modal-gallery-nav modal-gallery-next" id="modal-gallery-next" aria-label="Next media page" title="Next Page">
+                            <i class="ri-arrow-right-s-line"></i>
+                        </button>
+                    ` : ''}
+                </div>
+            </div>
+        `
+    }
+
+    const featuresHtml = (project.features && project.features.length > 0) ? project.features.map(f => `
         <div class="modal-feature-item">
             <i class="${f.icon} modal-feature-icon"></i>
             <span class="modal-feature-text">${f.text}</span>
         </div>
-    `).join('')
+    `).join('') : ''
 
-    const tagsHtml = project.tags.map(t => `
+    const tagsHtml = (project.tags && project.tags.length > 0) ? project.tags.map(t => `
         <span class="modal-tag">${t}</span>
-    `).join('')
+    `).join('') : ''
 
-    const primaryDocLink = (project.links && project.links.length > 0) ? project.links[0].url : '#'
+    const docSectionHtml = (project.links && project.links.length > 0) ? `
+        <!-- Attachments & Documentation Section -->
+        <div class="modal-doc-section">
+            <h3 class="modal-section-title"><i class="ri-attachment-2"></i> Documentation & Resources</h3>
+            <div class="modal-doc-grid">
+                ${project.links.map(link => `
+                    <a href="${link.url}" target="_blank" rel="noopener noreferrer" class="modal-doc-card ${link.primary ? 'modal-doc-card--primary' : ''}" aria-label="${link.label} for ${project.title}">
+                        <i class="${link.icon || 'ri-file-text-line'}"></i>
+                        <span>${link.label}</span>
+                    </a>
+                `).join('')}
+            </div>
+        </div>
+    ` : ''
 
     projectsModalContent.innerHTML = `
-        <!-- App Store-Inspired Header with View Full Documentation Action -->
+        <!-- App Store-Inspired Header with Category / Project Type Badge -->
         <div class="modal-product-header">
             <div class="modal-header-main">
                 <div class="modal-header-icon-box">
@@ -1506,34 +1615,16 @@ function renderProjectModal(index) {
                         <span>${project.category}</span>
                         <span class="dot">•</span>
                         <span>${project.year}</span>
-                        <span class="dot">•</span>
-                        <span>${project.badge}</span>
                     </div>
                 </div>
             </div>
-            <a href="${primaryDocLink}" target="_blank" rel="noopener noreferrer" class="modal-doc-btn" aria-label="View Full Documentation for ${project.title}">
-                <i class="ri-file-text-line"></i>
-                <span>View Full Documentation</span>
-            </a>
+            <div class="modal-type-badge">
+                <i class="ri-apps-line"></i>
+                <span>${project.badge}</span>
+            </div>
         </div>
 
-        <!-- Cyclic Media Peeking Gallery Showcase -->
-        <div class="modal-gallery-wrapper">
-            <div class="modal-gallery-viewport" id="modal-gallery-viewport">
-                ${N > 1 ? `
-                    <button type="button" class="modal-gallery-arrow modal-gallery-arrow--prev" id="modal-gallery-prev" aria-label="Previous media" title="Previous media">
-                        <i class="ri-arrow-left-s-line"></i>
-                    </button>
-                    <button type="button" class="modal-gallery-arrow modal-gallery-arrow--next" id="modal-gallery-next" aria-label="Next media" title="Next media">
-                        <i class="ri-arrow-right-s-line"></i>
-                    </button>
-                ` : ''}
-                <div class="modal-gallery-track" id="modal-gallery-track">
-                    ${mediaCardsHtml}
-                </div>
-            </div>
-            ${mediaDotsHtml}
-        </div>
+        ${galleryHtml}
 
         <!-- Structured Project Overview -->
         <div class="modal-section">
@@ -1556,134 +1647,89 @@ function renderProjectModal(index) {
                 ${tagsHtml}
             </div>
         </div>
+
+        ${docSectionHtml}
     `
 
-    // Track transition end listener for infinite cyclic wrapping
-    const modalTrack = projectsModalContent.querySelector('#modal-gallery-track')
-    if (modalTrack) {
-        modalTrack.addEventListener('transitionend', handleModalTrackTransitionEnd)
-    }
-
-    // Cyclic Internal Gallery Arrows
-    const galleryPrev = projectsModalContent.querySelector('#modal-gallery-prev')
-    const galleryNext = projectsModalContent.querySelector('#modal-gallery-next')
-    if (galleryPrev) {
-        galleryPrev.addEventListener('click', (e) => {
+    // Minimal Outer-Edge Previous / Next Arrows
+    const modalPrev = projectsModalContent.querySelector('#modal-gallery-prev')
+    const modalNext = projectsModalContent.querySelector('#modal-gallery-next')
+    if (modalPrev) {
+        modalPrev.addEventListener('click', (e) => {
             e.stopPropagation()
-            if (visualModalSlide === 1) {
-                setModalActiveMedia(N - 1, -1)
-            } else {
-                setModalActiveMedia(activeModalMediaIndex - 1, -1)
-            }
+            navigateModalPage(-1)
         })
     }
-    if (galleryNext) {
-        galleryNext.addEventListener('click', (e) => {
+    if (modalNext) {
+        modalNext.addEventListener('click', (e) => {
             e.stopPropagation()
-            if (visualModalSlide === N) {
-                setModalActiveMedia(0, 1)
-            } else {
-                setModalActiveMedia(activeModalMediaIndex + 1, 1)
-            }
+            navigateModalPage(1)
         })
     }
 
-    // Dot Indicators
-    const dotButtons = projectsModalContent.querySelectorAll('.modal-media-dot')
-    dotButtons.forEach(dot => {
-        dot.addEventListener('click', (e) => {
-            e.stopPropagation()
-            const mIdx = parseInt(dot.getAttribute('data-media-index'), 10)
-            if (!isNaN(mIdx)) setModalActiveMedia(mIdx, 0)
-        })
-    })
-
-    // Media Cards
+    // Click & Keydown Listeners for Media Cards (Open Lightbox)
     const mediaCards = projectsModalContent.querySelectorAll('.modal-media-card')
     mediaCards.forEach(card => {
-        card.addEventListener('click', (e) => {
-            const sIdx = parseInt(card.getAttribute('data-slide-index'), 10)
+        card.addEventListener('click', () => {
             const mIdx = parseInt(card.getAttribute('data-media-index'), 10)
-            if (isNaN(mIdx)) return
-
-            if (sIdx !== visualModalSlide) {
-                setModalActiveMedia(mIdx, 0)
-            } else {
-                openMediaLightbox(activeProjectModalIndex, activeModalMediaIndex)
-            }
+            if (!isNaN(mIdx)) openMediaLightbox(activeProjectModalIndex, mIdx)
         })
 
         card.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault()
-                const sIdx = parseInt(card.getAttribute('data-slide-index'), 10)
                 const mIdx = parseInt(card.getAttribute('data-media-index'), 10)
-                if (!isNaN(mIdx)) {
-                    if (sIdx !== visualModalSlide) {
-                        setModalActiveMedia(mIdx, 0)
-                    } else {
-                        openMediaLightbox(activeProjectModalIndex, activeModalMediaIndex)
-                    }
-                }
+                if (!isNaN(mIdx)) openMediaLightbox(activeProjectModalIndex, mIdx)
             }
         })
     })
 
-    // Touch swipe support for modal gallery
-    if (modalTrack) {
+    // Touch swipe support for modal gallery (distinguishing horizontal swipe from vertical scrolling)
+    const modalViewport = projectsModalContent.querySelector('#modal-gallery-viewport')
+    if (modalViewport) {
         let touchStartModalX = 0
-        let touchEndModalX = 0
-        modalTrack.addEventListener('touchstart', (e) => {
+        let touchStartModalY = 0
+        modalViewport.addEventListener('touchstart', (e) => {
             touchStartModalX = e.changedTouches[0].screenX
+            touchStartModalY = e.changedTouches[0].screenY
         }, { passive: true })
-        modalTrack.addEventListener('touchend', (e) => {
-            touchEndModalX = e.changedTouches[0].screenX
-            const diff = touchStartModalX - touchEndModalX
-            if (Math.abs(diff) > 35) {
-                if (diff > 0) {
-                    if (visualModalSlide === N) {
-                        setModalActiveMedia(0, 1)
-                    } else {
-                        setModalActiveMedia(activeModalMediaIndex + 1, 1)
-                    }
+        modalViewport.addEventListener('touchend', (e) => {
+            const touchEndModalX = e.changedTouches[0].screenX
+            const touchEndModalY = e.changedTouches[0].screenY
+            const diffX = touchStartModalX - touchEndModalX
+            const diffY = touchStartModalY - touchEndModalY
+            if (Math.abs(diffX) > 35 && Math.abs(diffX) > Math.abs(diffY) * 1.3) {
+                if (diffX > 0) {
+                    navigateModalPage(1)
                 } else {
-                    if (visualModalSlide === 1) {
-                        setModalActiveMedia(N - 1, -1)
-                    } else {
-                        setModalActiveMedia(activeModalMediaIndex - 1, -1)
-                    }
+                    navigateModalPage(-1)
                 }
             }
         }, { passive: true })
     }
 
-    // Position initial slide (Slide 1: Demo Video) dead-center without animation
+    // Initial position
     requestAnimationFrame(() => {
-        positionModalTrack(1, false)
-        syncModalMediaUI()
+        positionModalTrack(false)
     })
     setTimeout(() => {
-        positionModalTrack(1, false)
-        syncModalMediaUI()
-    }, 60)
+        positionModalTrack(false)
+    }, 50)
 }
 
 function openProjectModal(index) {
     if (!projectsModal) return
     activeProjectModalIndex = (index + projectsData.length) % projectsData.length
-    activeModalMediaIndex = 0
-    visualModalSlide = 1
     renderProjectModal(activeProjectModalIndex)
     projectsModal.classList.add('active')
     projectsModal.setAttribute('aria-hidden', 'false')
     document.body.style.overflow = 'hidden'
+
     requestAnimationFrame(() => {
-        positionModalTrack(1, false)
-        syncModalMediaUI()
+        positionModalTrack(false)
     })
     setTimeout(() => {
-        positionModalTrack(1, false)
-        syncModalMediaUI()
+        positionModalTrack(false)
     }, 60)
 }
 
@@ -1692,26 +1738,6 @@ function closeProjectModal() {
     projectsModal.classList.remove('active')
     projectsModal.setAttribute('aria-hidden', 'true')
     document.body.style.overflow = ''
-}
-
-function showNextProjectModal() {
-    activeModalMediaIndex = 0
-    visualModalSlide = 1
-    renderProjectModal(activeProjectModalIndex + 1)
-    requestAnimationFrame(() => {
-        positionModalTrack(1, false)
-        syncModalMediaUI()
-    })
-}
-
-function showPrevProjectModal() {
-    activeModalMediaIndex = 0
-    visualModalSlide = 1
-    renderProjectModal(activeProjectModalIndex - 1)
-    requestAnimationFrame(() => {
-        positionModalTrack(1, false)
-        syncModalMediaUI()
-    })
 }
 
 // Bind cards click & View More button click
@@ -1753,25 +1779,17 @@ if (projectsModalBackdrop) {
     projectsModalBackdrop.addEventListener('click', closeProjectModal)
 }
 
-if (projectsModalPrev) {
-    projectsModalPrev.addEventListener('click', (e) => {
-        e.stopPropagation()
-        showPrevProjectModal()
-    })
-}
-
-if (projectsModalNext) {
-    projectsModalNext.addEventListener('click', (e) => {
-        e.stopPropagation()
-        showNextProjectModal()
-    })
-}
-
 // Keyboard controls for modal & lightbox (Escape, ArrowLeft, ArrowRight)
 window.addEventListener('keydown', event => {
     if (mediaLightbox && mediaLightbox.classList.contains('active')) {
         if (event.key === 'Escape') {
             closeMediaLightbox()
+            return
+        } else if (event.key === 'ArrowRight') {
+            showNextLightboxMedia()
+            return
+        } else if (event.key === 'ArrowLeft') {
+            showPrevLightboxMedia()
             return
         }
     }
@@ -1780,9 +1798,9 @@ window.addEventListener('keydown', event => {
         if (event.key === 'Escape') {
             closeProjectModal()
         } else if (event.key === 'ArrowRight') {
-            showNextProjectModal()
+            navigateModalPage(1)
         } else if (event.key === 'ArrowLeft') {
-            showPrevProjectModal()
+            navigateModalPage(-1)
         }
     }
 })

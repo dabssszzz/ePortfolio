@@ -752,11 +752,6 @@
                 <div class="projects-modal-backdrop" id="projects-modal-backdrop"></div>
                 
                 <div class="projects-modal-wrapper">
-                    <!-- Minimal Arrow Navigation Controls Floating Beside Modal -->
-                    <button type="button" class="projects-modal-nav projects-modal-prev" id="projects-modal-prev" aria-label="Previous project" title="Previous Project">
-                        <i class="ri-arrow-left-s-line"></i>
-                    </button>
-                    
                     <div class="projects-modal-dialog">
                         <button type="button" class="projects-modal-close" id="projects-modal-close" aria-label="Close project showcase">
                             <i class="ri-close-line"></i>
@@ -764,19 +759,20 @@
 
                         <!-- Dynamically Populated Project Details Container -->
                         <div class="projects-modal-content" id="projects-modal-content">
-                            <!-- Populated by JS with App Store Hierarchy & Media Peeking Gallery -->
+                            <!-- Populated by JS with Compact Header, 2-Media Grid & Documentation -->
                         </div>
                     </div>
-
-                    <button type="button" class="projects-modal-nav projects-modal-next" id="projects-modal-next" aria-label="Next project" title="Next Project">
-                        <i class="ri-arrow-right-s-line"></i>
-                    </button>
                 </div>
             </div>
 
             <!-- Expanded Media Lightbox Modal -->
             <div class="media-lightbox" id="media-lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Expanded Media Showcase">
                 <div class="media-lightbox-backdrop" id="media-lightbox-backdrop"></div>
+                
+                <button type="button" class="media-lightbox-nav media-lightbox-prev" id="media-lightbox-prev" aria-label="Previous media item" title="Previous Media">
+                    <i class="ri-arrow-left-s-line"></i>
+                </button>
+
                 <div class="media-lightbox-dialog">
                     <button type="button" class="media-lightbox-close" id="media-lightbox-close" aria-label="Close expanded media">
                         <i class="ri-close-line"></i>
@@ -785,6 +781,10 @@
                         <!-- Populated by JS -->
                     </div>
                 </div>
+
+                <button type="button" class="media-lightbox-nav media-lightbox-next" id="media-lightbox-next" aria-label="Next media item" title="Next Media">
+                    <i class="ri-arrow-right-s-line"></i>
+                </button>
             </div>
         </section>
 
