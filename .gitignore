@@ -2,3 +2,13 @@ node_modules
 dist
 .DS_Store
 .vite
+
+# Media & Video files (Large media hosted externally on YouTube)
+*.mp4
+*.mov
+*.webm
+*.avi
+*.mkv
+
+# Project Documents & Manuscripts (Hosted externally on Drive)
+assets/projects/**/*.pdf

@@ -752,54 +752,114 @@ const projectsData = [
     {
         title: "MATHtatag",
         category: "Capstone Project",
-        year: "2025",
+        year: "2025–2026",
         badge: "Android Application",
         icon: "ri-calculator-line",
+        logo: "assets/projects/MATHtatag/MATHtatag Logo.jpeg",
+        cardImage: "assets/projects/MATHtatag/MATHtatag Logo.jpeg",
         gradClass: "project-grad-1",
         shortDescription: "An Android mathematics assessment system featuring Filipino text-to-speech, curriculum-aligned modules, automated scoring, and real-time student analytics.",
-        fullDescription: "MATHtatag is an Android-based mathematics assessment and supplementary learning system engineered specifically for Filipino elementary learners. It incorporates native Filipino Text-to-Speech (TTS) technology to assist pupils in auditory word-problem comprehension, directly addressing language-barrier challenges in basic mathematics education. Aligned with DepEd MATATAG curriculum standards, it equips teachers with automated diagnostic scoring, question-level analytics, and granular progress monitoring.",
+        overview: "MATHtatag is a mobile-based learning and assessment application designed to support Grade 1 Mathematics under the MATATAG Curriculum. It combines interactive activities, Filipino Text-to-Speech, automated assessment, and performance monitoring to support learners, teachers, and parents.",
+        fullDescription: "MATHtatag is a mobile-based learning and assessment application designed to support Grade 1 Mathematics under the MATATAG Curriculum. It combines interactive activities, Filipino Text-to-Speech, automated assessment, and performance monitoring to support learners, teachers, and parents.",
+        problem: "Grade 1 learners faced difficulties understanding written mathematics instructions, while teachers and parents had limited access to timely assessment feedback and learner performance monitoring.",
+        solution: "Developed MATHtatag as a centralized Android application that combines curriculum-aligned mathematics activities, Filipino Text-to-Speech, automated assessment, and performance monitoring.",
+        role: {
+            title: "Front-End / UI Designer • QA Tester • Documentation & Researcher",
+            responsibilities: [
+                "Designed and refined child-friendly interfaces for Grade 1 learners.",
+                "Helped develop simple, accessible, and visually clear user interfaces.",
+                "Tested application features and reported errors during development.",
+                "Contributed to project documentation and research.",
+                "Helped verify learning content and assessment items against Grade 1 Mathematics requirements."
+            ]
+        },
         media: [
             {
-                type: "video",
-                label: "Video Demo",
+                type: "youtube",
+                src: "https://www.youtube.com/embed/fsHzSBErxN4",
+                title: "MATHtatag System Demonstration",
                 badge: "Interactive Video Walkthrough",
-                icon: "ri-play-circle-line",
+                icon: "ri-youtube-line",
                 caption: "Complete Walkthrough: System Architecture, Filipino Text-to-Speech Narration & Assessment Engine"
             },
             {
-                type: "screenshot",
-                label: "Assessment UI",
+                type: "image",
+                src: "assets/projects/MATHtatag/MATHtatag pic1.jpg",
+                title: "Interactive Math UI",
                 badge: "Student Assessment Screen",
                 icon: "ri-macbook-line",
                 caption: "Interactive Pupil Interface with Synchronized Audio Word-Problem Narration"
             },
             {
-                type: "screenshot",
-                label: "Diagnostic Scoring",
+                type: "image",
+                src: "assets/projects/MATHtatag/MATHtatag pic2.jpg",
+                title: "Diagnostic Scoring",
                 badge: "Automated Diagnostic Engine",
                 icon: "ri-pie-chart-line",
                 caption: "Step-by-Step Scoring Breakdown with Automated Diagnostic Solution Analysis"
             },
             {
-                type: "screenshot",
-                label: "Teacher Analytics",
+                type: "image",
+                src: "assets/projects/MATHtatag/MATHtatag pic3.jpg",
+                title: "Teacher Analytics",
                 badge: "Educator Dashboard",
                 icon: "ri-dashboard-3-line",
                 caption: "Comprehensive Performance Analytics Highlighting Curriculum Learning Gaps"
             }
         ],
         features: [
-            { icon: "ri-volume-up-line", text: "Integrated Filipino Text-to-Speech engine for natural auditory math problem narration." },
-            { icon: "ri-file-list-3-line", text: "Curriculum-aligned quiz modules tailored to Department of Education competencies." },
-            { icon: "ri-line-chart-line", text: "Real-time educator analytics dashboard tracking student mastery and learning gaps." },
-            { icon: "ri-checkbox-circle-line", text: "Instant automated scoring with step-by-step diagnostic solution breakdowns." },
-            { icon: "ri-wifi-off-line", text: "Offline-first local database caching for schools with limited internet connectivity." }
+            {
+                title: "Interactive Mathematics Activities",
+                text: "Matching, multiple choice, reordering, and other digital exercises.",
+                icon: "ri-gamepad-line"
+            },
+            {
+                title: "Filipino Text-to-Speech",
+                text: "Reads questions and instructions aloud for young learners.",
+                icon: "ri-volume-up-line"
+            },
+            {
+                title: "Teacher Exercise Management",
+                text: "Create, edit, and assign curriculum-aligned activities.",
+                icon: "ri-file-edit-line"
+            },
+            {
+                title: "Performance Dashboards",
+                text: "Monitor learner progress, scores, and performance.",
+                icon: "ri-dashboard-3-line"
+            },
+            {
+                title: "Automated Assessment",
+                text: "Records responses, calculates results, and provides immediate feedback.",
+                icon: "ri-checkbox-circle-line"
+            }
         ],
-        tags: ["Android SDK", "Java / Kotlin", "Text-to-Speech API", "SQLite Database", "Material Design 3", "DepEd MATATAG"],
-        links: [
-            { label: "View Capstone Blueprint", icon: "ri-file-text-line", url: "#", primary: true },
-            { label: "System Flowchart", icon: "ri-node-tree", url: "#", primary: false }
-        ]
+        techCategories: [
+            { label: "Mobile", stack: "React Native • Expo • TypeScript" },
+            { label: "Backend", stack: "Firebase • Firebase Realtime Database" },
+            { label: "Services", stack: "ElevenLabs API • Firebase Authentication • Firebase Storage" },
+            { label: "Tools", stack: "Git • GitHub • VS Code" }
+        ],
+        tags: ["React Native", "Expo", "TypeScript", "Firebase", "ElevenLabs API", "DepEd MATATAG"],
+        results: {
+            metrics: [
+                { value: "63.22% → 95.89%", label: "Mean Percentage Score improvement" },
+                { value: "42 / 45 learners", label: "Reached the 16–20 posttest score range" },
+                { value: "4.63 / 5", label: "Overall ISO 25010 evaluation" }
+            ],
+            context: "Evaluated with Grade 1 learners and teacher/parent respondents, with the study reporting improved mathematics performance and strong software-quality ratings."
+        },
+        documents: [
+            {
+                type: "document",
+                title: "MATHtatag Capstone Manuscript",
+                label: "View Full Documentation ↗",
+                icon: "ri-file-pdf-2-line",
+                url: "https://drive.google.com/file/d/1ofy3oWCiZWdFyIqNK07GCzWWGpshf9uw/view?usp=share_link",
+                primary: true
+            }
+        ],
+        links: []
     },
     {
         title: "FuelWatchPH",
@@ -812,29 +872,33 @@ const projectsData = [
         fullDescription: "FuelWatchPH is a nationwide fuel price transparency and geospatial tracking platform that empowers motorists, logistics fleets, and daily commuters to optimize their refueling expenses. By synthesizing crowdsourced reports with verified fuel distributor data, FuelWatchPH offers interactive station navigation, historical price trend modeling, and predictive notifications before national fuel price adjustments take effect.",
         media: [
             {
-                type: "video",
-                label: "Live Map Demo",
+                type: "youtube",
+                src: "https://www.youtube.com/embed/VIDEO_ID",
+                title: "Live Map Demo",
                 badge: "Interactive Map Walkthrough",
-                icon: "ri-play-circle-line",
+                icon: "ri-youtube-line",
                 caption: "Geospatial Station Navigation, Real-Time Fuel Prices & Route Refueling Calculator"
             },
             {
-                type: "screenshot",
-                label: "Price Trends",
+                type: "image",
+                src: "",
+                title: "Price Trends",
                 badge: "Historical Analytics",
                 icon: "ri-line-chart-line",
                 caption: "Predictive Fuel Price Trend Analytics with Regulatory Price Movement Alerts"
             },
             {
-                type: "screenshot",
-                label: "Station Locator",
+                type: "image",
+                src: "",
+                title: "Station Locator",
                 badge: "Station Finder UI",
                 icon: "ri-map-pin-range-line",
                 caption: "Multi-Brand Gas Station Comparative Pricing & Fuel Grade Filter Interface"
             },
             {
-                type: "screenshot",
-                label: "Cost Calculator",
+                type: "image",
+                src: "",
+                title: "Cost Calculator",
                 badge: "Savings Calculator",
                 icon: "ri-calculator-line",
                 caption: "Vehicle Fuel Efficiency Profile & Commute Refueling Cost Optimization"
@@ -848,9 +912,10 @@ const projectsData = [
             { icon: "ri-shield-check-line", text: "Community verification system with badge scoring to ensure price report accuracy." }
         ],
         tags: ["ReactJS", "Leaflet Maps API", "Node.js", "RESTful API", "Chart.js", "Tailwind CSS"],
+        documents: [],
         links: [
-            { label: "Live Web App", icon: "ri-external-link-line", url: "#", primary: true },
-            { label: "API Reference", icon: "ri-code-s-slash-line", url: "#", primary: false }
+            { label: "Live Web App ↗", icon: "ri-external-link-line", url: "#", primary: true },
+            { label: "API Reference ↗", icon: "ri-code-s-slash-line", url: "#", primary: false }
         ]
     },
     {
@@ -864,29 +929,33 @@ const projectsData = [
         fullDescription: "A full-scale administrative governance platform developed to digitize and accelerate resident identification processes for local barangay councils. The system consolidates demographic profiling, civil document submission, digital photo capture, and automated cryptographic QR-coded ID card generation into an intuitive, secure portal compliant with RA 10173 (Philippine Data Privacy Act).",
         media: [
             {
-                type: "video",
-                label: "System Demo",
+                type: "youtube",
+                src: "https://www.youtube.com/embed/VIDEO_ID",
+                title: "System Demo",
                 badge: "Administrative Walkthrough",
-                icon: "ri-play-circle-line",
+                icon: "ri-youtube-line",
                 caption: "Resident Profiling, Cryptographic QR Generation & Instant Verification Flow"
             },
             {
-                type: "screenshot",
-                label: "Resident Portal",
+                type: "image",
+                src: "",
+                title: "Resident Portal",
                 badge: "Civil Registration UI",
                 icon: "ri-user-add-line",
                 caption: "Demographic Entry, Document Clearance Submission & Photo Capture Portal"
             },
             {
-                type: "screenshot",
-                label: "ID Card Preview",
+                type: "image",
+                src: "",
+                title: "ID Card Preview",
                 badge: "Card Layout Generator",
                 icon: "ri-id-card-fill",
                 caption: "Automated High-Resolution Print-Ready ID Card Output with Anti-Forgery QR"
             },
             {
-                type: "screenshot",
-                label: "Admin Dashboard",
+                type: "image",
+                src: "",
+                title: "Admin Dashboard",
                 badge: "Queue & Clearance Center",
                 icon: "ri-dashboard-2-line",
                 caption: "Role-Based Access Dashboard Managing Issuance Appointments & Census Data"
@@ -900,9 +969,18 @@ const projectsData = [
             { icon: "ri-lock-2-line", text: "Encrypted data storage and activity audit logging for strict privacy compliance." }
         ],
         tags: ["PHP", "MySQL", "JavaScript (ES6+)", "Bootstrap 5", "QR Engine", "Data Privacy (RA 10173)"],
+        documents: [
+            {
+                type: "document",
+                title: "System Architecture Blueprint",
+                label: "View Architecture Blueprint ↗",
+                icon: "ri-file-pdf-2-line",
+                url: "EXTERNAL_DOCUMENT_URL",
+                primary: false
+            }
+        ],
         links: [
-            { label: "Admin Portal Demo", icon: "ri-dashboard-line", url: "#", primary: true },
-            { label: "Architecture Blueprint", icon: "ri-git-repository-line", url: "#", primary: false }
+            { label: "Admin Portal Demo ↗", icon: "ri-dashboard-line", url: "#", primary: true }
         ]
     },
     {
@@ -916,29 +994,33 @@ const projectsData = [
         fullDescription: "Juan Camohaguin is a community empowerment mobile application created to strengthen civil protection and direct municipal engagement for the residents of Barangay Camohaguin. The platform ensures rapid emergency dissemination during typhoons and calamities, provides instant hotlines for first responders, and streamlines resident appointment requests with local council officials.",
         media: [
             {
-                type: "video",
-                label: "App Walkthrough",
+                type: "youtube",
+                src: "https://www.youtube.com/embed/VIDEO_ID",
+                title: "App Walkthrough",
                 badge: "Emergency Flow Walkthrough",
-                icon: "ri-play-circle-line",
+                icon: "ri-youtube-line",
                 caption: "Disaster Alert Broadcasting, Incident Reporting & Emergency Hotline Direct Dial"
             },
             {
-                type: "screenshot",
-                label: "Alert Center",
+                type: "image",
+                src: "",
+                title: "Alert Center",
                 badge: "Disaster Notification UI",
                 icon: "ri-alarm-warning-line",
                 caption: "High-Priority Typhoon Advisory Screen with Evacuation Center Locator"
             },
             {
-                type: "screenshot",
-                label: "Hotline Directory",
+                type: "image",
+                src: "",
+                title: "Hotline Directory",
                 badge: "First Responder Direct Dial",
                 icon: "ri-phone-line",
                 caption: "One-Touch Emergency Directory Linking Police, Fire, Rescue & Medical Teams"
             },
             {
-                type: "screenshot",
-                label: "Notice Board",
+                type: "image",
+                src: "",
+                title: "Notice Board",
                 badge: "Community Bulletin",
                 icon: "ri-article-line",
                 caption: "Digital Barangay Announcements, Public Ordinances & Health Drive Schedules"
@@ -952,9 +1034,18 @@ const projectsData = [
             { icon: "ri-calendar-event-line", text: "Scheduled appointment coordination for barangay clearances and hearings." }
         ],
         tags: ["Android SDK", "Firebase FCM", "Java", "Google Maps API", "Cloud Firestore"],
+        documents: [
+            {
+                type: "document",
+                title: "Community Deployment Guide",
+                label: "View Community Guide ↗",
+                icon: "ri-file-list-3-line",
+                url: "EXTERNAL_DOCUMENT_URL",
+                primary: true
+            }
+        ],
         links: [
-            { label: "Community Guide", icon: "ri-article-line", url: "#", primary: true },
-            { label: "Source Code", icon: "ri-github-line", url: "#", primary: false }
+            { label: "Source Code ↗", icon: "ri-github-line", url: "#", primary: false }
         ]
     },
     {
@@ -968,29 +1059,33 @@ const projectsData = [
         fullDescription: "Isla Serenidad is a modern hospitality web platform built to showcase the pristine beauty, private villas, and eco-luxury amenities of an exclusive tropical sanctuary. Incorporating modern glassmorphism aesthetics and immersive micro-animations, the site delivers a high-conversion booking journey with real-time rate calculations, virtual villa previews, and custom tour scheduling.",
         media: [
             {
-                type: "video",
-                label: "Resort Tour",
+                type: "youtube",
+                src: "https://www.youtube.com/embed/VIDEO_ID",
+                title: "Resort Tour",
                 badge: "Interactive Villa Walkthrough",
-                icon: "ri-play-circle-line",
+                icon: "ri-youtube-line",
                 caption: "Immersive Virtual Villa Walkthrough & Seamless Reservation Booking Flow"
             },
             {
-                type: "screenshot",
-                label: "Villas Gallery",
+                type: "image",
+                src: "",
+                title: "Villas Gallery",
                 badge: "Eco-Luxury Suites Showcase",
                 icon: "ri-hotel-line",
                 caption: "Interactive High-Definition Suite Gallery with Panoramic Amenity Previews"
             },
             {
-                type: "screenshot",
-                label: "Reservation Desk",
+                type: "image",
+                src: "",
+                title: "Reservation Desk",
                 badge: "Booking & Rate Engine",
                 icon: "ri-calendar-check-line",
                 caption: "Dynamic Date Range Availability Calendar with Real-Time Currency Conversion"
             },
             {
-                type: "screenshot",
-                label: "Island Concierge",
+                type: "image",
+                src: "",
+                title: "Island Concierge",
                 badge: "Excursion Planner",
                 icon: "ri-compass-3-line",
                 caption: "Custom Marine Sanctuary Excursion & Private Dining Coordination Desk"
@@ -1004,9 +1099,18 @@ const projectsData = [
             { icon: "ri-smartphone-line", text: "Fully responsive, cross-platform glassmorphic UI optimized for touch ergonomics." }
         ],
         tags: ["HTML5", "CSS3 Glassmorphism", "JavaScript (ES6+)", "Swiper API", "Responsive Web Design"],
+        documents: [
+            {
+                type: "document",
+                title: "UI/UX Case Study Documentation",
+                label: "View UI/UX Case Study ↗",
+                icon: "ri-palette-line",
+                url: "EXTERNAL_DOCUMENT_URL",
+                primary: false
+            }
+        ],
         links: [
-            { label: "Live Resort Portal", icon: "ri-external-link-line", url: "#", primary: true },
-            { label: "UI/UX Case Study", icon: "ri-palette-line", url: "#", primary: false }
+            { label: "Live Resort Portal ↗", icon: "ri-external-link-line", url: "#", primary: true }
         ]
     },
     {
@@ -1020,29 +1124,33 @@ const projectsData = [
         fullDescription: "A conceptual redesign of the Wikipedia desktop and tablet reading interface focusing on elevated typographic hierarchy, visual minimalism, and frictionless knowledge retrieval. The interface removes cluttered navigational sidebars in favor of a collapsible floating table of contents, contextual hover previews for citations, and tailored typography presets designed for prolonged reading comfort.",
         media: [
             {
-                type: "video",
-                label: "Concept Demo",
+                type: "youtube",
+                src: "https://www.youtube.com/embed/VIDEO_ID",
+                title: "Concept Demo",
                 badge: "Interactive Reading Walkthrough",
-                icon: "ri-play-circle-line",
+                icon: "ri-youtube-line",
                 caption: "Fluid Typography Scaling, Distraction-Free Reading Mode & Dynamic TOC Spy"
             },
             {
-                type: "screenshot",
-                label: "Article Layout",
+                type: "image",
+                src: "",
+                title: "Article Layout",
                 badge: "Typographic Layout UI",
                 icon: "ri-article-line",
                 caption: "Harmonious Typographic Proportions with Focus Reading Line Length"
             },
             {
-                type: "screenshot",
-                label: "Citation Previews",
+                type: "image",
+                src: "",
+                title: "Citation Previews",
                 badge: "Instant Hover Cards",
                 icon: "ri-file-search-line",
                 caption: "Contextual Citation Cards Revealing Source References Without Page Reloads"
             },
             {
-                type: "screenshot",
-                label: "Theme Switcher",
+                type: "image",
+                src: "",
+                title: "Theme Switcher",
                 badge: "OLED & Sepia Reading Palettes",
                 icon: "ri-contrast-2-line",
                 caption: "High-Contrast OLED True Black, Warm Sepia Book & Modern Editorial Light Themes"
@@ -1056,9 +1164,18 @@ const projectsData = [
             { icon: "ri-keyboard-line", text: "Rapid keyboard shortcut navigation for search, section jumping, and citation viewing." }
         ],
         tags: ["Vanilla JavaScript", "CSS Custom Properties", "Modern Typography", "Accessible HTML5"],
+        documents: [
+            {
+                type: "document",
+                title: "Design System Specifications",
+                label: "View Design System Specs ↗",
+                icon: "ri-layout-masonry-line",
+                url: "EXTERNAL_DOCUMENT_URL",
+                primary: false
+            }
+        ],
         links: [
-            { label: "Interactive Prototype", icon: "ri-eye-line", url: "#", primary: true },
-            { label: "Design System Specs", icon: "ri-layout-masonry-line", url: "#", primary: false }
+            { label: "Interactive Prototype ↗", icon: "ri-eye-line", url: "#", primary: true }
         ]
     },
     {
@@ -1072,29 +1189,33 @@ const projectsData = [
         fullDescription: "A contemporary editorial redesign of iconic headline aggregation platforms. It retains the raw information density, instant visual scanning, and speed demanded by power readers, while modernizing the aesthetic with responsive multi-column layouts, live breaking news ticker feeds, category filter tabs, and high-contrast dark mode reading palettes.",
         media: [
             {
-                type: "video",
-                label: "Editorial Demo",
+                type: "youtube",
+                src: "https://www.youtube.com/embed/VIDEO_ID",
+                title: "Editorial Demo",
                 badge: "News Aggregator Walkthrough",
-                icon: "ri-play-circle-line",
+                icon: "ri-youtube-line",
                 caption: "High-Speed Headline Skimming, Live Breaking News Ticker & Multi-Column Layout"
             },
             {
-                type: "screenshot",
-                label: "3-Column Grid",
+                type: "image",
+                src: "",
+                title: "3-Column Grid",
                 badge: "High-Density Grid UI",
                 icon: "ri-layout-column-line",
                 caption: "Ultra-Fast 3-Column Responsive Headline Grid Built for Rapid Scanning"
             },
             {
-                type: "screenshot",
-                label: "Topic Filters",
+                type: "image",
+                src: "",
+                title: "Topic Filters",
                 badge: "Instant Categorization",
                 icon: "ri-filter-3-line",
                 caption: "Zero-Latency Client-Side Topic Filters (Politics, Markets, Technology, World)"
             },
             {
-                type: "screenshot",
-                label: "Ticker Stream",
+                type: "image",
+                src: "",
+                title: "Ticker Stream",
                 badge: "Real-Time Ticker",
                 icon: "ri-rss-line",
                 caption: "Automated Background RSS Stream Delivering Breaking Headline Alerts"
@@ -1108,9 +1229,18 @@ const projectsData = [
             { icon: "ri-moon-clear-line", text: "High-contrast Dark Mode and Classic Editorial Light Mode." }
         ],
         tags: ["HTML5", "CSS Grid & Flexbox", "JavaScript (ES6+)", "RSS Parser", "Performance Optimization"],
+        documents: [
+            {
+                type: "document",
+                title: "Design Rationale & Performance Report",
+                label: "View Design Rationale ↗",
+                icon: "ri-book-open-line",
+                url: "EXTERNAL_DOCUMENT_URL",
+                primary: false
+            }
+        ],
         links: [
-            { label: "Live News Prototype", icon: "ri-external-link-line", url: "#", primary: true },
-            { label: "Design Rationale", icon: "ri-book-open-line", url: "#", primary: false }
+            { label: "Live News Prototype ↗", icon: "ri-external-link-line", url: "#", primary: true }
         ]
     }
 ]
@@ -1253,6 +1383,29 @@ window.addEventListener('resize', () => {
 /*==================== EXPANDED MEDIA LIGHTBOX ENGINE ====================*/
 let currentLightboxMediaIndex = 0
 
+function getYouTubeVideoId(url) {
+    if (!url || typeof url !== 'string') return null
+    const trimmed = url.trim()
+    if (!trimmed || trimmed === 'VIDEO_ID' || trimmed.includes('/embed/VIDEO_ID')) return null
+    
+    // Check embed URL: https://www.youtube.com/embed/VIDEO_ID
+    const embedMatch = trimmed.match(/(?:youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/i)
+    if (embedMatch) return embedMatch[1]
+    
+    // Check watch URL: https://www.youtube.com/watch?v=VIDEO_ID
+    const watchMatch = trimmed.match(/(?:youtube\.com\/watch\?v=)([a-zA-Z0-9_-]{11})/i)
+    if (watchMatch) return watchMatch[1]
+    
+    // Check short URL: https://youtu.be/VIDEO_ID
+    const shortMatch = trimmed.match(/(?:youtu\.be\/)([a-zA-Z0-9_-]{11})/i)
+    if (shortMatch) return shortMatch[1]
+
+    // Check direct ID: 11 characters alphanumeric/dashes
+    if (/^[a-zA-Z0-9_-]{11}$/.test(trimmed)) return trimmed
+
+    return null
+}
+
 function renderLightboxContent() {
     const project = projectsData[activeProjectModalIndex]
     if (!project || !mediaLightboxContent) return
@@ -1267,14 +1420,6 @@ function renderLightboxContent() {
             <div class="lightbox-showcase-view ${project.gradClass}">
                 <div class="modal-media-glow" style="width: 320px; height: 320px; filter: blur(80px); opacity: 0.35;"></div>
                 <i class="${project.icon || 'ri-folder-image-line'} lightbox-media-icon"></i>
-                <span class="media-type-pill" style="position: relative; top: 0; left: 0; margin-bottom: 0.5rem;">
-                    <i class="ri-information-line"></i>
-                    Project Media Coming Soon
-                </span>
-            </div>
-            <div class="lightbox-caption-box">
-                <h4 class="lightbox-title">${project.title} — Media Showcase</h4>
-                <p class="lightbox-desc">${project.fullDescription || project.shortDescription}</p>
             </div>
         `
         if (mediaLightboxPrev) mediaLightboxPrev.style.display = 'none'
@@ -1284,22 +1429,38 @@ function renderLightboxContent() {
 
     currentLightboxMediaIndex = (currentLightboxMediaIndex % N + N) % N
     const mediaItem = mediaItems[currentLightboxMediaIndex] || mediaItems[0]
-    const isVideo = mediaItem.type === 'video'
-    const mediaTitle = mediaItem.title || mediaItem.label || mediaItem.badge || (isVideo ? 'Demo Video' : 'Screenshot Preview')
-    const mediaCaption = mediaItem.caption || project.fullDescription || project.title
+    const isYouTube = mediaItem.type === 'youtube'
+    const isVideo = isYouTube || mediaItem.type === 'video'
+    const ytVideoId = isYouTube ? getYouTubeVideoId(mediaItem.src) : null
+    const hasRealSrc = Boolean(mediaItem.src && mediaItem.src.trim() !== '')
+    const mediaTitle = mediaItem.title || mediaItem.label || mediaItem.badge || (isVideo ? 'Project Demonstration' : 'Screenshot Preview')
 
-    const dotsHtml = N > 1 ? `
-        <div class="lightbox-dots" role="tablist" aria-label="Media pagination">
-            ${mediaItems.map((_, idx) => `
-                <button type="button" class="lightbox-dot ${idx === currentLightboxMediaIndex ? 'active' : ''}" data-lightbox-index="${idx}" aria-label="Go to media ${idx + 1}" aria-selected="${idx === currentLightboxMediaIndex ? 'true' : 'false'}"></button>
-            `).join('')}
-        </div>
-    ` : ''
-
-    // Dynamic Lightbox Media: Render actual video / image if src is provided, otherwise clean showcase slot
+    // Dynamic Lightbox Media: Render actual YouTube embed / video / image if src is provided
     let showcaseMediaHtml = ''
-    if (mediaItem.src && mediaItem.src.trim() !== '') {
-        if (isVideo) {
+    if (isYouTube) {
+        if (ytVideoId) {
+            showcaseMediaHtml = `
+                <div class="lightbox-youtube-container">
+                    <iframe
+                        src="https://www.youtube.com/embed/${ytVideoId}?autoplay=1&rel=0&modestbranding=1"
+                        title="${mediaTitle}"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen
+                    ></iframe>
+                </div>
+            `
+        } else {
+            showcaseMediaHtml = `
+                <div class="modal-media-glow" style="width: 320px; height: 320px; filter: blur(80px); opacity: 0.35;"></div>
+                <i class="ri-youtube-line lightbox-media-icon" style="font-size: 4.5rem; color: #ff0033; opacity: 0.9;"></i>
+                <span class="modal-media-pill" style="position: relative; top: 0; left: 0; margin-top: 1rem;">
+                    <i class="ri-youtube-line"></i>
+                    YouTube Demo Coming Soon
+                </span>
+            `
+        }
+    } else if (hasRealSrc) {
+        if (mediaItem.type === 'video') {
             showcaseMediaHtml = `
                 <video class="lightbox-real-video" src="${mediaItem.src}" poster="${mediaItem.poster || ''}" controls playsinline autoplay></video>
             `
@@ -1311,22 +1472,13 @@ function renderLightboxContent() {
     } else {
         showcaseMediaHtml = `
             <div class="modal-media-glow" style="width: 320px; height: 320px; filter: blur(80px); opacity: 0.35;"></div>
-            <i class="${mediaItem.icon || project.icon} lightbox-media-icon"></i>
-            <span class="media-type-pill" style="position: relative; top: 0; left: 0; margin-bottom: 0.5rem;">
-                <i class="${isVideo ? 'ri-video-line' : 'ri-image-line'}"></i>
-                ${mediaTitle}
-            </span>
+            <i class="${mediaItem.icon || project.icon || 'ri-image-line'} lightbox-media-icon"></i>
         `
     }
 
     mediaLightboxContent.innerHTML = `
         <div class="lightbox-showcase-view ${project.gradClass}">
             ${showcaseMediaHtml}
-        </div>
-        <div class="lightbox-caption-box">
-            <h4 class="lightbox-title">${project.title} — ${mediaTitle}</h4>
-            <p class="lightbox-desc">${mediaCaption}</p>
-            ${dotsHtml}
         </div>
     `
 
@@ -1336,18 +1488,29 @@ function renderLightboxContent() {
     if (mediaLightboxNext) {
         mediaLightboxNext.style.display = N > 1 ? 'flex' : 'none'
     }
+}
 
-    // Dot navigation listeners
-    const dots = mediaLightboxContent.querySelectorAll('.lightbox-dot')
-    dots.forEach(dot => {
-        dot.addEventListener('click', (e) => {
-            e.stopPropagation()
-            const idx = parseInt(dot.getAttribute('data-lightbox-index'), 10)
-            if (!isNaN(idx)) {
-                currentLightboxMediaIndex = idx
-                renderLightboxContent()
+function pauseAllVideos() {
+    document.querySelectorAll('video').forEach(v => {
+        try {
+            if (!v.paused) v.pause()
+        } catch (err) {
+            // ignore
+        }
+    })
+}
+
+function syncModalVideos() {
+    if (!projectsModalContent) return
+    const videos = projectsModalContent.querySelectorAll('video.modal-card-media-bg')
+    videos.forEach(v => {
+        try {
+            v.muted = true
+            const playPromise = v.play()
+            if (playPromise !== undefined) {
+                playPromise.catch(() => {})
             }
-        })
+        } catch (e) {}
     })
 }
 
@@ -1364,11 +1527,14 @@ function openMediaLightbox(projectIndex, mediaIndex) {
 
 function closeMediaLightbox() {
     if (!mediaLightbox) return
+    pauseAllVideos()
+    if (mediaLightboxContent) mediaLightboxContent.innerHTML = ''
     mediaLightbox.classList.remove('active')
     mediaLightbox.setAttribute('aria-hidden', 'true')
 }
 
 function showNextLightboxMedia() {
+    pauseAllVideos()
     const project = projectsData[activeProjectModalIndex]
     if (!project || !project.media || project.media.length <= 1) return
     currentLightboxMediaIndex = (currentLightboxMediaIndex + 1) % project.media.length
@@ -1376,6 +1542,7 @@ function showNextLightboxMedia() {
 }
 
 function showPrevLightboxMedia() {
+    pauseAllVideos()
     const project = projectsData[activeProjectModalIndex]
     if (!project || !project.media || project.media.length <= 1) return
     currentLightboxMediaIndex = (currentLightboxMediaIndex - 1 + project.media.length) % project.media.length
@@ -1496,6 +1663,7 @@ function navigateModalPage(direction) {
     if (targetPage !== modalMediaPage) {
         modalMediaPage = targetPage
         positionModalTrack(true)
+        syncModalVideos()
     }
 }
 
@@ -1509,35 +1677,56 @@ function renderProjectModal(index) {
     const mediaItems = (project.media && Array.isArray(project.media) && project.media.length > 0) ? project.media : []
     const N = mediaItems.length
 
-    // Data-driven cards: Automatically renders real image/video if `src` is populated, otherwise renders clean reserved placeholder
+    // Data-driven cards: Automatically renders real image/YouTube thumbnail if `src` is populated, otherwise renders clean reserved placeholder
     const mediaCardsHtml = mediaItems.map((m, idx) => {
-        const isVideo = m.type === 'video' || (idx === 0 && m.type !== 'screenshot' && m.type !== 'image')
-        const hasRealMedia = Boolean(m.src && m.src.trim() !== '')
+        const isYouTube = m.type === 'youtube'
+        const isVideo = isYouTube || m.type === 'video'
+        const ytVideoId = isYouTube ? getYouTubeVideoId(m.src) : null
+        const hasRealMedia = isYouTube ? Boolean(ytVideoId) : Boolean(m.src && m.src.trim() !== '')
         const mediaTitle = m.title || m.label || m.badge || (isVideo ? 'Demo Video' : 'System Preview')
-        const mediaCaption = m.caption || project.title
 
-        const mediaBgHtml = hasRealMedia ? (
-            isVideo
-                ? `<video class="modal-card-media-bg" src="${m.src}" poster="${m.poster || ''}" preload="metadata" playsinline muted></video><div class="modal-card-media-overlay"></div>`
-                : `<img class="modal-card-media-bg" src="${m.src}" alt="${mediaTitle}" loading="lazy" /><div class="modal-card-media-overlay"></div>`
-        ) : ''
+        if (isVideo) {
+            let bgThumbnail = ''
+            if (isYouTube && ytVideoId) {
+                bgThumbnail = `https://img.youtube.com/vi/${ytVideoId}/hqdefault.jpg`
+            } else if (m.poster) {
+                bgThumbnail = m.poster
+            }
 
-        return `
-            <div class="modal-media-card ${project.gradClass}" data-media-index="${idx}" tabindex="0" role="button" aria-label="View ${mediaTitle}">
-                ${mediaBgHtml}
-                <span class="modal-media-pill">
-                    <i class="${isVideo ? 'ri-video-line' : 'ri-image-line'}"></i>
-                    ${mediaTitle}
-                </span>
-                ${!hasRealMedia ? '<div class="modal-media-glow"></div>' : ''}
-                <div class="modal-media-card-inner">
-                    <div class="modal-media-trigger" aria-hidden="true">
-                        <i class="${isVideo ? 'ri-play-fill' : 'ri-fullscreen-line'}"></i>
+            const videoBgHtml = bgThumbnail ? `
+                <img class="modal-card-media-bg" src="${bgThumbnail}" alt="${mediaTitle}" loading="lazy" />
+                <div class="modal-card-media-overlay"></div>
+            ` : (m.src && !isYouTube ? `
+                <video class="modal-card-media-bg" src="${m.src}" poster="${m.poster || ''}" preload="auto" playsinline muted loop autoplay></video>
+                <div class="modal-card-media-overlay"></div>
+            ` : '')
+
+            return `
+                <div class="modal-media-card modal-media-card--video ${project.gradClass}" data-media-index="${idx}" tabindex="0" role="button" aria-label="View ${mediaTitle}">
+                    ${videoBgHtml}
+                    <span class="modal-media-pill">
+                        <i class="${isYouTube ? 'ri-youtube-line' : 'ri-video-line'}"></i>
+                        Demo Video
+                    </span>
+                    ${!bgThumbnail && (!m.src || isYouTube) ? '<div class="modal-media-glow"></div>' : ''}
+                    <div class="modal-media-card-inner">
+                        <div class="modal-media-trigger" aria-hidden="true">
+                            <i class="ri-play-fill"></i>
+                        </div>
                     </div>
-                    <p class="modal-media-caption">${mediaCaption}</p>
                 </div>
-            </div>
-        `
+            `
+        } else {
+            // Clean Image card: No category pill, no caption, no fullscreen overlay
+            const imgBgHtml = hasRealMedia
+                ? `<img class="modal-card-media-bg" src="${m.src}" alt="${mediaTitle}" loading="lazy" />`
+                : `<div class="modal-media-glow"></div><i class="${m.icon || project.icon || 'ri-image-line'} lightbox-media-icon" style="font-size: 3.5rem; opacity: 0.7; margin: 0;"></i>`
+            return `
+                <div class="modal-media-card modal-media-card--image ${project.gradClass}" data-media-index="${idx}" tabindex="0" role="button" aria-label="View Screenshot ${idx}">
+                    ${imgBgHtml}
+                </div>
+            `
+        }
     }).join('')
 
     // Gallery container: Adapts cleanly if 0 media, 1-2 media, or 3+ media
@@ -1576,26 +1765,122 @@ function renderProjectModal(index) {
         `
     }
 
-    const featuresHtml = (project.features && project.features.length > 0) ? project.features.map(f => `
-        <div class="modal-feature-item">
-            <i class="${f.icon} modal-feature-icon"></i>
-            <span class="modal-feature-text">${f.text}</span>
+    // Problem & Solution Section (if present)
+    const problemSolutionHtml = (project.problem || project.solution) ? `
+        <div class="modal-problem-solution-grid">
+            ${project.problem ? `
+                <div class="modal-callout-card modal-callout-card--problem">
+                    <div class="modal-callout-header">
+                        <i class="ri-error-warning-line"></i>
+                        <span>Problem</span>
+                    </div>
+                    <p class="modal-callout-text">${project.problem}</p>
+                </div>
+            ` : ''}
+            ${project.solution ? `
+                <div class="modal-callout-card modal-callout-card--solution">
+                    <div class="modal-callout-header">
+                        <i class="ri-lightbulb-line"></i>
+                        <span>Solution</span>
+                    </div>
+                    <p class="modal-callout-text">${project.solution}</p>
+                </div>
+            ` : ''}
         </div>
-    `).join('') : ''
+    ` : ''
 
-    const tagsHtml = (project.tags && project.tags.length > 0) ? project.tags.map(t => `
-        <span class="modal-tag">${t}</span>
-    `).join('') : ''
+    // My Role Section (if present)
+    const roleHtml = project.role ? `
+        <div class="modal-section">
+            <h3 class="modal-section-title"><i class="ri-user-star-line"></i> My Role</h3>
+            <div class="modal-role-card">
+                ${project.role.title ? `<div class="modal-role-title-badge">${project.role.title}</div>` : ''}
+                ${(project.role.responsibilities && project.role.responsibilities.length > 0) ? `
+                    <ul class="modal-role-bullets">
+                        ${project.role.responsibilities.map(r => `<li>${r}</li>`).join('')}
+                    </ul>
+                ` : ''}
+            </div>
+        </div>
+    ` : ''
 
-    const docSectionHtml = (project.links && project.links.length > 0) ? `
+    // Key Features Section
+    const featuresHtml = (project.features && project.features.length > 0) ? project.features.map(f => {
+        if (f.title) {
+            return `
+                <div class="modal-feature-item">
+                    <i class="${f.icon || 'ri-checkbox-circle-line'} modal-feature-icon"></i>
+                    <div class="modal-feature-content">
+                        <strong class="modal-feature-title">${f.title}</strong>
+                        <p class="modal-feature-desc">${f.text || f.desc || ''}</p>
+                    </div>
+                </div>
+            `
+        }
+        return `
+            <div class="modal-feature-item">
+                <i class="${f.icon || 'ri-checkbox-circle-line'} modal-feature-icon"></i>
+                <span class="modal-feature-text">${f.text}</span>
+            </div>
+        `
+    }).join('') : ''
+
+    // Technologies Section (categorized or tags)
+    let techHtml = ''
+    if (project.techCategories && project.techCategories.length > 0) {
+        techHtml = `
+            <div class="modal-tech-groups">
+                ${project.techCategories.map(tc => `
+                    <div class="modal-tech-group">
+                        <span class="modal-tech-group-title">${tc.label}</span>
+                        <span class="modal-tech-group-tags">${tc.stack}</span>
+                    </div>
+                `).join('')}
+            </div>
+        `
+    } else if (project.tags && project.tags.length > 0) {
+        techHtml = `
+            <div class="modal-tags-list">
+                ${project.tags.map(t => `<span class="modal-tag">${t}</span>`).join('')}
+            </div>
+        `
+    }
+
+    // Results / Highlights Section (if present)
+    const resultsHtml = project.results ? `
+        <div class="modal-section">
+            <h3 class="modal-section-title"><i class="ri-trophy-line"></i> Results / Highlights</h3>
+            <div class="modal-results-container">
+                ${(project.results.metrics && project.results.metrics.length > 0) ? `
+                    <div class="modal-results-grid">
+                        ${project.results.metrics.map(m => `
+                            <div class="modal-metric-card">
+                                <span class="modal-metric-value">${m.value}</span>
+                                <span class="modal-metric-label">${m.label}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                ` : ''}
+                ${project.results.context ? `<p class="modal-results-context">${project.results.context}</p>` : ''}
+            </div>
+        </div>
+    ` : ''
+
+    // Documentation & Resources Section (External Drive Documents & Project Links)
+    const allDocItems = [
+        ...(project.documents || []),
+        ...(project.links || [])
+    ]
+
+    const docSectionHtml = (allDocItems.length > 0) ? `
         <!-- Attachments & Documentation Section -->
         <div class="modal-doc-section">
             <h3 class="modal-section-title"><i class="ri-attachment-2"></i> Documentation & Resources</h3>
             <div class="modal-doc-grid">
-                ${project.links.map(link => `
-                    <a href="${link.url}" target="_blank" rel="noopener noreferrer" class="modal-doc-card ${link.primary ? 'modal-doc-card--primary' : ''}" aria-label="${link.label} for ${project.title}">
-                        <i class="${link.icon || 'ri-file-text-line'}"></i>
-                        <span>${link.label}</span>
+                ${allDocItems.map(item => `
+                    <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="modal-doc-card ${item.primary ? 'modal-doc-card--primary' : ''}" aria-label="${item.label || item.title} for ${project.title}">
+                        <i class="${item.icon || (item.type === 'document' ? 'ri-file-pdf-2-line' : 'ri-external-link-line')}"></i>
+                        <span>${item.label || item.title || 'View Document ↗'}</span>
                     </a>
                 `).join('')}
             </div>
@@ -1607,7 +1892,7 @@ function renderProjectModal(index) {
         <div class="modal-product-header">
             <div class="modal-header-main">
                 <div class="modal-header-icon-box">
-                    <i class="${project.icon}"></i>
+                    ${project.logo ? `<img src="${project.logo}" alt="${project.title} Logo" class="modal-header-logo-img" />` : `<i class="${project.icon}"></i>`}
                 </div>
                 <div class="modal-header-text">
                     <h2 class="modal-header-title">${project.title}</h2>
@@ -1628,13 +1913,17 @@ function renderProjectModal(index) {
 
         <!-- Structured Project Overview -->
         <div class="modal-section">
-            <h3 class="modal-section-title"><i class="ri-information-line"></i> About the Project</h3>
-            <p class="modal-project-desc">${project.fullDescription}</p>
+            <h3 class="modal-section-title"><i class="ri-information-line"></i> Project Overview</h3>
+            <p class="modal-project-desc">${project.overview || project.fullDescription}</p>
         </div>
+
+        ${problemSolutionHtml}
+
+        ${roleHtml}
 
         <!-- Key Features & Capabilities -->
         <div class="modal-section">
-            <h3 class="modal-section-title"><i class="ri-sparkling-fill"></i> Key Features & Capabilities</h3>
+            <h3 class="modal-section-title"><i class="ri-sparkling-fill"></i> Key Features</h3>
             <div class="modal-features-grid">
                 ${featuresHtml}
             </div>
@@ -1642,11 +1931,11 @@ function renderProjectModal(index) {
 
         <!-- Technologies & Architecture -->
         <div class="modal-section">
-            <h3 class="modal-section-title"><i class="ri-stack-line"></i> Technologies & Architecture</h3>
-            <div class="modal-tags-list">
-                ${tagsHtml}
-            </div>
+            <h3 class="modal-section-title"><i class="ri-stack-line"></i> Technologies</h3>
+            ${techHtml}
         </div>
+
+        ${resultsHtml}
 
         ${docSectionHtml}
     `
@@ -1708,13 +1997,15 @@ function renderProjectModal(index) {
         }, { passive: true })
     }
 
-    // Initial position
+    // Initial position & video autoplay
     requestAnimationFrame(() => {
         positionModalTrack(false)
+        syncModalVideos()
     })
     setTimeout(() => {
         positionModalTrack(false)
-    }, 50)
+        syncModalVideos()
+    }, 60)
 }
 
 function openProjectModal(index) {
@@ -1727,14 +2018,17 @@ function openProjectModal(index) {
 
     requestAnimationFrame(() => {
         positionModalTrack(false)
+        syncModalVideos()
     })
     setTimeout(() => {
         positionModalTrack(false)
+        syncModalVideos()
     }, 60)
 }
 
 function closeProjectModal() {
     if (!projectsModal) return
+    pauseAllVideos()
     projectsModal.classList.remove('active')
     projectsModal.setAttribute('aria-hidden', 'true')
     document.body.style.overflow = ''
