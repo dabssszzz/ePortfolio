@@ -1092,69 +1092,110 @@ const projectsData = [
         links: []
     },
     {
-        title: "Juan Camohaguin",
-        category: "Community Platform",
-        year: "2024",
-        badge: "Android Mobile App",
+        title: "One Camohaguin",
+        category: "Special Project",
+        year: "2025",
+        badge: "Android Application",
         icon: "ri-community-line",
+        logo: "assets/projects/One Camohaguin/ONE CAMOHAGUIN LOGO.png",
+        cardImage: "assets/projects/One Camohaguin/ONE CAMOHAGUIN LOGO.png",
         gradClass: "project-grad-4",
-        shortDescription: "An Android community platform delivering real-time emergency alert broadcasts, local government announcements, and municipal resident appointment coordination.",
-        fullDescription: "Juan Camohaguin is a community empowerment mobile application created to strengthen civil protection and direct municipal engagement for the residents of Barangay Camohaguin. The platform ensures rapid emergency dissemination during typhoons and calamities, provides instant hotlines for first responders, and streamlines resident appointment requests with local council officials.",
+        shortDescription: "An all-in-one community app designed to improve emergency response, barangay communication, and appointment services in Barangay Camohaguin, Gumaca, Quezon.",
+        overview: "One Camohaguin is an Android-based community application designed to centralize emergency services, communication, announcements, and appointment scheduling for Barangay Camohaguin. The project explores how digital technology can improve information dissemination, community coordination, and access to essential barangay services.",
+        fullDescription: "One Camohaguin is an Android-based community application designed to centralize emergency services, communication, announcements, and appointment scheduling for Barangay Camohaguin. The project explores how digital technology can improve information dissemination, community coordination, and access to essential barangay services.",
+        problem: "Fragmented emergency services, limited communication channels, and manual appointment processes made it difficult for residents and barangay officials to coordinate efficiently and access important information.",
+        solution: "Developed an Android-based community platform that centralizes emergency services, communication, announcements, and appointment scheduling in one accessible application.",
+        role: {
+            title: "UI/UX Designer • Frontend Developer • QA Tester • Researcher",
+            responsibilities: [
+                "Designed user interfaces and user flows focused on clarity, accessibility, and ease of use for community services.",
+                "Developed and refined the frontend interfaces of the Android application.",
+                "Conducted quality assurance testing to identify interface and functional issues and support overall application reliability.",
+                "Contributed to research, requirements analysis, project documentation, and evaluation of the proposed community solution."
+            ]
+        },
         media: [
             {
                 type: "youtube",
-                src: "https://www.youtube.com/embed/VIDEO_ID",
-                title: "App Walkthrough",
-                badge: "Emergency Flow Walkthrough",
+                src: "https://www.youtube.com/embed/I44GoewGKQY",
+                title: "One Camohaguin Demonstration",
+                badge: "Interactive Video Walkthrough",
                 icon: "ri-youtube-line",
-                caption: "Disaster Alert Broadcasting, Incident Reporting & Emergency Hotline Direct Dial"
+                caption: "Interactive Walkthrough: Emergency Broadcasts, Incident Reporting & Appointment Coordination"
             },
             {
                 type: "image",
-                src: "",
-                title: "Alert Center",
-                badge: "Disaster Notification UI",
-                icon: "ri-alarm-warning-line",
-                caption: "High-Priority Typhoon Advisory Screen with Evacuation Center Locator"
+                src: "assets/projects/One Camohaguin/One Camohaguin User 1.png",
+                title: "Resident Interface Overview",
+                badge: "User Interface",
+                icon: "ri-smartphone-line",
+                caption: "Resident Mobile Portal for Emergency Hotlines, Community Updates & Public Services"
             },
             {
                 type: "image",
-                src: "",
-                title: "Hotline Directory",
-                badge: "First Responder Direct Dial",
-                icon: "ri-phone-line",
-                caption: "One-Touch Emergency Directory Linking Police, Fire, Rescue & Medical Teams"
+                src: "assets/projects/One Camohaguin/One Camohaguin User 2.png",
+                title: "Services & Appointment Flow",
+                badge: "User Interface",
+                icon: "ri-calendar-event-line",
+                caption: "Barangay Appointment Booking & Direct Official Grievance Reporting Interface"
             },
             {
                 type: "image",
-                src: "",
-                title: "Notice Board",
-                badge: "Community Bulletin",
-                icon: "ri-article-line",
-                caption: "Digital Barangay Announcements, Public Ordinances & Health Drive Schedules"
+                src: "assets/projects/One Camohaguin/One Camohaguin Admin.png",
+                title: "Admin Management Console",
+                badge: "Admin Interface",
+                icon: "ri-admin-line",
+                caption: "Barangay Official Control Console for Incident Response & Announcement Broadcasts"
             }
         ],
         features: [
-            { icon: "ri-broadcast-line", text: "High-priority push notification broadcast system for typhoon and disaster alerts." },
-            { icon: "ri-phone-fill", text: "One-tap emergency hotline directory linking to police, fire, and medical teams." },
-            { icon: "ri-map-pin-user-line", text: "Resident incident reporting portal with GPS geolocation tagging and image uploads." },
-            { icon: "ri-newspaper-line", text: "Digital municipal notice board for announcements, ordinances, and community drives." },
-            { icon: "ri-calendar-event-line", text: "Scheduled appointment coordination for barangay clearances and hearings." }
+            {
+                title: "Emergency Services & Alerts",
+                text: "Access emergency information, contacts, and service points.",
+                icon: "ri-alarm-warning-line"
+            },
+            {
+                title: "Barangay Communication",
+                text: "Communicate with officials, report grievances, and receive updates.",
+                icon: "ri-message-3-line"
+            },
+            {
+                title: "Appointment Scheduling",
+                text: "Schedule essential services through a streamlined digital process.",
+                icon: "ri-calendar-event-line"
+            },
+            {
+                title: "Announcements & Updates",
+                text: "Receive important barangay information through a centralized platform.",
+                icon: "ri-notification-3-line"
+            }
         ],
-        tags: ["Android SDK", "Firebase FCM", "Java", "Google Maps API", "Cloud Firestore"],
+        techCategories: [
+            { label: "Platform", stack: "Android" },
+            { label: "Programming", stack: "Java" },
+            { label: "Development", stack: "Sketchware" },
+            { label: "Approach", stack: "Prototyping" }
+        ],
+        tags: ["Android", "Java", "Sketchware", "Prototyping", "Community App", "Emergency Response"],
+        results: {
+            highlights: [
+                "Improved Communication: Supported easier communication between residents and barangay officials.",
+                "Accessible Emergency Information: Provided centralized emergency contacts and service information.",
+                "Streamlined Appointments: Made appointment scheduling more convenient and time-saving.",
+                "Positive User Reception: Residents and officials generally viewed the application as useful, accessible, and user-friendly."
+            ]
+        },
         documents: [
             {
                 type: "document",
-                title: "Community Deployment Guide",
-                label: "View Community Guide ↗",
-                icon: "ri-file-list-3-line",
-                url: "EXTERNAL_DOCUMENT_URL",
+                title: "One Camohaguin Full Documentation",
+                label: "View Full Documentation ↗",
+                icon: "ri-file-pdf-2-line",
+                url: "https://drive.google.com/file/d/1EfWFzYGm1cZsUJ1Y7RQJTaI3-wLRaYU7/view?usp=sharing",
                 primary: true
             }
         ],
-        links: [
-            { label: "Source Code ↗", icon: "ri-github-line", url: "#", primary: false }
-        ]
+        links: []
     },
     {
         title: "Isla Serenidad",
