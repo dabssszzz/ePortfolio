@@ -983,68 +983,113 @@ const projectsData = [
     },
     {
         title: "Barangay ID Application System",
-        category: "System Development",
+        category: "Database Administration Project",
         year: "2025",
-        badge: "Administrative Portal",
+        badge: "Desktop Application",
         icon: "ri-id-card-line",
+        logo: "assets/projects/Barangay ID Application System/BARANGAY ID LOGO.png",
+        cardImage: "assets/projects/Barangay ID Application System/BARANGAY ID LOGO.png",
         gradClass: "project-grad-3",
-        shortDescription: "A database-driven administrative system providing centralized resident registration, appointment scheduling, secure digital ID generation, and role-based access.",
-        fullDescription: "A full-scale administrative governance platform developed to digitize and accelerate resident identification processes for local barangay councils. The system consolidates demographic profiling, civil document submission, digital photo capture, and automated cryptographic QR-coded ID card generation into an intuitive, secure portal compliant with RA 10173 (Philippine Data Privacy Act).",
+        shortDescription: "A database-driven desktop application designed to simplify the management of resident records, appointments, and Barangay IDs. It centralizes information in a relational database while providing interfaces for registration, appointment management, application tracking, and ID generation.",
+        overview: "The Barangay ID Application System is a database-driven desktop application designed to simplify the management of resident records, appointments, and Barangay IDs. It centralizes information in a relational database while providing interfaces for registration, appointment management, application tracking, and ID generation.",
+        fullDescription: "The Barangay ID Application System is a database-driven desktop application designed to simplify the management of resident records, appointments, and Barangay IDs. It centralizes information in a relational database while providing interfaces for registration, appointment management, application tracking, and ID generation.",
+        problem: "Manual record-keeping and fragmented resident information can make Barangay ID applications, appointment management, and record retrieval time-consuming and inefficient.",
+        solution: "Developed a centralized database-driven desktop application that manages resident records, appointments, application statuses, and Barangay ID information through an integrated system.",
+        role: {
+            title: "Database Administrator & Application Developer",
+            responsibilities: [
+                "Designed the relational database structure and table relationships.",
+                "Developed SQL DDL and stored procedures for database operations.",
+                "Implemented CRUD, search, and record-retrieval functionality.",
+                "Developed C# Windows Forms interfaces for resident and administrative workflows.",
+                "Integrated database operations with the application's user interface."
+            ]
+        },
         media: [
             {
-                type: "youtube",
-                src: "https://www.youtube.com/embed/VIDEO_ID",
-                title: "System Demo",
-                badge: "Administrative Walkthrough",
-                icon: "ri-youtube-line",
-                caption: "Resident Profiling, Cryptographic QR Generation & Instant Verification Flow"
+                type: "image",
+                src: "assets/projects/Barangay ID Application System/BARANGAY ID MAIN PAGE.png",
+                title: "Main Dashboard",
+                badge: "Main Interface",
+                icon: "ri-window-line",
+                caption: "Centralized Desktop Interface for Barangay Resident & Application Operations"
             },
             {
                 type: "image",
-                src: "",
-                title: "Resident Portal",
-                badge: "Civil Registration UI",
-                icon: "ri-user-add-line",
-                caption: "Demographic Entry, Document Clearance Submission & Photo Capture Portal"
+                src: "assets/projects/Barangay ID Application System/BARANGAY ID CARD.png",
+                title: "Barangay ID Preview",
+                badge: "ID Card Generator",
+                icon: "ri-id-card-line",
+                caption: "Automated Barangay Resident ID Card Generation & Print Layout Preview"
             },
             {
                 type: "image",
-                src: "",
-                title: "ID Card Preview",
-                badge: "Card Layout Generator",
-                icon: "ri-id-card-fill",
-                caption: "Automated High-Resolution Print-Ready ID Card Output with Anti-Forgery QR"
+                src: "assets/projects/Barangay ID Application System/BARANGAY ID 3.png",
+                title: "Resident Records & Registration",
+                badge: "Resident Registration",
+                icon: "ri-user-settings-line",
+                caption: "Resident Demographic Profile Entry & Stored Procedure Database Search"
             },
             {
                 type: "image",
-                src: "",
-                title: "Admin Dashboard",
-                badge: "Queue & Clearance Center",
-                icon: "ri-dashboard-2-line",
-                caption: "Role-Based Access Dashboard Managing Issuance Appointments & Census Data"
+                src: "assets/projects/Barangay ID Application System/BARANGAY ID 4.png",
+                title: "Appointment & Status Tracking",
+                badge: "Status & Scheduling",
+                icon: "ri-calendar-check-line",
+                caption: "Appointment Management & Real-Time Application Tracking Workflows"
             }
         ],
         features: [
-            { icon: "ri-qr-code-line", text: "Automated QR-coded resident ID card generation with cryptographic anti-tampering verification." },
-            { icon: "ri-calendar-check-line", text: "Online appointment booking and queue monitoring for physical document pickup." },
-            { icon: "ri-admin-line", text: "Multi-tier Role-Based Access Control (RBAC) separating administrative privileges." },
-            { icon: "ri-database-2-line", text: "Centralized resident census database with exportable statistical reports." },
-            { icon: "ri-lock-2-line", text: "Encrypted data storage and activity audit logging for strict privacy compliance." }
+            {
+                title: "Resident Information Management",
+                text: "Centralized resident records and demographic information.",
+                icon: "ri-folder-user-line"
+            },
+            {
+                title: "Appointment Scheduling",
+                text: "Book and manage Barangay ID appointments.",
+                icon: "ri-calendar-check-line"
+            },
+            {
+                title: "Application Status Tracking",
+                text: "Check application status using a confirmation code.",
+                icon: "ri-search-eye-line"
+            },
+            {
+                title: "Barangay ID Management",
+                text: "Generate, view, and print Barangay ID records.",
+                icon: "ri-id-card-line"
+            },
+            {
+                title: "Administrative Dashboard",
+                text: "Manage residents, appointments, and ID records.",
+                icon: "ri-dashboard-2-line"
+            }
         ],
-        tags: ["PHP", "MySQL", "JavaScript (ES6+)", "Bootstrap 5", "QR Engine", "Data Privacy (RA 10173)"],
+        techCategories: [
+            { label: "Database", stack: "Microsoft SQL Server • SSMS • SQL" },
+            { label: "Application", stack: "C# • Windows Forms • Visual Studio" },
+            { label: "Database Development", stack: "Relational Database Design • Stored Procedures • CRUD Operations" }
+        ],
+        tags: ["Microsoft SQL Server", "SSMS", "SQL", "C#", "Windows Forms", "Visual Studio", "Database Design", "Stored Procedures", "CRUD Operations"],
+        results: {
+            highlights: [
+                "Relational Database: Structured resident, appointment, and Barangay ID information with defined relationships.",
+                "SQL Operations: Implemented stored procedures for CRUD, search, retrieval, and application-status operations.",
+                "Integrated Application: Connected database functionality with a working C# Windows Forms interface for end-to-end record management."
+            ]
+        },
         documents: [
             {
                 type: "document",
-                title: "System Architecture Blueprint",
-                label: "View Architecture Blueprint ↗",
+                title: "Barangay ID Application System Documentation",
+                label: "View Full Documentation ↗",
                 icon: "ri-file-pdf-2-line",
-                url: "EXTERNAL_DOCUMENT_URL",
-                primary: false
+                url: "https://drive.google.com/file/d/1iE35ymcBcPKQxIxjbi07fW71xNJHqC_1/view?usp=sharing",
+                primary: true
             }
         ],
-        links: [
-            { label: "Admin Portal Demo ↗", icon: "ri-dashboard-line", url: "#", primary: true }
-        ]
+        links: []
     },
     {
         title: "Juan Camohaguin",
@@ -1927,7 +1972,15 @@ function renderProjectModal(index) {
                 ${(project.results.highlights && project.results.highlights.length > 0) ? `
                     <div class="modal-highlights-card">
                         <ul class="modal-highlights-bullets">
-                            ${project.results.highlights.map(h => `<li>${h}</li>`).join('')}
+                            ${project.results.highlights.map(h => {
+                                const colonIdx = h.indexOf(':')
+                                if (colonIdx > -1) {
+                                    const title = h.substring(0, colonIdx)
+                                    const desc = h.substring(colonIdx + 1)
+                                    return `<li><strong>${title}:</strong>${desc}</li>`
+                                }
+                                return `<li>${h}</li>`
+                            }).join('')}
                         </ul>
                     </div>
                 ` : ''}
