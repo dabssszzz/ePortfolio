@@ -862,61 +862,124 @@ const projectsData = [
         links: []
     },
     {
-        title: "FuelWatchPH",
-        category: "Web & Mobile Application",
+        title: "FuelWatch PH",
+        category: "Technopreneurship Project",
         year: "2025",
-        badge: "Fuel Tracker & Analytics",
+        badge: "Web Application",
         icon: "ri-gas-station-line",
+        logo: "assets/projects/FuelWatch PH/fuelwatch ph logo2.png",
+        cardImage: "assets/projects/FuelWatch PH/fuelwatch ph logo2.png",
         gradClass: "project-grad-2",
-        shortDescription: "A nationwide fuel price tracker and analytics platform providing real-time pump price updates, station locators, and price trend forecasting.",
-        fullDescription: "FuelWatchPH is a nationwide fuel price transparency and geospatial tracking platform that empowers motorists, logistics fleets, and daily commuters to optimize their refueling expenses. By synthesizing crowdsourced reports with verified fuel distributor data, FuelWatchPH offers interactive station navigation, historical price trend modeling, and predictive notifications before national fuel price adjustments take effect.",
+        shortDescription: "A community-driven web platform that helps users find nearby fuel stations, compare reported fuel prices, view price history, save preferred stations, and contribute fuel price updates.",
+        overview: "FuelWatch PH is a community-driven web platform that helps users find nearby fuel stations, compare reported fuel prices, view price history, save preferred stations, and contribute fuel price updates. The platform combines location-aware discovery with community reporting and administrative review to make fuel information more accessible and organized.",
+        fullDescription: "FuelWatch PH is a community-driven web platform that helps users find nearby fuel stations, compare reported fuel prices, view price history, save preferred stations, and contribute fuel price updates. The platform combines location-aware discovery with community reporting and administrative review to make fuel information more accessible and organized.",
+        problem: "Fuel price information is often scattered, difficult to compare, and potentially outdated, making it harder for users to find convenient and cost-effective refueling options.",
+        solution: "Developed a mobile-first web platform that brings fuel station discovery, price comparison, historical pricing, community reporting, and administrative review together in one system.",
+        role: {
+            title: "UI/UX Expert • Frontend Developer • Documentation • Research • Testing Support",
+            responsibilities: [
+                "Designed user interfaces and user experiences for a clear, accessible, mobile-first experience.",
+                "Developed frontend interfaces and responsive UI components.",
+                "Translated project requirements into functional user-facing interfaces.",
+                "Contributed to project documentation and research.",
+                "Supported testing, quality checking, and issue identification throughout development."
+            ]
+        },
         media: [
             {
                 type: "youtube",
-                src: "https://www.youtube.com/embed/VIDEO_ID",
-                title: "Live Map Demo",
-                badge: "Interactive Map Walkthrough",
+                src: "https://www.youtube.com/embed/GaaAmfDXkaQ",
+                title: "FuelWatch PH Demonstration",
+                badge: "Interactive Video Walkthrough",
                 icon: "ri-youtube-line",
-                caption: "Geospatial Station Navigation, Real-Time Fuel Prices & Route Refueling Calculator"
+                caption: "Interactive Walkthrough: Map-Based Station Discovery, Price Comparison & Community Reporting"
             },
             {
                 type: "image",
-                src: "",
-                title: "Price Trends",
-                badge: "Historical Analytics",
-                icon: "ri-line-chart-line",
-                caption: "Predictive Fuel Price Trend Analytics with Regulatory Price Movement Alerts"
+                src: "assets/projects/FuelWatch PH/FUELWATCH HOMEPAGE.png",
+                title: "FuelWatch Homepage",
+                badge: "Homepage UI",
+                icon: "ri-home-4-line",
+                caption: "Mobile-First Homepage with Real-Time Fuel Highlights & Nearby Station Locator"
             },
             {
                 type: "image",
-                src: "",
-                title: "Station Locator",
-                badge: "Station Finder UI",
+                src: "assets/projects/FuelWatch PH/FUELWATCH MAPS PAGE.png",
+                title: "Station Maps & Locator",
+                badge: "Interactive Maps UI",
                 icon: "ri-map-pin-range-line",
-                caption: "Multi-Brand Gas Station Comparative Pricing & Fuel Grade Filter Interface"
+                caption: "Interactive Geospatial Station Map with Live Pump Prices & Station Navigation"
             },
             {
                 type: "image",
-                src: "",
-                title: "Cost Calculator",
-                badge: "Savings Calculator",
-                icon: "ri-calculator-line",
-                caption: "Vehicle Fuel Efficiency Profile & Commute Refueling Cost Optimization"
+                src: "assets/projects/FuelWatch PH/FUELWATCH COMPARE PRICES PAGE.png",
+                title: "Compare Fuel Prices",
+                badge: "Price Comparison UI",
+                icon: "ri-scales-3-line",
+                caption: "Side-by-Side Fuel Grade & Station Comparative Pricing Table"
+            },
+            {
+                type: "image",
+                src: "assets/projects/FuelWatch PH/FUELWATCH PRICE HISTORY PAGE.png",
+                title: "Price History & Trends",
+                badge: "Historical Trends UI",
+                icon: "ri-line-chart-line",
+                caption: "Historical Fuel Price Trends, Fluctuations & Regulatory Movement Analytics"
             }
         ],
         features: [
-            { icon: "ri-map-pin-2-line", text: "Interactive map locator highlighting nearest gas stations with live pump prices." },
-            { icon: "ri-pulse-line", text: "Historical price trend graphs and predictive forecasting for upcoming price movements." },
-            { icon: "ri-calculator-line", text: "Route refueling cost estimation calculator based on vehicle fuel efficiency." },
-            { icon: "ri-notification-3-line", text: "Automated price hike / rollback alerts sent directly to registered users." },
-            { icon: "ri-shield-check-line", text: "Community verification system with badge scoring to ensure price report accuracy." }
+            {
+                title: "Nearby Station Discovery",
+                text: "Find fuel stations using map-based and location-aware features.",
+                icon: "ri-map-pin-range-line"
+            },
+            {
+                title: "Fuel Price Comparison",
+                text: "Compare reported prices across different stations.",
+                icon: "ri-scales-3-line"
+            },
+            {
+                title: "Price Reporting",
+                text: "Allow users to contribute updated fuel price information.",
+                icon: "ri-edit-line"
+            },
+            {
+                title: "Price History",
+                text: "View historical fuel price information.",
+                icon: "ri-line-chart-line"
+            },
+            {
+                title: "Community Verification",
+                text: "Support data reliability through user contributions, verification, and administrative moderation.",
+                icon: "ri-shield-check-line"
+            }
         ],
-        tags: ["ReactJS", "Leaflet Maps API", "Node.js", "RESTful API", "Chart.js", "Tailwind CSS"],
-        documents: [],
-        links: [
-            { label: "Live Web App ↗", icon: "ri-external-link-line", url: "#", primary: true },
-            { label: "API Reference ↗", icon: "ri-code-s-slash-line", url: "#", primary: false }
-        ]
+        techCategories: [
+            { label: "Frontend", stack: "React • Vite • Tailwind CSS • TypeScript" },
+            { label: "Backend", stack: "FastAPI • Uvicorn" },
+            { label: "Database / Services", stack: "Supabase • PostgreSQL" },
+            { label: "Tools", stack: "React-Leaflet • Leaflet • Git • GitHub • Figma" }
+        ],
+        tags: ["React", "Vite", "Tailwind CSS", "TypeScript", "FastAPI", "Uvicorn", "Supabase", "PostgreSQL", "React-Leaflet", "Leaflet", "Git", "GitHub", "Figma"],
+        results: {
+            highlights: [
+                "Mobile-first platform designed for convenient access across devices.",
+                "Community-powered fuel data supported by verification and moderation workflows.",
+                "Integrated fuel intelligence combining station discovery, price comparison, and price history.",
+                "Designed to support time-saving, informed, and potentially cost-effective refueling decisions."
+            ]
+        },
+        documents: [
+            {
+                type: "document",
+                title: "FuelWatch PH Full Documentation",
+                label: "View Full Documentation ↗",
+                icon: "ri-file-pdf-2-line",
+                url: "https://drive.google.com/file/d/1SprToTg7Vy869XpCzG8CM9_O9LEd_Wpk/view?usp=sharing",
+                primary: true
+            }
+        ],
+        links: []
     },
     {
         title: "Barangay ID Application System",
@@ -1859,6 +1922,13 @@ function renderProjectModal(index) {
                                 <span class="modal-metric-label">${m.label}</span>
                             </div>
                         `).join('')}
+                    </div>
+                ` : ''}
+                ${(project.results.highlights && project.results.highlights.length > 0) ? `
+                    <div class="modal-highlights-card">
+                        <ul class="modal-highlights-bullets">
+                            ${project.results.highlights.map(h => `<li>${h}</li>`).join('')}
+                        </ul>
                     </div>
                 ` : ''}
                 ${project.results.context ? `<p class="modal-results-context">${project.results.context}</p>` : ''}

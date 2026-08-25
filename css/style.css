@@ -3339,6 +3339,44 @@ body.dark-theme .modal-metric-value {
     margin: 0;
 }
 
+.modal-highlights-card {
+    background: var(--glass-secondary-bg);
+    border: 1px solid var(--glass-secondary-border);
+    border-radius: 1rem;
+    padding: 1.1rem 1.25rem;
+}
+
+.modal-highlights-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+}
+
+.modal-highlights-bullets li {
+    position: relative;
+    padding-left: 1.35rem;
+    font-size: var(--small-font-size);
+    color: var(--text-color);
+    line-height: 1.55;
+}
+
+.modal-highlights-bullets li::before {
+    content: '•';
+    position: absolute;
+    left: 0.4rem;
+    color: var(--first-color);
+    font-weight: bold;
+    font-size: 1.1rem;
+    line-height: 1;
+}
+
+body.dark-theme .modal-highlights-bullets li::before {
+    color: #38bdf8;
+}
+
 /* Dedicated Documentation & Resources Section at Bottom */
 .modal-doc-section {
     border-top: 1px solid var(--border-color);
