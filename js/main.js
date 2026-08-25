@@ -1198,69 +1198,115 @@ const projectsData = [
         links: []
     },
     {
-        title: "Isla Serenidad",
-        category: "Hospitality & Tourism",
-        year: "2024",
-        badge: "Resort Web Platform",
+        title: "Isla Serenidad Beach Resort Reservation System",
+        category: "Object-Oriented Programming Project",
+        year: "2025",
+        badge: "Reservation System",
         icon: "ri-hotel-bed-line",
+        logo: "assets/projects/Isla Serenidad/ISLA SERENIDAD LOGO.png",
+        cardImage: "assets/projects/Isla Serenidad/ISLA SERENIDAD LOGO.png",
         gradClass: "project-grad-5",
-        shortDescription: "A luxury island resort booking and experiential tourism portal featuring interactive villa tours, reservation workflows, and guest concierge services.",
-        fullDescription: "Isla Serenidad is a modern hospitality web platform built to showcase the pristine beauty, private villas, and eco-luxury amenities of an exclusive tropical sanctuary. Incorporating modern glassmorphism aesthetics and immersive micro-animations, the site delivers a high-conversion booking journey with real-time rate calculations, virtual villa previews, and custom tour scheduling.",
+        shortDescription: "A reservation platform designed to provide guests with a smooth booking experience, from account registration and date selection through room selection, stay customization, payment, and confirmation.",
+        overview: "Isla Serenidad Beach Resort Reservation System is a reservation platform designed to provide guests with a smooth booking experience from account registration through payment and confirmation. The system allows guests to select dates, browse room packages, customize their stay with additional rooms, extras, and amenities, review their reservation, and complete the payment process. The project also supports resort-side reservation management and room-availability management.",
+        fullDescription: "Isla Serenidad Beach Resort Reservation System is a reservation platform designed to provide guests with a smooth booking experience from account registration through payment and confirmation. The system allows guests to select dates, browse room packages, customize their stay with additional rooms, extras, and amenities, review their reservation, and complete the payment process. The project also supports resort-side reservation management and room-availability management.",
+        problem: "Fragmented reservation processes can make booking, room selection, customization, and payment less convenient while increasing administrative workload and the possibility of booking errors. Guests may also have difficulty accessing clear information about room options, available dates, amenities, and payment choices.",
+        solution: "Developed an integrated reservation system that guides guests through the complete booking workflow: Login → Dates → Room Selection → Customization → Review → Payment → Confirmation. The system combines guest-facing reservation features with resort-side reservation management to make the overall booking process more organized and efficient.",
+        role: {
+            title: "OOP Application Developer • UI/UX Designer",
+            responsibilities: [
+                "Designed the reservation interface and overall booking workflow.",
+                "Developed user-facing screens for login, registration, room selection, customization, payment, and confirmation.",
+                "Implemented the reservation workflow using object-oriented programming concepts.",
+                "Designed the system's database structure and entity relationships.",
+                "Integrated the booking workflow across room selection, amenities, reservation review, and payment stages."
+            ]
+        },
         media: [
             {
                 type: "youtube",
-                src: "https://www.youtube.com/embed/VIDEO_ID",
-                title: "Resort Tour",
-                badge: "Interactive Villa Walkthrough",
+                src: "https://www.youtube.com/embed/k7sNDFvdl9I",
+                title: "Isla Serenidad Demonstration",
+                badge: "Interactive Video Walkthrough",
                 icon: "ri-youtube-line",
-                caption: "Immersive Virtual Villa Walkthrough & Seamless Reservation Booking Flow"
+                caption: "Interactive Walkthrough: Complete Booking Workflow, Stay Customization & Reservation Flow"
             },
             {
                 type: "image",
-                src: "",
-                title: "Villas Gallery",
-                badge: "Eco-Luxury Suites Showcase",
-                icon: "ri-hotel-line",
-                caption: "Interactive High-Definition Suite Gallery with Panoramic Amenity Previews"
+                src: "assets/projects/Isla Serenidad/ISLA SERENIDAD HOMEPAGE.png",
+                title: "Resort Homepage",
+                badge: "Homepage Interface",
+                icon: "ri-home-4-line",
+                caption: "Resort Portal Showcase with Package Previews & Direct Date Selection"
             },
             {
                 type: "image",
-                src: "",
-                title: "Reservation Desk",
-                badge: "Booking & Rate Engine",
-                icon: "ri-calendar-check-line",
-                caption: "Dynamic Date Range Availability Calendar with Real-Time Currency Conversion"
+                src: "assets/projects/Isla Serenidad/ISLA SERENIDAD BOOKING.png",
+                title: "Room Selection & Customization",
+                badge: "Booking Interface",
+                icon: "ri-hotel-bed-line",
+                caption: "Interactive Villa & Suite Selection with Stay Amenities and Add-on Customization"
             },
             {
                 type: "image",
-                src: "",
-                title: "Island Concierge",
-                badge: "Excursion Planner",
-                icon: "ri-compass-3-line",
-                caption: "Custom Marine Sanctuary Excursion & Private Dining Coordination Desk"
+                src: "assets/projects/Isla Serenidad/ISLA SERENIDAD COMPLETE BOOKING.png",
+                title: "Reservation Confirmation & Payment",
+                badge: "Payment Interface",
+                icon: "ri-checkbox-circle-line",
+                caption: "Final Reservation Review, Breakdown Summary & Secure Checkout Confirmation"
             }
         ],
         features: [
-            { icon: "ri-image-line", text: "High-definition interactive villa showcase with 360-degree visual walkthroughs." },
-            { icon: "ri-calendar-todo-line", text: "Integrated reservation calendar with dynamic date-range pricing calculations." },
-            { icon: "ri-compass-3-line", text: "Island experience and excursion planner (island hopping, scuba diving, private dining)." },
-            { icon: "ri-customer-service-2-line", text: "Digital guest concierge request module for personalized transport and dining." },
-            { icon: "ri-smartphone-line", text: "Fully responsive, cross-platform glassmorphic UI optimized for touch ergonomics." }
+            {
+                title: "Account Registration & Login",
+                text: "Allows guests to create accounts and securely access the reservation system.",
+                icon: "ri-user-add-line"
+            },
+            {
+                title: "Date & Room Selection",
+                text: "Allows guests to select their desired dates and browse available room packages.",
+                icon: "ri-calendar-check-line"
+            },
+            {
+                title: "Stay Customization",
+                text: "Allows guests to customize their reservation by selecting rooms, extras, and amenities.",
+                icon: "ri-settings-4-line"
+            },
+            {
+                title: "Booking Review & Payment",
+                text: "Allows guests to review their reservation details before proceeding through the payment process.",
+                icon: "ri-bank-card-line"
+            },
+            {
+                title: "Reservation Management",
+                text: "Supports resort-side management of bookings and room availability.",
+                icon: "ri-dashboard-3-line"
+            }
         ],
-        tags: ["HTML5", "CSS3 Glassmorphism", "JavaScript (ES6+)", "Swiper API", "Responsive Web Design"],
+        techCategories: [
+            { label: "Programming", stack: "Java" },
+            { label: "Database", stack: "MySQL • MySQL Workbench" },
+            { label: "Development", stack: "Object-Oriented Programming • Relational Database Design" }
+        ],
+        tags: ["Java", "MySQL", "MySQL Workbench", "Object-Oriented Programming", "Relational Database Design"],
+        results: {
+            highlights: [
+                "Complete Booking Flow: Login → Dates → Room → Customization → Review → Payment → Confirmation",
+                "Personalized Reservations: Integrated room selection with additional amenities and extras to allow guests to customize their stay.",
+                "Database-Driven Design: Structured reservation information using relational database entities and relationships.",
+                "Integrated Reservation Experience: Combined guest-facing booking functionality with resort-side reservation management."
+            ]
+        },
         documents: [
             {
                 type: "document",
-                title: "UI/UX Case Study Documentation",
-                label: "View UI/UX Case Study ↗",
-                icon: "ri-palette-line",
-                url: "EXTERNAL_DOCUMENT_URL",
-                primary: false
+                title: "Isla Serenidad Full Documentation",
+                label: "View Full Documentation ↗",
+                icon: "ri-file-pdf-2-line",
+                url: "https://drive.google.com/file/d/1xhWhtzll9v0GJbCW9IkaYR3mk1PSTHti/view?usp=sharing",
+                primary: true
             }
         ],
-        links: [
-            { label: "Live Resort Portal ↗", icon: "ri-external-link-line", url: "#", primary: true }
-        ]
+        links: []
     },
     {
         title: "Wikipedia UI",
