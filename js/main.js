@@ -1309,69 +1309,106 @@ const projectsData = [
         links: []
     },
     {
-        title: "Wikipedia UI",
-        category: "Modern Web Concept",
-        year: "2024",
-        badge: "Reader-First Concept",
+        title: "User-Centric Redesign: Improving the Interface of Wikipedia",
+        category: "Academic Activity",
+        year: "2025",
+        badge: "UI/UX Redesign",
         icon: "ri-book-read-line",
+        logo: "assets/projects/Wikipedia/Wikipedia-logo-v2.svg.png",
+        cardImage: "assets/projects/Wikipedia/Wikipedia-logo-v2.svg.png",
         gradClass: "project-grad-6",
-        shortDescription: "A modernized, reader-first redesign of Wikipedia featuring enhanced typography, dark/light reading modes, instant preview cards, and distraction-free layout.",
-        fullDescription: "A conceptual redesign of the Wikipedia desktop and tablet reading interface focusing on elevated typographic hierarchy, visual minimalism, and frictionless knowledge retrieval. The interface removes cluttered navigational sidebars in favor of a collapsible floating table of contents, contextual hover previews for citations, and tailored typography presets designed for prolonged reading comfort.",
+        shortDescription: "An individual HCI project exploring the redesign of Wikipedia's user interface through a user-centered approach to improve navigation, readability, and content organization.",
+        overview: "This individual HCI project explores the redesign of Wikipedia's user interface through a user-centered approach. The redesign focuses on improving navigation, information hierarchy, readability, and content organization while maintaining Wikipedia's core purpose as an accessible knowledge platform.",
+        fullDescription: "This individual HCI project explores the redesign of Wikipedia's user interface through a user-centered approach. The redesign focuses on improving navigation, information hierarchy, readability, and content organization while maintaining Wikipedia's core purpose as an accessible knowledge platform.",
+        problem: "Wikipedia's information-dense interface can make navigation, content discovery, and reading difficult, especially when users need to quickly locate specific information.",
+        solution: "Redesigned Wikipedia's interface using user-centered HCI principles to create clearer navigation, stronger visual hierarchy, improved readability, and a more focused reading experience.",
+        role: {
+            title: "UI/UX Designer • HCI Researcher",
+            responsibilities: [
+                "Analyzed the existing interface to identify usability and visual-design opportunities.",
+                "Applied HCI and user-centered design principles to guide the redesign.",
+                "Designed the layout, navigation, typography, spacing, and visual hierarchy.",
+                "Created and refined the redesigned interface based on identified usability concerns.",
+                "Documented and presented the design rationale behind the proposed improvements."
+            ]
+        },
         media: [
             {
                 type: "youtube",
-                src: "https://www.youtube.com/embed/VIDEO_ID",
-                title: "Concept Demo",
-                badge: "Interactive Reading Walkthrough",
+                src: "https://youtu.be/eCemex4eJ7c",
+                title: "Wikipedia Redesign Demonstration",
+                badge: "Interactive Video Walkthrough",
                 icon: "ri-youtube-line",
-                caption: "Fluid Typography Scaling, Distraction-Free Reading Mode & Dynamic TOC Spy"
+                caption: "Interactive Walkthrough: Information Hierarchy, Streamlined Navigation & Focus Reading UI"
             },
             {
                 type: "image",
-                src: "",
-                title: "Article Layout",
-                badge: "Typographic Layout UI",
+                src: "assets/projects/Wikipedia/Wikipedia UI Homepage.png",
+                title: "Wikipedia Redesigned Homepage",
+                badge: "Homepage UI",
+                icon: "ri-home-4-line",
+                caption: "User-Centered Homepage Design with Simplified Knowledge Discovery & Search"
+            },
+            {
+                type: "image",
+                src: "assets/projects/Wikipedia/Wikipedia UI Bob Ross page.png",
+                title: "Article Reading Interface (Bob Ross)",
+                badge: "Article Reading UI",
                 icon: "ri-article-line",
-                caption: "Harmonious Typographic Proportions with Focus Reading Line Length"
-            },
-            {
-                type: "image",
-                src: "",
-                title: "Citation Previews",
-                badge: "Instant Hover Cards",
-                icon: "ri-file-search-line",
-                caption: "Contextual Citation Cards Revealing Source References Without Page Reloads"
-            },
-            {
-                type: "image",
-                src: "",
-                title: "Theme Switcher",
-                badge: "OLED & Sepia Reading Palettes",
-                icon: "ri-contrast-2-line",
-                caption: "High-Contrast OLED True Black, Warm Sepia Book & Modern Editorial Light Themes"
+                caption: "Enhanced Article Typography, Floating Navigation & Distraction-Free Layout"
             }
         ],
         features: [
-            { icon: "ri-text", text: "Refined typographic scaling with customizable font sizes, line heights, and serifs." },
-            { icon: "ri-list-check", text: "Sticky floating table of contents with dynamic active-section scroll spy highlighting." },
-            { icon: "ri-file-search-line", text: "Instant interactive hover cards for internal links, references, and citations." },
-            { icon: "ri-contrast-2-line", text: "Custom theme switcher supporting OLED True Black, Sepia Book, and Modern Light." },
-            { icon: "ri-keyboard-line", text: "Rapid keyboard shortcut navigation for search, section jumping, and citation viewing." }
+            {
+                title: "Improved Visual Hierarchy",
+                text: "Organized content and navigation to make important information easier to identify.",
+                icon: "ri-layout-top-line"
+            },
+            {
+                title: "Clearer Navigation",
+                text: "Refined page organization to support easier movement through content.",
+                icon: "ri-compass-3-line"
+            },
+            {
+                title: "Enhanced Readability",
+                text: "Improved typography, spacing, and content structure for more comfortable reading.",
+                icon: "ri-font-size"
+            },
+            {
+                title: "Focused Content Layout",
+                text: "Reduced visual clutter and strengthened separation between primary and supporting content.",
+                icon: "ri-focus-3-line"
+            },
+            {
+                title: "Modernized Interface",
+                text: "Introduced a cleaner visual system while preserving Wikipedia's information-focused purpose.",
+                icon: "ri-sparkling-line"
+            }
         ],
-        tags: ["Vanilla JavaScript", "CSS Custom Properties", "Modern Typography", "Accessible HTML5"],
+        techCategories: [
+            { label: "Design", stack: "UI/UX Design • User-Centered Design • HCI Principles" },
+            { label: "Prototyping", stack: "High-Fidelity Interface Design • Wireframing • Prototyping" },
+            { label: "Tools", stack: "Canva" }
+        ],
+        tags: ["UI/UX Design", "User-Centered Design", "HCI Principles", "High-Fidelity Interface Design", "Wireframing", "Prototyping", "Canva"],
+        results: {
+            highlights: [
+                "User-Centered Design: Applied HCI principles to guide interface and interaction decisions.",
+                "Clearer Information Hierarchy: Improved the organization and presentation of navigation and content.",
+                "Refined Reading Experience: Created a cleaner, more focused interface for consuming Wikipedia content."
+            ]
+        },
         documents: [
             {
                 type: "document",
-                title: "Design System Specifications",
-                label: "View Design System Specs ↗",
-                icon: "ri-layout-masonry-line",
-                url: "EXTERNAL_DOCUMENT_URL",
-                primary: false
+                title: "Wikipedia Redesign Documentation",
+                label: "View Documentation ↗",
+                icon: "ri-file-pdf-2-line",
+                url: "https://drive.google.com/file/d/1xhWhtzll9v0GJbCW9IkaYR3mk1PSTHti/view?usp=sharing",
+                primary: true
             }
         ],
-        links: [
-            { label: "Interactive Prototype ↗", icon: "ri-eye-line", url: "#", primary: true }
-        ]
+        links: []
     },
     {
         title: "Drudge Report UI",
@@ -1486,10 +1523,10 @@ function updateProjectsCarousel() {
         const cardRect = firstCard.getBoundingClientRect()
         const computedStyle = window.getComputedStyle(projectsCarouselTrack)
         const gap = parseFloat(computedStyle.gap) || 24
-        
+
         const isDesktop = window.innerWidth > 968
         const peekAmount = isDesktop ? 56 : (window.innerWidth > 600 ? 40 : 36)
-        
+
         let peekOffset = 0
         if (currentProjectSlide === 0) {
             peekOffset = 0
@@ -1582,15 +1619,15 @@ function getYouTubeVideoId(url) {
     if (!url || typeof url !== 'string') return null
     const trimmed = url.trim()
     if (!trimmed || trimmed === 'VIDEO_ID' || trimmed.includes('/embed/VIDEO_ID')) return null
-    
+
     // Check embed URL: https://www.youtube.com/embed/VIDEO_ID
     const embedMatch = trimmed.match(/(?:youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/i)
     if (embedMatch) return embedMatch[1]
-    
+
     // Check watch URL: https://www.youtube.com/watch?v=VIDEO_ID
     const watchMatch = trimmed.match(/(?:youtube\.com\/watch\?v=)([a-zA-Z0-9_-]{11})/i)
     if (watchMatch) return watchMatch[1]
-    
+
     // Check short URL: https://youtu.be/VIDEO_ID
     const shortMatch = trimmed.match(/(?:youtu\.be\/)([a-zA-Z0-9_-]{11})/i)
     if (shortMatch) return shortMatch[1]
@@ -1605,8 +1642,8 @@ function renderLightboxContent() {
     const project = projectsData[activeProjectModalIndex]
     if (!project || !mediaLightboxContent) return
 
-    const mediaItems = (project.media && Array.isArray(project.media) && project.media.length > 0) 
-        ? project.media 
+    const mediaItems = (project.media && Array.isArray(project.media) && project.media.length > 0)
+        ? project.media
         : []
 
     const N = mediaItems.length
@@ -1703,9 +1740,9 @@ function syncModalVideos() {
             v.muted = true
             const playPromise = v.play()
             if (playPromise !== undefined) {
-                playPromise.catch(() => {})
+                playPromise.catch(() => { })
             }
-        } catch (e) {}
+        } catch (e) { }
     })
 }
 
@@ -1779,11 +1816,11 @@ function getModalMediaConfig() {
     const isMobile = window.innerWidth <= 680
     const itemsPerPage = isMobile ? 1 : 2
     const totalPages = Math.max(1, Math.ceil(N / itemsPerPage))
-    
+
     if (!viewport || !firstCard || !track) {
         return { cardWidth: 0, gap: 15, peek: isMobile ? 40 : 52, totalPages, isMobile, trackWidth: 0, viewportWidth: 0 }
     }
-    
+
     const computedTrack = window.getComputedStyle(track)
     const gap = parseFloat(computedTrack.gap) || (isMobile ? 10.4 : 15.2)
     const cardWidth = firstCard.offsetWidth
@@ -2060,14 +2097,14 @@ function renderProjectModal(index) {
                     <div class="modal-highlights-card">
                         <ul class="modal-highlights-bullets">
                             ${project.results.highlights.map(h => {
-                                const colonIdx = h.indexOf(':')
-                                if (colonIdx > -1) {
-                                    const title = h.substring(0, colonIdx)
-                                    const desc = h.substring(colonIdx + 1)
-                                    return `<li><strong>${title}:</strong>${desc}</li>`
-                                }
-                                return `<li>${h}</li>`
-                            }).join('')}
+        const colonIdx = h.indexOf(':')
+        if (colonIdx > -1) {
+            const title = h.substring(0, colonIdx)
+            const desc = h.substring(colonIdx + 1)
+            return `<li><strong>${title}:</strong>${desc}</li>`
+        }
+        return `<li>${h}</li>`
+    }).join('')}
                         </ul>
                     </div>
                 ` : ''}
