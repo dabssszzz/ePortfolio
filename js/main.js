@@ -1501,6 +1501,123 @@ const projectsData = [
                 primary: true
             }
         ]
+    },
+    {
+        title: "BayaniHealth Connect",
+        category: "Academic Activity",
+        year: "2025",
+        badge: "UI/UX Design",
+        icon: "ri-heart-pulse-line",
+        logo: "assets/projects/BayaniHealth Connect/BayaniHealth Connect.png",
+        cardImage: "assets/projects/BayaniHealth Connect/BayaniHealth Connect.png",
+        gradClass: "project-grad-1",
+        shortDescription: "A user-centered digital healthcare interface focused on improving accessibility, information hierarchy, and service navigation for community health services.",
+        overview: "BayaniHealth Connect is an individual HCI project focused on designing a more accessible and user-friendly digital experience for community healthcare services. The redesigned interface organizes essential health information and service interactions into a clearer structure, emphasizing usability, accessibility, visual hierarchy, and ease of navigation.",
+        fullDescription: "BayaniHealth Connect is an individual HCI project focused on designing a more accessible and user-friendly digital experience for community healthcare services. The redesigned interface organizes essential health information and service interactions into a clearer structure, emphasizing usability, accessibility, visual hierarchy, and ease of navigation.",
+        problem: "Unclear information organization and complex interactions can make community healthcare services difficult to navigate, especially when users need to quickly find important health information or services.",
+        solution: "Designed a user-centered healthcare interface with clearer navigation, stronger information hierarchy, and more accessible interactions for community health services.",
+        role: {
+            title: "UI/UX Designer • HCI Researcher",
+            responsibilities: [
+                "Analyzed the healthcare-service experience to identify usability and accessibility opportunities.",
+                "Applied HCI and user-centered design principles to guide interface decisions.",
+                "Designed the interface structure, navigation, visual hierarchy, typography, spacing, and interaction patterns.",
+                "Organized healthcare information and services to make important content easier to find and understand.",
+                "Refined and documented the design based on usability and user-experience objectives."
+            ]
+        },
+        media: [
+            {
+                type: "image",
+                src: "assets/projects/BayaniHealth Connect/BAYANIHEALTH 1.jpg",
+                title: "BayaniHealth Connect — Screen 1",
+                badge: "Healthcare UI",
+                icon: "ri-heart-pulse-line",
+                caption: "Accessible Community Health Portal — Service Overview & Navigation"
+            },
+            {
+                type: "image",
+                src: "assets/projects/BayaniHealth Connect/BAYANIHEALTH 2.jpg",
+                title: "BayaniHealth Connect — Screen 2",
+                badge: "Healthcare UI",
+                icon: "ri-heart-pulse-line",
+                caption: "Clear Health Information & Preventive Care Services"
+            },
+            {
+                type: "image",
+                src: "assets/projects/BayaniHealth Connect/BAYANIHEALTH 3.jpg",
+                title: "BayaniHealth Connect — Screen 3",
+                badge: "Healthcare UI",
+                icon: "ri-heart-pulse-line",
+                caption: "Service Directory & Community Health Programs"
+            },
+            {
+                type: "image",
+                src: "assets/projects/BayaniHealth Connect/BAYANIHEALTH 4.jpg",
+                title: "BayaniHealth Connect — Screen 4",
+                badge: "Healthcare UI",
+                icon: "ri-heart-pulse-line",
+                caption: "Appointment Booking & Consultation Scheduling"
+            },
+            {
+                type: "image",
+                src: "assets/projects/BayaniHealth Connect/BAYANIHEALTH 5.jpg",
+                title: "BayaniHealth Connect — Screen 5",
+                badge: "Healthcare UI",
+                icon: "ri-heart-pulse-line",
+                caption: "Health Resource Library & Guidelines"
+            },
+            {
+                type: "image",
+                src: "assets/projects/BayaniHealth Connect/BAYANIHEALTH 6.jpg",
+                title: "BayaniHealth Connect — Screen 6",
+                badge: "Healthcare UI",
+                icon: "ri-heart-pulse-line",
+                caption: "Emergency Assistance & Health Center Directory"
+            }
+        ],
+        features: [
+            {
+                title: "Accessible Health Information",
+                text: "Organizes important healthcare information into clear and understandable sections.",
+                icon: "ri-health-book-line"
+            },
+            {
+                title: "Service-Focused Navigation",
+                text: "Provides clearer pathways to relevant healthcare services and information.",
+                icon: "ri-compass-3-line"
+            },
+            {
+                title: "Appointment & Service Interactions",
+                text: "Presents service-related actions through an organized interface.",
+                icon: "ri-calendar-check-line"
+            },
+            {
+                title: "Clear Information Hierarchy",
+                text: "Prioritizes important content and actions for easier scanning.",
+                icon: "ri-layout-top-line"
+            },
+            {
+                title: "Accessible & User-Friendly Interface",
+                text: "Uses readable typography, spacing, grouping, and consistent interface patterns.",
+                icon: "ri-user-heart-line"
+            }
+        ],
+        techCategories: [
+            { label: "Design", stack: "UI/UX Design • HCI Principles • User-Centered Design" },
+            { label: "Prototyping", stack: "Wireframing • High-Fidelity Interface Design • Prototyping" },
+            { label: "Tools", stack: "Canva" }
+        ],
+        tags: ["UI/UX Design", "HCI Principles", "User-Centered Design", "Wireframing", "High-Fidelity Interface Design", "Prototyping", "Canva"],
+        results: {
+            highlights: [
+                "User-Centered Healthcare Design: Applied HCI principles to address usability and accessibility needs.",
+                "Clearer Health Information: Improved the organization and hierarchy of healthcare content and services.",
+                "Accessible User Experience: Created a more readable, structured, and approachable interface for community health services."
+            ]
+        },
+        documents: [],
+        links: []
     }
 ]
 
