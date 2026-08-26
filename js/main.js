@@ -1398,16 +1398,7 @@ const projectsData = [
                 "Refined Reading Experience: Created a cleaner, more focused interface for consuming Wikipedia content."
             ]
         },
-        documents: [
-            {
-                type: "document",
-                title: "Wikipedia Redesign Documentation",
-                label: "View Documentation ↗",
-                icon: "ri-file-pdf-2-line",
-                url: "https://drive.google.com/file/d/1xhWhtzll9v0GJbCW9IkaYR3mk1PSTHti/view?usp=sharing",
-                primary: true
-            }
-        ],
+        documents: [],
         links: []
     },
     {
@@ -1618,6 +1609,114 @@ const projectsData = [
         },
         documents: [],
         links: []
+    },
+    {
+        title: "ArtSphere",
+        category: "Academic Activity",
+        year: "2025",
+        badge: "UI/UX Design",
+        icon: "ri-palette-line",
+        logo: "assets/projects/ArtSphere/ArtSphere.png",
+        cardImage: "assets/projects/ArtSphere/ArtSphere.png",
+        gradClass: "project-grad-2",
+        shortDescription: "A visually focused digital art showcase interface emphasizing aesthetic presentation, visual hierarchy, and intuitive artwork exploration.",
+        overview: "ArtSphere is an individual academic project centered on creating a visually engaging interface for presenting and exploring artwork. The design emphasizes visual presentation, content organization, navigation, and an aesthetic experience that complements the artistic subject matter.",
+        fullDescription: "ArtSphere is an individual academic project centered on creating a visually engaging interface for presenting and exploring artwork. The design emphasizes visual presentation, content organization, navigation, and an aesthetic experience that complements the artistic subject matter.",
+        problem: "Poor content organization and weak visual hierarchy can make digital art interfaces feel cluttered and reduce the visual impact of the artwork they present.",
+        solution: "Created a visually focused art interface that combines clear content organization, strong visual hierarchy, and an aesthetic layout to create a more engaging artwork-browsing experience.",
+        role: {
+            title: "UI/UX Designer • Visual Designer",
+            responsibilities: [
+                "Designed the overall ArtSphere interface and visual direction.",
+                "Organized artwork, navigation, and supporting content into a cohesive layout.",
+                "Applied visual hierarchy, composition, spacing, typography, and consistency principles.",
+                "Refined the interface to balance artwork presentation with usability.",
+                "Developed the visual design and interaction structure represented in the prototype."
+            ]
+        },
+        media: [
+            {
+                type: "image",
+                src: "assets/projects/ArtSphere/ArtSphere Homepage.png",
+                title: "ArtSphere Homepage",
+                badge: "Gallery Homepage UI",
+                icon: "ri-palette-line",
+                caption: "Aesthetic Art Showcase — Featured Exhibition & Visual Discovery"
+            },
+            {
+                type: "image",
+                src: "assets/projects/ArtSphere/ArtSphere Visual Arts.png",
+                title: "Visual Arts Gallery",
+                badge: "Visual Arts UI",
+                icon: "ri-brush-line",
+                caption: "Visual Arts Exhibition — Paintings, Digital Art & Sculptures"
+            },
+            {
+                type: "image",
+                src: "assets/projects/ArtSphere/ArtSphere Performing Arts.png",
+                title: "Performing Arts Showcase",
+                badge: "Performing Arts UI",
+                icon: "ri-music-2-line",
+                caption: "Performing Arts Showcase — Theatre, Dance & Musical Productions"
+            },
+            {
+                type: "image",
+                src: "assets/projects/ArtSphere/ArtSphere Literary Arts.png",
+                title: "Literary Arts Collection",
+                badge: "Literary Arts UI",
+                icon: "ri-book-open-line",
+                caption: "Literary Arts Collection — Poetry, Prose & Creative Writing"
+            }
+        ],
+        features: [
+            {
+                title: "Artwork-Focused Presentation",
+                text: "Gives artwork strong visual prominence.",
+                icon: "ri-palette-line"
+            },
+            {
+                title: "Organized Content Layout",
+                text: "Structures artwork and supporting information into clear sections.",
+                icon: "ri-layout-masonry-line"
+            },
+            {
+                title: "Visual Navigation",
+                text: "Provides intuitive navigation through the art-focused experience.",
+                icon: "ri-compass-3-line"
+            },
+            {
+                title: "Consistent Visual System",
+                text: "Maintains cohesive typography, spacing, alignment, and interface elements.",
+                icon: "ri-layout-top-line"
+            },
+            {
+                title: "Immersive Aesthetic",
+                text: "Combines visual composition and interface styling for an art-focused experience.",
+                icon: "ri-sparkling-line"
+            }
+        ],
+        techCategories: [
+            { label: "Design", stack: "UI/UX Design • Visual Design • User-Centered Design" },
+            { label: "Interface", stack: "Visual Hierarchy • Layout Composition • Typography • Prototyping" },
+            { label: "Tool", stack: "Canva" }
+        ],
+        tags: ["UI/UX Design", "Visual Design", "User-Centered Design", "Visual Hierarchy", "Layout Composition", "Typography", "Prototyping", "Canva"],
+        results: {
+            highlights: [
+                "Art-Centered Experience: Designed the interface to give artwork strong visual prominence.",
+                "Cohesive Visual System: Created consistent layouts, typography, spacing, and interface elements.",
+                "Balanced UX & Aesthetics: Combined visual presentation with clear organization and navigation."
+            ]
+        },
+        documents: [],
+        links: [
+            {
+                label: "View Design ↗",
+                icon: "ri-external-link-line",
+                url: "https://engelbertmorales.my.canva.site/artsphere",
+                primary: true
+            }
+        ]
     }
 ]
 
