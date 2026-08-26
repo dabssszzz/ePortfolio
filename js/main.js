@@ -1411,68 +1411,95 @@ const projectsData = [
         links: []
     },
     {
-        title: "Drudge Report UI",
-        category: "Editorial Redesign",
-        year: "2024",
-        badge: "Editorial Redesign",
+        title: "Usability and Aesthetics: The Drudge Report Redesign",
+        category: "Academic Activity",
+        year: "2025",
+        badge: "UI/UX Redesign",
         icon: "ri-newspaper-line",
+        logo: "assets/projects/Drudge Report/Drudge Report Logo.png",
+        cardImage: "assets/projects/Drudge Report/Drudge Report Logo.png",
         gradClass: "project-grad-7",
-        shortDescription: "A contemporary news aggregation interface reimagining rapid headline scanning with real-time ticker streams, category filtering, and clean responsive columns.",
-        fullDescription: "A contemporary editorial redesign of iconic headline aggregation platforms. It retains the raw information density, instant visual scanning, and speed demanded by power readers, while modernizing the aesthetic with responsive multi-column layouts, live breaking news ticker feeds, category filter tabs, and high-contrast dark mode reading palettes.",
+        shortDescription: "An individual HCI project examining the usability and visual design of the Drudge Report and proposing a redesigned interface for a clearer, more organized experience.",
+        overview: "This individual HCI project examines the usability and visual design of the Drudge Report and proposes a redesigned interface that provides a clearer, more organized, and visually engaging experience. The redesign applies HCI and UI/UX principles to improve information hierarchy, navigation, readability, and content presentation while retaining the site's core news-focused purpose.",
+        fullDescription: "This individual HCI project examines the usability and visual design of the Drudge Report and proposes a redesigned interface that provides a clearer, more organized, and visually engaging experience. The redesign applies HCI and UI/UX principles to improve information hierarchy, navigation, readability, and content presentation while retaining the site's core news-focused purpose.",
+        problem: "The dense, text-heavy interface made content difficult to scan and navigate, while its limited visual hierarchy and dated presentation created opportunities for improved usability and aesthetics.",
+        solution: "Redesigned the interface with clearer information hierarchy, improved content organization, stronger readability, and a more modern visual presentation.",
+        role: {
+            title: "UI/UX Designer • HCI Researcher",
+            responsibilities: [
+                "Analyzed the existing interface to identify usability and aesthetic issues.",
+                "Applied HCI and user-centered design principles to guide improvements.",
+                "Redesigned the layout, navigation, typography, spacing, and visual hierarchy.",
+                "Organized news content into a clearer and more structured interface.",
+                "Documented and presented the design rationale behind the redesign."
+            ]
+        },
         media: [
             {
                 type: "youtube",
-                src: "https://www.youtube.com/embed/VIDEO_ID",
-                title: "Editorial Demo",
-                badge: "News Aggregator Walkthrough",
+                src: "https://www.youtube.com/embed/gaKEaG9Ug1k",
+                title: "Drudge Report Redesign Demonstration",
+                badge: "Interactive Video Walkthrough",
                 icon: "ri-youtube-line",
-                caption: "High-Speed Headline Skimming, Live Breaking News Ticker & Multi-Column Layout"
+                caption: "Interactive Walkthrough: Information Hierarchy, News Organization & Contemporary Editorial Layout"
             },
             {
                 type: "image",
-                src: "",
-                title: "3-Column Grid",
-                badge: "High-Density Grid UI",
-                icon: "ri-layout-column-line",
-                caption: "Ultra-Fast 3-Column Responsive Headline Grid Built for Rapid Scanning"
-            },
-            {
-                type: "image",
-                src: "",
-                title: "Topic Filters",
-                badge: "Instant Categorization",
-                icon: "ri-filter-3-line",
-                caption: "Zero-Latency Client-Side Topic Filters (Politics, Markets, Technology, World)"
-            },
-            {
-                type: "image",
-                src: "",
-                title: "Ticker Stream",
-                badge: "Real-Time Ticker",
-                icon: "ri-rss-line",
-                caption: "Automated Background RSS Stream Delivering Breaking Headline Alerts"
+                src: "assets/projects/Drudge Report/drudge report pic.jpeg",
+                title: "Drudge Report Redesigned Interface",
+                badge: "Editorial UI",
+                icon: "ri-newspaper-line",
+                caption: "Modernized Editorial Presentation with Enhanced Readability & Visual Hierarchy"
             }
         ],
         features: [
-            { icon: "ri-layout-column-line", text: "High-density 3-column responsive layout optimized for rapid headline skimming." },
-            { icon: "ri-rss-line", text: "Live breaking news ticker with automated background feed updating." },
-            { icon: "ri-filter-3-line", text: "Instant category filtering (Top News, Politics, Technology, Markets, World)." },
-            { icon: "ri-speed-line", text: "Zero-dependency lightweight code delivering sub-second page rendering." },
-            { icon: "ri-moon-clear-line", text: "High-contrast Dark Mode and Classic Editorial Light Mode." }
-        ],
-        tags: ["HTML5", "CSS Grid & Flexbox", "JavaScript (ES6+)", "RSS Parser", "Performance Optimization"],
-        documents: [
             {
-                type: "document",
-                title: "Design Rationale & Performance Report",
-                label: "View Design Rationale ↗",
-                icon: "ri-book-open-line",
-                url: "EXTERNAL_DOCUMENT_URL",
-                primary: false
+                title: "Improved Information Hierarchy",
+                text: "Created clearer visual relationships between headlines, categories, and supporting content.",
+                icon: "ri-layout-top-line"
+            },
+            {
+                title: "Organized News Layout",
+                text: "Restructured the dense collection of news links into a clearer page layout.",
+                icon: "ri-layout-masonry-line"
+            },
+            {
+                title: "Enhanced Readability",
+                text: "Improved typography, spacing, alignment, and content grouping.",
+                icon: "ri-font-size"
+            },
+            {
+                title: "Modernized Visual Design",
+                text: "Introduced a cleaner and more contemporary visual presentation.",
+                icon: "ri-sparkling-line"
+            },
+            {
+                title: "Improved Navigation",
+                text: "Organized content and navigation patterns for easier browsing.",
+                icon: "ri-compass-3-line"
             }
         ],
+        techCategories: [
+            { label: "Design", stack: "UI/UX Design • HCI Principles • User-Centered Design" },
+            { label: "Prototyping", stack: "Wireframing • High-Fidelity Interface Design • Prototyping" },
+            { label: "Tools", stack: "Canva" }
+        ],
+        tags: ["UI/UX Design", "HCI Principles", "User-Centered Design", "Wireframing", "High-Fidelity Interface Design", "Prototyping", "Canva"],
+        results: {
+            highlights: [
+                "Clearer Information Hierarchy: Improved the organization and visual prominence of news content.",
+                "Better Scannability: Created a more structured layout for quickly browsing headlines and information.",
+                "Modernized Interface: Transformed the visually dense presentation into a cleaner and more structured experience."
+            ]
+        },
+        documents: [],
         links: [
-            { label: "Live News Prototype ↗", icon: "ri-external-link-line", url: "#", primary: true }
+            {
+                label: "View Design ↗",
+                icon: "ri-external-link-line",
+                url: "https://engelbertmorales.my.canva.site/drudge-report",
+                primary: true
+            }
         ]
     }
 ]
