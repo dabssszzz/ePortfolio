@@ -805,6 +805,22 @@ const projectsData = [
                 badge: "Educator Dashboard",
                 icon: "ri-dashboard-3-line",
                 caption: "Comprehensive Performance Analytics Highlighting Curriculum Learning Gaps"
+            },
+            {
+                type: "image",
+                src: "assets/projects/MATHtatag/MATHtatag pic4.jpg",
+                title: "Learning Module Interface",
+                badge: "Mathematics Activity Screen",
+                icon: "ri-book-read-line",
+                caption: "Curriculum-Aligned Learning Module & Exercise Flow"
+            },
+            {
+                type: "image",
+                src: "assets/projects/MATHtatag/MATHtatag pic5.jpg",
+                title: "Student Progress Summary",
+                badge: "Evaluation Summary Screen",
+                icon: "ri-award-line",
+                caption: "Automated Evaluation Summary & Real-Time Performance Feedback"
             }
         ],
         features: [
