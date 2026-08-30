@@ -75,12 +75,7 @@
                     <p class="home-description">
                         I specialize in building clean, responsive web applications and translating design concepts into intuitive, user-focused digital experiences with modern frontend technologies.
                     </p>
-                    <div class="home-buttons">
-                        <a href="#projects" class="button">View Projects <i
-                                class="ri-arrow-right-line button-icon"></i></a>
-                        <a href="#contact" class="button button--ghost">Get in Touch <i
-                                class="ri-mail-send-line button-icon"></i></a>
-                    </div>
+
 
                     <!-- Interactive Internship Feedback Deck -->
                     <div class="home-feedback-section" aria-label="Internship Evaluation Feedback">
@@ -139,6 +134,20 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Right Column: Personal Visual Identity (Full-Body Transparent Photo + Layered CTAs) -->
+                <div class="home-visual reveal-on-scroll">
+                    <div class="home-image-wrapper">
+                        <img src="assets/Engelbert Pics/Barong no background.png" alt="Engelbert R. Morales" class="home-img" loading="eager" />
+                        <!-- Layered Liquid Glass CTA Buttons -->
+                        <div class="home-buttons home-buttons--overlay">
+                            <a href="#projects" class="button">View Projects <i
+                                    class="ri-arrow-right-line button-icon"></i></a>
+                            <a href="#contact" class="button button--ghost">Get in Touch <i
+                                    class="ri-mail-send-line button-icon"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -150,28 +159,15 @@
             </div>
 
             <div class="container about-container">
-                <div class="about-grid">
-                    <!-- Left Column: About Details & Content -->
-                    <div class="about-left reveal-on-scroll">
-                        <p class="about-description">
-                            I am a Bachelor of Science in Information Technology graduate with hands-on experience in frontend development and UI/UX implementation. I build responsive web interfaces using ReactJS, JavaScript, HTML, CSS, and Tailwind CSS, with experience translating Figma designs into functional interfaces and integrating REST APIs. My background also includes enterprise web application development, software testing, and collaborative development workflows. I am focused on creating clear, usable digital experiences while continuously developing my technical and problem-solving skills, and pursuing opportunities in frontend development and UI/UX design.
-                        </p>
-
-                        <div class="about-info">
-                            <div class="about-info-item">
-                                <i class="ri-graduation-cap-line about-info-icon"></i>
-                                <span class="about-info-title">BSIT</span>
-                                <span class="about-info-name">Polytechnic University of the Philippines – Lopez Campus (2022 – 2026)</span>
-                            </div>
-                            <div class="about-info-item">
-                                <i class="ri-code-s-slash-line about-info-icon"></i>
-                                <span class="about-info-title">Frontend Development</span>
-                                <span class="about-info-name">ReactJS • JavaScript • HTML • CSS</span>
-                            </div>
-                            <div class="about-info-item">
-                                <i class="ri-briefcase-line about-info-icon"></i>
-                                <span class="about-info-title">Experience</span>
-                                <span class="about-info-name">System Development Intern</span>
+                <!-- Two-Column Layout Grid -->
+                <div class="about-grid reveal-on-scroll">
+                    <!-- Left Column: Profile Card & Download Resume CTA -->
+                    <div class="about-profile-col">
+                        <div class="about-img-frame">
+                            <img src="assets/Engelbert Pics/1x1 pic.png" alt="Engelbert R. Morales Profile" class="about-img" loading="lazy" />
+                            <div class="about-profile-info">
+                                <h3 class="about-profile-name">Engelbert R. Morales</h3>
+                                <span class="about-profile-role">BSIT Frontend Developer</span>
                             </div>
                         </div>
 
@@ -181,8 +177,46 @@
                         </div>
                     </div>
 
-                    <!-- Right Column: Reserved Space for Future Profile Picture -->
-                    <div class="about-right" aria-hidden="true"></div>
+                    <!-- Right Column: Structured Narrative & 3 Supporting Information Cards -->
+                    <div class="about-content-col">
+                        <h3 class="about-headline">
+                            I’m an IT graduate focused on building <span class="highlight">clean, responsive, and user-centered digital experiences</span>.
+                        </h3>
+
+                        <p class="about-description">
+                            My work is centered on frontend development, UI/UX implementation, and practical system development—transforming conceptual designs into intuitive, responsive, and functional web applications. I enjoy bridging user-focused interface design with structured frontend logic, always seeking to refine my technical workflow and problem-solving skills to build digital solutions that are dependable, polished, and purposeful.
+                        </p>
+
+                        <!-- Three Compact Information Cards With Horizontal Icon + Title -->
+                        <div class="about-info-grid">
+                            <div class="about-info-card">
+                                <div class="about-card-header">
+                                    <i class="ri-graduation-cap-line about-card-icon"></i>
+                                    <h4 class="about-card-title">BS Information Technology</h4>
+                                </div>
+                                <p class="about-card-detail">Polytechnic University of the Philippines – Lopez Campus</p>
+                                <span class="about-card-meta">2022 – 2026</span>
+                            </div>
+
+                            <div class="about-info-card">
+                                <div class="about-card-header">
+                                    <i class="ri-code-s-slash-line about-card-icon"></i>
+                                    <h4 class="about-card-title">Frontend & UI/UX</h4>
+                                </div>
+                                <p class="about-card-detail">Interface Implementation & Responsive Web Design</p>
+                                <span class="about-card-meta">User-Centered Focus</span>
+                            </div>
+
+                            <div class="about-info-card">
+                                <div class="about-card-header">
+                                    <i class="ri-briefcase-line about-card-icon"></i>
+                                    <h4 class="about-card-title">System Development Intern</h4>
+                                </div>
+                                <p class="about-card-detail">Enterprise Web Applications & System Testing</p>
+                                <span class="about-card-meta">Collaborative Workflows</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
