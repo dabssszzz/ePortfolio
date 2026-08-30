@@ -2612,3 +2612,74 @@ window.addEventListener('load', () => {
 
 // Initial call
 updateProjectsCarousel()
+
+/*==================== INTERNSHIP FEEDBACK SHUFFLE DECK ====================*/
+function initFeedbackDeck() {
+    const deck = document.getElementById('feedback-deck')
+    if (!deck) return
+
+    const cards = Array.from(deck.querySelectorAll('.feedback-card'))
+    if (cards.length === 0) return
+
+    let currentOrder = [0, 1, 2, 3]
+    let isAnimating = false
+
+    function renderDeckPositions() {
+        cards.forEach((card, originalIndex) => {
+            const pos = currentOrder.indexOf(originalIndex)
+            card.setAttribute('data-card-pos', pos)
+            if (pos === 0) {
+                card.setAttribute('tabindex', '0')
+                card.setAttribute('aria-hidden', 'false')
+            } else {
+                card.setAttribute('tabindex', '-1')
+                card.setAttribute('aria-hidden', 'true')
+            }
+        })
+    }
+
+    function advanceDeck() {
+        if (isAnimating) return
+        isAnimating = true
+
+        const activeCardOriginalIndex = currentOrder[0]
+        const activeCard = cards[activeCardOriginalIndex]
+        
+        activeCard.classList.add('is-shuffling')
+
+        setTimeout(() => {
+            // Rotate order: shift top card to bottom of deck (1 -> 2 -> 3 -> 0)
+            const topCard = currentOrder.shift()
+            currentOrder.push(topCard)
+
+            activeCard.classList.remove('is-shuffling')
+            renderDeckPositions()
+
+            setTimeout(() => {
+                isAnimating = false
+            }, 300)
+        }, 180)
+    }
+
+    deck.addEventListener('click', (e) => {
+        const clickedCard = e.target.closest('.feedback-card')
+        if (clickedCard && clickedCard.getAttribute('data-card-pos') === '0') {
+            advanceDeck()
+        }
+    })
+
+    deck.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            const activeCard = document.activeElement ? document.activeElement.closest('.feedback-card') : null
+            if (activeCard && activeCard.getAttribute('data-card-pos') === '0') {
+                e.preventDefault()
+                advanceDeck()
+            }
+        }
+    })
+
+    renderDeckPositions()
+}
+
+// Initialize feedback deck
+initFeedbackDeck()
