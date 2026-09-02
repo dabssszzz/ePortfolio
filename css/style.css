@@ -790,9 +790,9 @@ body.dark-theme .home-img {
 }
 
 .home-buttons--overlay .button {
-    padding: 1.35rem 2.5rem;
-    min-height: 3.5rem;
-    min-width: 195px;
+    padding: 1.12rem 2.25rem;
+    min-height: 3.15rem;
+    min-width: 190px;
     border-radius: 2rem;
     font-size: var(--normal-font-size);
     font-weight: var(--font-medium);
@@ -820,9 +820,9 @@ body.dark-theme .home-img {
 }
 
 .home-buttons--overlay .button--ghost {
-    padding: 1.35rem 2.5rem;
-    min-height: 3.5rem;
-    min-width: 195px;
+    padding: 1.12rem 2.25rem;
+    min-height: 3.15rem;
+    min-width: 190px;
     border-radius: 2rem;
     font-size: var(--normal-font-size);
     font-weight: var(--font-medium);
@@ -4864,7 +4864,7 @@ body.dark-theme .contact-form-status--info {
         width: 100%;
         max-width: 100%;
         white-space: nowrap;
-        font-size: clamp(1.45rem, 6.2vw, 2.35rem);
+        font-size: clamp(1.52rem, 6.7vw, 2.75rem);
         font-weight: 800;
         line-height: 1.15;
         letter-spacing: -0.025em;
@@ -5026,10 +5026,10 @@ body.dark-theme .contact-form-status--info {
     .home-buttons--overlay .button {
         flex: 1 1 0;
         min-width: 0;
-        padding: 1.15rem 1.25rem;
-        min-height: 3.25rem;
+        padding: 0.95rem 1.15rem;
+        min-height: 2.85rem;
         border-radius: 2rem;
-        font-size: 0.95rem;
+        font-size: 0.92rem;
         font-weight: 600;
         display: inline-flex;
         align-items: center;
@@ -5390,52 +5390,61 @@ body.dark-theme .contact-form-status--info {
         gap: 0.45rem;
     }
 
-    /* Three About Cards in One Single Row on Mobile */
+    /* About Information Cards 2 + 1 Grid Layout on Mobile */
     .about-info-grid {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         width: 100%;
-        gap: 0.65rem;
-        margin-top: 0.75rem;
+        gap: 0.75rem;
+        margin-top: 0.85rem;
         align-items: stretch;
     }
 
     .about-info-card {
-        padding: 0.85rem 0.65rem;
+        padding: 0.95rem 0.85rem;
         min-height: 0;
-        border-radius: 1rem;
+        border-radius: 1.1rem;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        gap: 0.35rem;
+        gap: 0.45rem;
+        text-align: center;
+    }
+
+    .about-info-card:nth-child(3),
+    .about-info-card:last-child {
+        grid-column: 1 / -1;
+        justify-self: center;
+        width: calc(50% - 0.375rem);
     }
 
     .about-card-header {
         display: flex;
         align-items: center;
-        gap: 0.35rem;
+        justify-content: center;
+        gap: 0.45rem;
         width: 100%;
     }
 
     .about-card-icon {
-        font-size: 1.25rem;
+        font-size: 1.3rem;
         flex-shrink: 0;
     }
 
     .about-card-title {
-        font-size: 0.82rem;
+        font-size: 0.88rem;
         font-weight: 700;
         line-height: 1.25;
     }
 
     .about-card-detail {
-        font-size: 0.72rem;
+        font-size: 0.76rem;
         line-height: 1.35;
         margin: 0;
     }
 
     .about-card-meta {
-        font-size: 0.68rem;
+        font-size: 0.72rem;
         padding-top: 0.15rem;
         margin-top: auto;
     }
@@ -5809,9 +5818,9 @@ body.dark-theme .contact-form-status--info {
     }
 
     .home-buttons--overlay .button {
-        padding: 1.05rem 1.15rem;
-        min-height: 3.15rem;
-        font-size: 0.92rem;
+        padding: 0.88rem 1.05rem;
+        min-height: 2.75rem;
+        font-size: 0.9rem;
     }
 
     .about-img-frame {
@@ -5840,24 +5849,31 @@ body.dark-theme .contact-form-status--info {
         text-align: center;
     }
 
-    /* Three About Cards in One Row (600px) */
+    /* About Cards 2 + 1 Layout (600px) */
     .about-info-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 0.55rem;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.7rem;
     }
 
     .about-info-card {
-        padding: 0.8rem 0.55rem;
-        border-radius: 0.95rem;
+        padding: 0.9rem 0.75rem;
+        border-radius: 1rem;
         text-align: center;
     }
 
+    .about-info-card:nth-child(3),
+    .about-info-card:last-child {
+        grid-column: 1 / -1;
+        justify-self: center;
+        width: calc(50% - 0.35rem);
+    }
+
     .about-card-title {
-        font-size: 0.8rem;
+        font-size: 0.84rem;
     }
 
     .about-card-detail {
-        font-size: 0.7rem;
+        font-size: 0.74rem;
     }
 
     .about-education-wrapper {
@@ -6182,9 +6198,9 @@ body.dark-theme .contact-form-status--info {
     }
 
     .home-buttons--overlay .button {
-        padding: 0.98rem 0.95rem;
-        min-height: 3rem;
-        font-size: 0.88rem;
+        padding: 0.82rem 0.92rem;
+        min-height: 2.65rem;
+        font-size: 0.86rem;
     }
 
     .feedback-deck {
@@ -6216,34 +6232,43 @@ body.dark-theme .contact-form-status--info {
     }
 
     .about-info-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 0.45rem;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.6rem;
     }
 
     .about-info-card {
-        padding: 0.75rem 0.45rem;
-        border-radius: 0.85rem;
+        padding: 0.85rem 0.65rem;
+        border-radius: 0.95rem;
+        text-align: center;
+    }
+
+    .about-info-card:nth-child(3),
+    .about-info-card:last-child {
+        grid-column: 1 / -1;
+        justify-self: center;
+        width: calc(50% - 0.3rem);
     }
 
     .about-card-header {
-        gap: 0.25rem;
+        gap: 0.35rem;
+        justify-content: center;
     }
 
     .about-card-icon {
-        font-size: 1.12rem;
+        font-size: 1.2rem;
     }
 
     .about-card-title {
-        font-size: 0.76rem;
+        font-size: 0.8rem;
     }
 
     .about-card-detail {
-        font-size: 0.68rem;
+        font-size: 0.72rem;
         line-height: 1.3;
     }
 
     .about-card-meta {
-        font-size: 0.64rem;
+        font-size: 0.68rem;
     }
 
     /* Education Stepper Compact Alignment */
@@ -6349,7 +6374,7 @@ body.dark-theme .contact-form-status--info {
     }
 
     .home-name {
-        font-size: clamp(1.35rem, 5.8vw, 1.55rem);
+        font-size: clamp(1.42rem, 6.4vw, 1.62rem);
         white-space: nowrap;
         max-width: 100%;
         text-align: center;
@@ -6372,9 +6397,9 @@ body.dark-theme .contact-form-status--info {
     }
 
     .home-buttons--overlay .button {
-        padding: 0.9rem 0.75rem;
-        min-height: 2.85rem;
-        font-size: 0.82rem;
+        padding: 0.75rem 0.75rem;
+        min-height: 2.5rem;
+        font-size: 0.8rem;
         gap: 0.35rem;
     }
 
@@ -6408,34 +6433,43 @@ body.dark-theme .contact-form-status--info {
     }
 
     .about-info-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 0.35rem;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.5rem;
     }
 
     .about-info-card {
-        padding: 0.65rem 0.35rem;
-        border-radius: 0.75rem;
+        padding: 0.8rem 0.55rem;
+        border-radius: 0.85rem;
+        text-align: center;
+    }
+
+    .about-info-card:nth-child(3),
+    .about-info-card:last-child {
+        grid-column: 1 / -1;
+        justify-self: center;
+        width: calc(50% - 0.25rem);
     }
 
     .about-card-header {
-        gap: 0.2rem;
+        gap: 0.3rem;
+        justify-content: center;
     }
 
     .about-card-icon {
-        font-size: 1.05rem;
+        font-size: 1.15rem;
     }
 
     .about-card-title {
-        font-size: 0.7rem;
+        font-size: 0.76rem;
     }
 
     .about-card-detail {
-        font-size: 0.62rem;
+        font-size: 0.68rem;
         line-height: 1.25;
     }
 
     .about-card-meta {
-        font-size: 0.58rem;
+        font-size: 0.64rem;
     }
 
     /* Education Stepper Extra Small */
