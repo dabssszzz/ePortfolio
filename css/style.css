@@ -4669,9 +4669,12 @@ body.dark-theme .contact-form-status--info {
     }
 }
 
-/* Standard Desktop (min-width: 968px) */
-@media screen and (min-width: 968px) {
-    /* Baseline desktop layout handled by core rules */
+/* Standard Desktop (min-width: 969px) */
+@media screen and (min-width: 969px) {
+    .home-content {
+        padding-left: clamp(1rem, 1.75vw, 2.25rem);
+        max-width: calc(630px + clamp(1rem, 1.75vw, 2.25rem));
+    }
 }
 
 /* Tablet & Desktop Navigation (min-width: 767px) */
@@ -4793,6 +4796,9 @@ body.dark-theme .contact-form-status--info {
     .home-content {
         width: 100%;
         max-width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: 0;
         padding-top: 0;
         padding-bottom: 0;
         margin-bottom: 0;
