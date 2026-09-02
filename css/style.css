@@ -4294,7 +4294,7 @@ body.dark-theme .lightbox-dot.active {
 @media screen and (min-width: 968px) {
     .contact-container {
         grid-template-columns: 1fr 1.15fr;
-        align-items: stretch;
+        align-items: start;
         gap: 2.25rem;
     }
 }
@@ -4314,9 +4314,7 @@ body.dark-theme .lightbox-dot.active {
 .contact-info {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
-    flex: 1;
-    justify-content: space-between;
+    gap: 0.85rem;
 }
 
 .contact-card {
