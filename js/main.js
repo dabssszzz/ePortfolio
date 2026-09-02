@@ -35,6 +35,16 @@ function setMenuState(isOpen) {
 
     navMenu.classList.toggle('show-menu', isOpen)
     navToggle.setAttribute('aria-expanded', String(isOpen))
+    const toggleIcon = navToggle.querySelector('i')
+    if (toggleIcon) {
+        if (isOpen) {
+            toggleIcon.classList.remove('ri-menu-4-line')
+            toggleIcon.classList.add('ri-close-line')
+        } else {
+            toggleIcon.classList.remove('ri-close-line')
+            toggleIcon.classList.add('ri-menu-4-line')
+        }
+    }
     if (isOpen) {
         setTimeout(updateIndicators, 50)
     }
@@ -64,6 +74,22 @@ if (navClose) {
         handleKeyboardToggle(event, () => setMenuState(false))
     })
 }
+
+// Close mobile menu on click outside or escape key
+document.addEventListener('click', event => {
+    if (navMenu && navMenu.classList.contains('show-menu')) {
+        if (!navMenu.contains(event.target) && !navToggle.contains(event.target)) {
+            setMenuState(false)
+        }
+    }
+})
+
+document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && navMenu && navMenu.classList.contains('show-menu')) {
+        setMenuState(false)
+        if (navToggle) navToggle.focus()
+    }
+})
 
 function setActiveLink(sectionId) {
     navLinks.forEach(link => {
@@ -752,7 +778,7 @@ const projectsData = [
     {
         title: "MATHtatag",
         category: "Capstone Project",
-        year: "2025–2026",
+        year: "2025",
         badge: "Android Application",
         icon: "ri-calculator-line",
         logo: "assets/projects/MATHtatag/MATHtatag Logo.jpeg",
@@ -880,7 +906,7 @@ const projectsData = [
     {
         title: "FuelWatch PH",
         category: "Technopreneurship Project",
-        year: "2025",
+        year: "2026",
         badge: "Web Application",
         icon: "ri-gas-station-line",
         logo: "assets/projects/FuelWatch PH/fuelwatch ph logo2.png",
@@ -1110,7 +1136,7 @@ const projectsData = [
     {
         title: "One Camohaguin",
         category: "Special Project",
-        year: "2025",
+        year: "2024",
         badge: "Android Application",
         icon: "ri-community-line",
         logo: "assets/projects/One Camohaguin/ONE CAMOHAGUIN LOGO.png",
@@ -1216,7 +1242,7 @@ const projectsData = [
     {
         title: "Isla Serenidad Beach Resort Reservation System",
         category: "Object-Oriented Programming Project",
-        year: "2025",
+        year: "2024",
         badge: "Reservation System",
         icon: "ri-hotel-bed-line",
         logo: "assets/projects/Isla Serenidad/ISLA SERENIDAD LOGO.png",
@@ -1327,7 +1353,7 @@ const projectsData = [
     {
         title: "User-Centric Redesign: Improving the Interface of Wikipedia",
         category: "Academic Activity",
-        year: "2025",
+        year: "2024",
         badge: "UI/UX Redesign",
         icon: "ri-book-read-line",
         logo: "assets/projects/Wikipedia/Wikipedia-logo-v2.svg.png",
@@ -1420,7 +1446,7 @@ const projectsData = [
     {
         title: "Usability and Aesthetics: The Drudge Report Redesign",
         category: "Academic Activity",
-        year: "2025",
+        year: "2024",
         badge: "UI/UX Redesign",
         icon: "ri-newspaper-line",
         logo: "assets/projects/Drudge Report/Drudge Report Logo.png",
@@ -1512,7 +1538,7 @@ const projectsData = [
     {
         title: "BayaniHealth Connect",
         category: "Academic Activity",
-        year: "2025",
+        year: "2024",
         badge: "UI/UX Design",
         icon: "ri-heart-pulse-line",
         logo: "assets/projects/BayaniHealth Connect/BayaniHealth Connect.png",
@@ -2683,3 +2709,265 @@ function initFeedbackDeck() {
 
 // Initialize feedback deck
 initFeedbackDeck()
+
+/*==================== CONTACT FORM VALIDATION & SUBMISSION ====================*/
+function initContactForm() {
+    const contactForm = document.getElementById('contact-form')
+    if (!contactForm) return
+
+    const nameInput = document.getElementById('contact-name')
+    const emailInput = document.getElementById('contact-email')
+    const subjectInput = document.getElementById('contact-subject')
+    const messageInput = document.getElementById('contact-message')
+    const gotchaInput = document.getElementById('contact-gotcha')
+    const submitBtn = document.getElementById('contact-submit-btn')
+    const statusBanner = document.getElementById('contact-form-status')
+
+    const nameError = document.getElementById('contact-name-error')
+    const emailError = document.getElementById('contact-email-error')
+    const subjectError = document.getElementById('contact-subject-error')
+    const messageError = document.getElementById('contact-message-error')
+
+    // Standard RFC 5322 compatible email format regex
+    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/
+
+    function setFieldError(input, errorEl, message) {
+        if (!input || !errorEl) return
+        input.classList.add('has-error')
+        input.setAttribute('aria-invalid', 'true')
+        errorEl.textContent = message
+        errorEl.classList.add('show')
+    }
+
+    function clearFieldError(input, errorEl) {
+        if (!input || !errorEl) return
+        input.classList.remove('has-error')
+        input.removeAttribute('aria-invalid')
+        errorEl.textContent = ''
+        errorEl.classList.remove('show')
+    }
+
+    function clearAllErrors() {
+        clearFieldError(nameInput, nameError)
+        clearFieldError(emailInput, emailError)
+        clearFieldError(subjectInput, subjectError)
+        clearFieldError(messageInput, messageError)
+    }
+
+    function showStatus(type, message) {
+        if (!statusBanner) return
+        statusBanner.className = `contact-form-status contact-form-status--${type} is-visible`
+        let iconHtml = ''
+        if (type === 'success') {
+            iconHtml = '<i class="ri-checkbox-circle-fill" style="font-size: 1.2rem; flex-shrink: 0;"></i>'
+        } else if (type === 'error') {
+            iconHtml = '<i class="ri-error-warning-fill" style="font-size: 1.2rem; flex-shrink: 0;"></i>'
+        } else {
+            iconHtml = '<i class="ri-information-fill" style="font-size: 1.2rem; flex-shrink: 0;"></i>'
+        }
+        statusBanner.innerHTML = `${iconHtml}<span>${message}</span>`
+    }
+
+    function hideStatus() {
+        if (!statusBanner) return
+        statusBanner.className = 'contact-form-status'
+        statusBanner.innerHTML = ''
+    }
+
+    function validateName() {
+        const value = nameInput ? nameInput.value.trim() : ''
+        if (!value) {
+            setFieldError(nameInput, nameError, 'Please enter your name.')
+            return false
+        }
+        if (value.length < 2) {
+            setFieldError(nameInput, nameError, 'Name must be at least 2 characters.')
+            return false
+        }
+        clearFieldError(nameInput, nameError)
+        return true
+    }
+
+    function validateEmail() {
+        const value = emailInput ? emailInput.value.trim() : ''
+        if (!value) {
+            setFieldError(emailInput, emailError, 'Please enter your email address.')
+            return false
+        }
+        if (!emailRegex.test(value)) {
+            setFieldError(emailInput, emailError, 'Please enter a valid email address (e.g. name@example.com).')
+            return false
+        }
+        clearFieldError(emailInput, emailError)
+        return true
+    }
+
+    function validateSubject() {
+        const value = subjectInput ? subjectInput.value.trim() : ''
+        if (!value) {
+            setFieldError(subjectInput, subjectError, 'Please enter a subject.')
+            return false
+        }
+        if (value.length < 2) {
+            setFieldError(subjectInput, subjectError, 'Subject must be at least 2 characters.')
+            return false
+        }
+        clearFieldError(subjectInput, subjectError)
+        return true
+    }
+
+    function validateMessage() {
+        const value = messageInput ? messageInput.value.trim() : ''
+        if (!value) {
+            setFieldError(messageInput, messageError, 'Please enter your message.')
+            return false
+        }
+        if (value.length < 5) {
+            setFieldError(messageInput, messageError, 'Message must be at least 5 characters.')
+            return false
+        }
+        clearFieldError(messageInput, messageError)
+        return true
+    }
+
+    // Live validation & error clearing on input
+    if (nameInput) {
+        nameInput.addEventListener('input', () => {
+            if (nameInput.classList.contains('has-error')) validateName()
+            hideStatus()
+        })
+        nameInput.addEventListener('blur', () => {
+            if (nameInput.value.trim()) validateName()
+        })
+    }
+
+    if (emailInput) {
+        emailInput.addEventListener('input', () => {
+            if (emailInput.classList.contains('has-error')) validateEmail()
+            hideStatus()
+        })
+        emailInput.addEventListener('blur', () => {
+            if (emailInput.value.trim()) validateEmail()
+        })
+    }
+
+    if (subjectInput) {
+        subjectInput.addEventListener('input', () => {
+            if (subjectInput.classList.contains('has-error')) validateSubject()
+            hideStatus()
+        })
+        subjectInput.addEventListener('blur', () => {
+            if (subjectInput.value.trim()) validateSubject()
+        })
+    }
+
+    if (messageInput) {
+        messageInput.addEventListener('input', () => {
+            if (messageInput.classList.contains('has-error')) validateMessage()
+            hideStatus()
+        })
+        messageInput.addEventListener('blur', () => {
+            if (messageInput.value.trim()) validateMessage()
+        })
+    }
+
+    contactForm.addEventListener('submit', async (event) => {
+        event.preventDefault()
+        hideStatus()
+
+        const isNameValid = validateName()
+        const isEmailValid = validateEmail()
+        const isSubjectValid = validateSubject()
+        const isMessageValid = validateMessage()
+
+        if (!isNameValid || !isEmailValid || !isSubjectValid || !isMessageValid) {
+            // Focus the first invalid field
+            if (!isNameValid && nameInput) {
+                nameInput.focus()
+            } else if (!isEmailValid && emailInput) {
+                emailInput.focus()
+            } else if (!isSubjectValid && subjectInput) {
+                subjectInput.focus()
+            } else if (!isMessageValid && messageInput) {
+                messageInput.focus()
+            }
+            return
+        }
+
+        const nameVal = nameInput.value.trim()
+        const emailVal = emailInput.value.trim()
+        const subjectVal = subjectInput.value.trim()
+        const messageVal = messageInput.value.trim()
+        const gotchaVal = gotchaInput ? gotchaInput.value.trim() : ''
+
+        // Set Loading State
+        if (submitBtn) {
+            submitBtn.disabled = true
+            submitBtn.classList.add('is-loading')
+            submitBtn.innerHTML = '<i class="ri-loader-4-line ri-spin button-icon" style="margin-left: 0; margin-right: 0.5rem;"></i><span>Sending...</span>'
+        }
+
+        // Determine API endpoint: prefer configured VITE_API_URL or local relative proxy /api/contact
+        const customAction = contactForm.getAttribute('action') ? contactForm.getAttribute('action').trim() : ''
+        let targetUrl = '/api/contact'
+
+        if (customAction && (customAction.startsWith('http://') || customAction.startsWith('https://'))) {
+            targetUrl = customAction
+        } else if (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_API_URL) {
+            targetUrl = `${import.meta.env.VITE_API_URL.replace(/\/$/, '')}/api/contact`
+        }
+
+        try {
+            const response = await fetch(targetUrl, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: nameVal,
+                    email: emailVal,
+                    subject: subjectVal,
+                    message: messageVal,
+                    _gotcha: gotchaVal
+                })
+            })
+
+            let data = {}
+            try {
+                data = await response.json()
+            } catch (e) {
+                data = {}
+            }
+
+            if (response.ok && data.success !== false) {
+                showStatus('success', 'Message sent successfully! Thank you for reaching out. I\'ll get back to you as soon as possible.')
+                contactForm.reset()
+                clearAllErrors()
+            } else if (response.status === 429) {
+                showStatus('error', 'Too many attempts. Please wait a moment before trying again.')
+            } else if (response.status === 400 && data.errors) {
+                // Highlight specific server validation errors if any
+                if (data.errors.name) setFieldError(nameInput, nameError, data.errors.name)
+                if (data.errors.email) setFieldError(emailInput, emailError, data.errors.email)
+                if (data.errors.subject) setFieldError(subjectInput, subjectError, data.errors.subject)
+                if (data.errors.message) setFieldError(messageInput, messageError, data.errors.message)
+                showStatus('error', data.message || 'Please correct the highlighted fields.')
+            } else {
+                showStatus('error', data.message || 'We couldn\'t send your message right now. Please try again later or reach out directly at engelbert17dm@gmail.com.')
+            }
+        } catch (error) {
+            console.error('[Form Submission Error]:', error)
+            showStatus('error', 'Unable to connect to the server. Please check your connection or reach out directly at engelbert17dm@gmail.com.')
+        } finally {
+            if (submitBtn) {
+                submitBtn.disabled = false
+                submitBtn.classList.remove('is-loading')
+                submitBtn.innerHTML = '<span class="btn-text">Send Message</span><i class="ri-send-plane-fill button-icon"></i>'
+            }
+        }
+    })
+}
+
+// Initialize Contact Form
+initContactForm()

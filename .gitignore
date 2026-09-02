@@ -3,6 +3,11 @@ dist
 .DS_Store
 .vite
 
+# Environment Secrets
+.env
+.env.local
+.env.*.local
+
 # Media & Video files (Large media hosted externally on YouTube)
 *.mp4
 *.mov

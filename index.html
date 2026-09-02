@@ -29,7 +29,10 @@
     <header class="header" id="header">
         <div class="container nav-container">
             <div class="nav-indicator-top" id="nav-indicator-top"></div>
-            <a href="#hero" class="logo">Engelbert.</a>
+            <a href="#hero" class="logo" aria-label="Engelbert R. Morales Portfolio">
+                <img src="assets/img/ERM eportfolio LOGO Dark Mode.png" alt="Engelbert R. Morales Logo" class="logo-img logo-img-dark" width="44" height="44">
+                <img src="assets/img/ERM eportfolio LOGO Light Mode.png" alt="Engelbert R. Morales Logo" class="logo-img logo-img-light" width="44" height="44">
+            </a>
 
             <nav class="nav-menu" id="nav-menu">
                 <ul class="nav-list">
@@ -654,7 +657,7 @@
                             <!-- Card Info & Interactive Action Area -->
                             <div class="projects-card-info">
                                 <div class="projects-card-meta">
-                                    <span class="projects-card-category">Capstone Project • 2025–2026</span>
+                                    <span class="projects-card-category">Capstone Project • 2025</span>
                                     <h3 class="projects-card-title">MATHtatag</h3>
                                 </div>
                                 <p class="projects-card-desc">
@@ -685,7 +688,7 @@
                             <!-- Card Info & Interactive Action Area -->
                             <div class="projects-card-info">
                                 <div class="projects-card-meta">
-                                    <span class="projects-card-category">Technopreneurship Project • 2025</span>
+                                    <span class="projects-card-category">Technopreneurship Project • 2026</span>
                                     <h3 class="projects-card-title">FuelWatch PH</h3>
                                 </div>
                                 <p class="projects-card-desc">
@@ -748,7 +751,7 @@
                             <!-- Card Info & Interactive Action Area -->
                             <div class="projects-card-info">
                                 <div class="projects-card-meta">
-                                    <span class="projects-card-category">Special Project • 2025</span>
+                                    <span class="projects-card-category">Special Project • 2024</span>
                                     <h3 class="projects-card-title">One Camohaguin</h3>
                                 </div>
                                 <p class="projects-card-desc">
@@ -780,8 +783,7 @@
                             <!-- Card Info & Interactive Action Area -->
                             <div class="projects-card-info">
                                 <div class="projects-card-meta">
-                                    <span class="projects-card-category">Object-Oriented Programming Project •
-                                        2025</span>
+                                    <span class="projects-card-category">Object-Oriented Programming Project • 2024</span>
                                     <h3 class="projects-card-title">Isla Serenidad</h3>
                                 </div>
                                 <p class="projects-card-desc">
@@ -814,7 +816,7 @@
                             <!-- Card Info & Interactive Action Area -->
                             <div class="projects-card-info">
                                 <div class="projects-card-meta">
-                                    <span class="projects-card-category">Academic Activity • 2025</span>
+                                    <span class="projects-card-category">Academic Activity • 2024</span>
                                     <h3 class="projects-card-title">Wikipedia Redesign</h3>
                                 </div>
                                 <p class="projects-card-desc">
@@ -847,7 +849,7 @@
                             <!-- Card Info & Interactive Action Area -->
                             <div class="projects-card-info">
                                 <div class="projects-card-meta">
-                                    <span class="projects-card-category">Academic Activity • 2025</span>
+                                    <span class="projects-card-category">Academic Activity • 2024</span>
                                     <h3 class="projects-card-title">Drudge Report Redesign</h3>
                                 </div>
                                 <p class="projects-card-desc">
@@ -878,7 +880,7 @@
                             <!-- Card Info & Interactive Action Area -->
                             <div class="projects-card-info">
                                 <div class="projects-card-meta">
-                                    <span class="projects-card-category">Academic Activity • 2025</span>
+                                    <span class="projects-card-category">Academic Activity • 2024</span>
                                     <h3 class="projects-card-title">BayaniHealth Connect</h3>
                                 </div>
                                 <p class="projects-card-desc">
@@ -2248,36 +2250,59 @@
                 <div class="contact-content reveal-on-scroll reveal-delay-2">
                     <h3 class="contact-title">Send a Message</h3>
 
-                    <form action="" class="contact-form">
+                    <form action="" class="contact-form" id="contact-form" novalidate>
+                        <!-- Honeypot Field for Spam Protection (Hidden from real users) -->
+                        <div style="display: none !important;" aria-hidden="true">
+                            <label for="contact-gotcha">Leave this field blank</label>
+                            <input type="text" id="contact-gotcha" name="_gotcha" tabindex="-1" autocomplete="off">
+                        </div>
+
                         <div class="contact-form-group">
-                            <label class="contact-form-label" for="contact-name">Your Name</label>
+                            <label class="contact-form-label" for="contact-name">Your Name <span class="required-mark" aria-hidden="true">*</span></label>
                             <div class="contact-input-wrapper">
                                 <i class="ri-user-line contact-input-icon"></i>
-                                <input type="text" id="contact-name" placeholder="John Doe" class="contact-form-input"
-                                    required>
+                                <input type="text" id="contact-name" name="name" placeholder="John Doe" class="contact-form-input"
+                                    required autocomplete="name" aria-required="true" aria-describedby="contact-name-error" maxlength="100">
                             </div>
+                            <span class="contact-field-error" id="contact-name-error" aria-live="polite"></span>
                         </div>
 
                         <div class="contact-form-group">
-                            <label class="contact-form-label" for="contact-email">Your Email</label>
+                            <label class="contact-form-label" for="contact-email">Your Email <span class="required-mark" aria-hidden="true">*</span></label>
                             <div class="contact-input-wrapper">
                                 <i class="ri-mail-line contact-input-icon"></i>
-                                <input type="email" id="contact-email" placeholder="john@example.com"
-                                    class="contact-form-input" required>
+                                <input type="email" id="contact-email" name="email" placeholder="john@example.com"
+                                    class="contact-form-input" required autocomplete="email" aria-required="true" aria-describedby="contact-email-error" maxlength="150">
                             </div>
+                            <span class="contact-field-error" id="contact-email-error" aria-live="polite"></span>
                         </div>
 
                         <div class="contact-form-group">
-                            <label class="contact-form-label" for="contact-message">Your Message</label>
+                            <label class="contact-form-label" for="contact-subject">Subject <span class="required-mark" aria-hidden="true">*</span></label>
                             <div class="contact-input-wrapper">
-                                <textarea id="contact-message" cols="30" rows="4"
-                                    placeholder="Write your message here..."
-                                    class="contact-form-input contact-form-area" required></textarea>
+                                <i class="ri-chat-1-line contact-input-icon"></i>
+                                <input type="text" id="contact-subject" name="subject" placeholder="Project Inquiry / Discussion"
+                                    class="contact-form-input" required autocomplete="off" aria-required="true" aria-describedby="contact-subject-error" maxlength="150">
                             </div>
+                            <span class="contact-field-error" id="contact-subject-error" aria-live="polite"></span>
                         </div>
 
-                        <button type="submit" class="button contact-submit-btn">
-                            Send Message <i class="ri-send-plane-fill button-icon"></i>
+                        <div class="contact-form-group">
+                            <label class="contact-form-label" for="contact-message">Your Message <span class="required-mark" aria-hidden="true">*</span></label>
+                            <div class="contact-input-wrapper">
+                                <textarea id="contact-message" name="message" cols="30" rows="4"
+                                    placeholder="Write your message here..."
+                                    class="contact-form-input contact-form-area" required aria-required="true" aria-describedby="contact-message-error" maxlength="5000"></textarea>
+                            </div>
+                            <span class="contact-field-error" id="contact-message-error" aria-live="polite"></span>
+                        </div>
+
+                        <!-- Status Notification Banner -->
+                        <div class="contact-form-status" id="contact-form-status" role="status" aria-live="polite"></div>
+
+                        <button type="submit" class="button contact-submit-btn" id="contact-submit-btn">
+                            <span class="btn-text">Send Message</span>
+                            <i class="ri-send-plane-fill button-icon"></i>
                         </button>
                     </form>
                 </div>
