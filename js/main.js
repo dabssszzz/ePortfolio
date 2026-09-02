@@ -301,6 +301,16 @@ const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color
 // Current theme helper
 const getCurrentTheme = () => document.body.classList.contains(darkThemeClass) ? 'dark' : 'light'
 
+// Favicon theme helper
+const updateFavicon = (theme) => {
+    const favicon = document.getElementById('favicon')
+    if (favicon) {
+        favicon.href = theme === 'dark'
+            ? 'assets/img/ERM eportfolio LOGO Dark Mode.png'
+            : 'assets/img/ERM eportfolio LOGO Light Mode.png'
+    }
+}
+
 // Initialize Theme based on saved selection or system setting
 if (selectedTheme === 'dark' || (!selectedTheme && systemPrefersDark)) {
     document.body.classList.add(darkThemeClass)
@@ -308,12 +318,14 @@ if (selectedTheme === 'dark' || (!selectedTheme && systemPrefersDark)) {
         themeIcon.classList.remove(iconMoon)
         themeIcon.classList.add(iconSun)
     }
+    updateFavicon('dark')
 } else {
     document.body.classList.remove(darkThemeClass)
     if (themeIcon) {
         themeIcon.classList.remove(iconSun)
         themeIcon.classList.add(iconMoon)
     }
+    updateFavicon('light')
 }
 
 // Toggle Theme on Button Click
@@ -326,6 +338,8 @@ if (themeButton) {
             themeIcon.classList.toggle(iconSun, isDark)
             themeIcon.classList.toggle(iconMoon, !isDark)
         }
+
+        updateFavicon(isDark ? 'dark' : 'light')
 
         // Save preference to localStorage
         localStorage.setItem('selected-theme', getCurrentTheme())
