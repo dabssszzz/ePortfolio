@@ -790,8 +790,9 @@ body.dark-theme .home-img {
 }
 
 .home-buttons--overlay .button {
-    padding: 1.15rem 2.4rem;
-    min-width: 185px;
+    padding: 1.35rem 2.5rem;
+    min-height: 3.5rem;
+    min-width: 195px;
     border-radius: 2rem;
     font-size: var(--normal-font-size);
     font-weight: var(--font-medium);
@@ -805,7 +806,11 @@ body.dark-theme .home-img {
     white-space: nowrap;
     cursor: pointer;
     text-align: center;
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
+    gap: 0.5rem;
+    line-height: 1;
 }
 
 .home-buttons--overlay .button:hover {
@@ -815,8 +820,9 @@ body.dark-theme .home-img {
 }
 
 .home-buttons--overlay .button--ghost {
-    padding: 1.15rem 2.4rem;
-    min-width: 185px;
+    padding: 1.35rem 2.5rem;
+    min-height: 3.5rem;
+    min-width: 195px;
     border-radius: 2rem;
     font-size: var(--normal-font-size);
     font-weight: var(--font-medium);
@@ -830,7 +836,19 @@ body.dark-theme .home-img {
     white-space: nowrap;
     cursor: pointer;
     text-align: center;
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
+    gap: 0.5rem;
+    line-height: 1;
+}
+
+.home-buttons--overlay .button-icon {
+    margin-left: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
 }
 
 .home-buttons--overlay .button--ghost:hover {
@@ -4760,7 +4778,7 @@ body.dark-theme .contact-form-status--info {
         min-height: auto;
         max-height: none;
         overflow: hidden;
-        padding: calc(var(--header-height) + 1.25rem) 0 0;
+        padding: calc(var(--header-height) + clamp(2rem, 5vw, 3rem)) 0 0;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -4802,23 +4820,27 @@ body.dark-theme .contact-form-status--info {
         margin-bottom: 0;
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        text-align: left;
+        align-items: center;
+        text-align: center;
     }
 
     .home-badge {
         font-size: 0.82rem;
-        padding: 0.38rem 0.95rem;
-        margin-bottom: 0.85rem;
+        padding: 0.42rem 1.05rem;
+        margin-bottom: 1.25rem;
         display: inline-flex;
         align-items: center;
+        justify-content: center;
+        align-self: center;
         gap: 0.45rem;
     }
 
     .home-title {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
+        text-align: center;
+        width: 100%;
         margin-top: 0;
         margin-bottom: 0.35rem;
         gap: 0.15rem;
@@ -4830,6 +4852,7 @@ body.dark-theme .contact-form-status--info {
         color: var(--text-color-light);
         margin-bottom: 0.15rem;
         display: block;
+        text-align: center;
     }
 
     body.dark-theme .home-greeting {
@@ -4838,12 +4861,15 @@ body.dark-theme .contact-form-status--info {
 
     .home-name {
         display: inline-block;
-        max-width: 9ch;
-        font-size: clamp(2.65rem, 11vw, 3.4rem);
+        width: 100%;
+        max-width: 100%;
+        white-space: nowrap;
+        font-size: clamp(1.45rem, 6.2vw, 2.35rem);
         font-weight: 800;
-        line-height: 1.05;
+        line-height: 1.15;
         letter-spacing: -0.025em;
-        margin: 0;
+        margin: 0 auto;
+        text-align: center;
     }
 
     body.dark-theme .home-name {
@@ -4861,6 +4887,7 @@ body.dark-theme .contact-form-status--info {
         margin-top: 0.45rem;
         margin-bottom: 0.85rem;
         line-height: 1.35;
+        text-align: center;
     }
 
     body.dark-theme .home-subtitle {
@@ -4871,8 +4898,11 @@ body.dark-theme .contact-form-status--info {
         font-size: clamp(0.9rem, 3.5vw, 0.98rem);
         line-height: 1.6;
         color: var(--text-color);
-        max-width: 100%;
+        max-width: 480px;
+        margin-left: auto;
+        margin-right: auto;
         margin-bottom: 0;
+        text-align: center;
     }
 
     body.dark-theme .home-description {
@@ -4884,6 +4914,8 @@ body.dark-theme .contact-form-status--info {
         max-width: 100%;
         margin-top: 1.35rem;
         margin-bottom: 0.5rem;
+        display: flex;
+        justify-content: center;
     }
 
     .feedback-deck {
@@ -4987,23 +5019,33 @@ body.dark-theme .contact-form-status--info {
         justify-content: center;
         gap: 0.75rem;
         width: calc(100% - 2rem);
-        max-width: 380px;
+        max-width: 390px;
         margin: 0;
     }
 
     .home-buttons--overlay .button {
         flex: 1 1 0;
         min-width: 0;
-        padding: 0.95rem 1.15rem;
+        padding: 1.15rem 1.25rem;
+        min-height: 3.25rem;
         border-radius: 2rem;
-        font-size: 0.92rem;
+        font-size: 0.95rem;
         font-weight: 600;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        gap: 0.4rem;
+        gap: 0.45rem;
+        line-height: 1;
         white-space: nowrap;
         box-sizing: border-box;
+    }
+
+    .home-buttons--overlay .button-icon {
+        margin-left: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
     }
 
     .home-buttons--overlay .button:not(.button--ghost) {
@@ -5052,6 +5094,7 @@ body.dark-theme .contact-form-status--info {
         align-items: center;
         justify-content: flex-start;
         gap: 1.25rem;
+        text-align: center;
     }
 
     .about-profile-col .about-buttons {
@@ -5062,6 +5105,16 @@ body.dark-theme .contact-form-status--info {
     .about-content-col {
         justify-content: flex-start;
         gap: 1.35rem;
+        align-items: center;
+        text-align: center;
+    }
+
+    .about-headline {
+        text-align: center;
+    }
+
+    .about-description {
+        text-align: center;
     }
 
     .about-img-frame {
@@ -5072,6 +5125,15 @@ body.dark-theme .contact-form-status--info {
         grid-template-columns: repeat(3, 1fr);
         gap: 1.15rem;
         margin-top: 0.5rem;
+        width: 100%;
+    }
+
+    .about-info-card {
+        text-align: center;
+    }
+
+    .about-card-header {
+        justify-content: center;
     }
 
     /* Technical Skills */
@@ -5633,12 +5695,16 @@ body.dark-theme .contact-form-status--info {
     .experience-description {
         font-size: 0.94rem;
         line-height: 1.62;
+        text-align: justify;
+        text-justify: inter-word;
     }
 
     .experience-list li {
         font-size: 0.92rem;
         line-height: 1.58;
         column-gap: 0.6rem;
+        text-align: justify;
+        text-justify: inter-word;
     }
 
     .experience-tags {
@@ -5718,7 +5784,7 @@ body.dark-theme .contact-form-status--info {
     /* Home / Hero Section Mobile */
     .home,
     .home.section {
-        padding: calc(var(--header-height) + 1.25rem) 0 0;
+        padding: calc(var(--header-height) + clamp(2rem, 5vw, 2.75rem)) 0 0;
     }
 
     .home-container {
@@ -5743,8 +5809,9 @@ body.dark-theme .contact-form-status--info {
     }
 
     .home-buttons--overlay .button {
-        padding: 0.9rem 1rem;
-        font-size: 0.9rem;
+        padding: 1.05rem 1.15rem;
+        min-height: 3.15rem;
+        font-size: 0.92rem;
     }
 
     .about-img-frame {
@@ -5764,11 +5831,13 @@ body.dark-theme .contact-form-status--info {
     .about-headline {
         font-size: 1.25rem;
         text-wrap: balance;
+        text-align: center;
     }
 
     .about-description {
         font-size: 0.95rem;
         line-height: 1.7;
+        text-align: center;
     }
 
     /* Three About Cards in One Row (600px) */
@@ -5780,6 +5849,7 @@ body.dark-theme .contact-form-status--info {
     .about-info-card {
         padding: 0.8rem 0.55rem;
         border-radius: 0.95rem;
+        text-align: center;
     }
 
     .about-card-title {
@@ -6093,11 +6163,7 @@ body.dark-theme .contact-form-status--info {
     /* Hero */
     .home,
     .home.section {
-        padding: calc(var(--header-height) + 1rem) 0 0;
-    }
-
-    .home-name {
-        font-size: clamp(2.45rem, 11vw, 2.95rem);
+        padding: calc(var(--header-height) + 1.85rem) 0 0;
     }
 
     .home-image-wrapper {
@@ -6116,8 +6182,9 @@ body.dark-theme .contact-form-status--info {
     }
 
     .home-buttons--overlay .button {
-        padding: 0.85rem 0.85rem;
-        font-size: 0.86rem;
+        padding: 0.98rem 0.95rem;
+        min-height: 3rem;
+        font-size: 0.88rem;
     }
 
     .feedback-deck {
@@ -6277,11 +6344,16 @@ body.dark-theme .contact-form-status--info {
 
     .home-title {
         font-size: 1.5rem;
+        align-items: center;
+        text-align: center;
     }
 
     .home-name {
-        font-size: 2.25rem;
-        max-width: 9ch;
+        font-size: clamp(1.35rem, 5.8vw, 1.55rem);
+        white-space: nowrap;
+        max-width: 100%;
+        text-align: center;
+        margin: 0 auto;
     }
 
     .home-image-wrapper {
@@ -6300,9 +6372,10 @@ body.dark-theme .contact-form-status--info {
     }
 
     .home-buttons--overlay .button {
-        padding: 0.75rem 0.65rem;
-        font-size: 0.78rem;
-        gap: 0.25rem;
+        padding: 0.9rem 0.75rem;
+        min-height: 2.85rem;
+        font-size: 0.82rem;
+        gap: 0.35rem;
     }
 
     .home-buttons--overlay .button-icon {
