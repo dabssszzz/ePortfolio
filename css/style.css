@@ -5414,8 +5414,7 @@ body.dark-theme .contact-form-status--info {
     .about-info-card:nth-child(3),
     .about-info-card:last-child {
         grid-column: 1 / -1;
-        justify-self: center;
-        width: calc(50% - 0.375rem);
+        width: 100%;
     }
 
     .about-card-header {
@@ -5864,8 +5863,7 @@ body.dark-theme .contact-form-status--info {
     .about-info-card:nth-child(3),
     .about-info-card:last-child {
         grid-column: 1 / -1;
-        justify-self: center;
-        width: calc(50% - 0.35rem);
+        width: 100%;
     }
 
     .about-card-title {
@@ -6245,8 +6243,7 @@ body.dark-theme .contact-form-status--info {
     .about-info-card:nth-child(3),
     .about-info-card:last-child {
         grid-column: 1 / -1;
-        justify-self: center;
-        width: calc(50% - 0.3rem);
+        width: 100%;
     }
 
     .about-card-header {
@@ -6446,8 +6443,7 @@ body.dark-theme .contact-form-status--info {
     .about-info-card:nth-child(3),
     .about-info-card:last-child {
         grid-column: 1 / -1;
-        justify-self: center;
-        width: calc(50% - 0.25rem);
+        width: 100%;
     }
 
     .about-card-header {
