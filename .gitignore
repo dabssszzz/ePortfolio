@@ -16,4 +16,5 @@ dist
 *.mkv
 
 # Project Documents & Manuscripts (Hosted externally on Drive)
+public/assets/projects/**/*.pdf
 assets/projects/**/*.pdf
