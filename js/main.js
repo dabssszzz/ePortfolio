@@ -3092,118 +3092,263 @@ function initContactForm() {
 // Initialize Contact Form
 initContactForm()
 
-/*==================== INTERACTIVE DOTTED CURSOR TRAIL ====================*/
-function initCursorTrail() {
-    // Only initialize on desktop/devices with a fine pointer and no reduced motion preference
-    if (!window.matchMedia('(pointer: fine)').matches || prefersReducedMotion.matches) return
+/*==================== INTERACTIVE DOTTED GRID CANVAS ====================*/
+function initDottedGridCanvas() {
+    const canvas = document.getElementById('bg-grid-canvas')
+    if (!canvas) return
 
-    const DOT_CONFIGS = [
-        { size: 7.5, alpha: 0.92, lerp: 0.44, isLead: true },
-        { size: 6.2, alpha: 0.80, lerp: 0.36 },
-        { size: 5.2, alpha: 0.68, lerp: 0.30 },
-        { size: 4.2, alpha: 0.55, lerp: 0.25 },
-        { size: 3.4, alpha: 0.42, lerp: 0.20 },
-        { size: 2.6, alpha: 0.30, lerp: 0.16 },
-        { size: 2.0, alpha: 0.20, lerp: 0.12 }
-    ]
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
 
-    const container = document.createElement('div')
-    container.className = 'cursor-trail-container'
-    container.id = 'cursor-trail-container'
-    container.setAttribute('aria-hidden', 'true')
+    let width = 0
+    let height = 0
+    let dpr = 1
+    let dots = []
 
-    const dots = DOT_CONFIGS.map((cfg) => {
-        const el = document.createElement('div')
-        el.className = `cursor-dot ${cfg.isLead ? 'cursor-dot-lead' : ''}`
-        el.style.width = `${cfg.size}px`
-        el.style.height = `${cfg.size}px`
-        el.style.opacity = `${cfg.alpha}`
-        container.appendChild(el)
+    const GRID_SPACING = 32
+    const BASE_DOT_RADIUS = 1.15
+    const INFLUENCE_RADIUS = 135
+    const MAX_PULL = 8.5
+    const SPRING_TENSION = 0.09
+    const DAMPING = 0.80
 
-        return {
-            el,
-            x: -100,
-            y: -100,
-            size: cfg.size,
-            lerp: cfg.lerp
-        }
-    })
+    const mouse = {
+        x: -9999,
+        y: -9999,
+        targetX: -9999,
+        targetY: -9999,
+        active: false
+    }
 
-    document.body.appendChild(container)
-
-    let targetX = -100
-    let targetY = -100
     let isLoopRunning = false
-    let hasMoved = false
+    let resizeTimeout = null
 
-    function renderTrail() {
-        let totalDelta = 0
+    // Theme color palettes
+    const getColors = () => {
+        const isDark = document.body.classList.contains('dark-theme')
+        if (isDark) {
+            return {
+                baseR: 148, baseG: 163, baseB: 184, baseA: 0.16,
+                activeR: 96, activeG: 165, activeB: 250, activeA: 0.65
+            }
+        } else {
+            return {
+                baseR: 0, baseG: 85, baseB: 255, baseA: 0.14,
+                activeR: 0, activeG: 102, activeB: 255, activeA: 0.55
+            }
+        }
+    }
 
-        // Lead dot follows target cursor
-        const lead = dots[0]
-        const dx0 = targetX - lead.x
-        const dy0 = targetY - lead.y
-        lead.x += dx0 * lead.lerp
-        lead.y += dy0 * lead.lerp
-        totalDelta += Math.abs(dx0) + Math.abs(dy0)
-        lead.el.style.transform = `translate3d(${(lead.x - lead.size / 2).toFixed(1)}px, ${(lead.y - lead.size / 2).toFixed(1)}px, 0)`
+    function buildGrid() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2)
+        width = window.innerWidth
+        height = window.innerHeight
 
-        // Subsequent dots follow the dot in front of them
-        for (let i = 1; i < dots.length; i++) {
-            const prev = dots[i - 1]
-            const curr = dots[i]
-            const dx = prev.x - curr.x
-            const dy = prev.y - curr.y
-            curr.x += dx * curr.lerp
-            curr.y += dy * curr.lerp
-            totalDelta += Math.abs(dx) + Math.abs(dy)
-            curr.el.style.transform = `translate3d(${(curr.x - curr.size / 2).toFixed(1)}px, ${(curr.y - curr.size / 2).toFixed(1)}px, 0)`
+        canvas.width = Math.round(width * dpr)
+        canvas.height = Math.round(height * dpr)
+        canvas.style.width = `${width}px`
+        canvas.style.height = `${height}px`
+
+        ctx.setTransform(1, 0, 0, 1, 0, 0)
+        ctx.scale(dpr, dpr)
+
+        const cols = Math.ceil(width / GRID_SPACING) + 2
+        const rows = Math.ceil(height / GRID_SPACING) + 2
+        const offsetX = (width - (cols - 1) * GRID_SPACING) / 2
+        const offsetY = (height - (rows - 1) * GRID_SPACING) / 2
+
+        dots = []
+        for (let r = 0; r < rows; r++) {
+            for (let c = 0; c < cols; c++) {
+                const baseX = Math.round(offsetX + c * GRID_SPACING)
+                const baseY = Math.round(offsetY + r * GRID_SPACING)
+                dots.push({
+                    baseX,
+                    baseY,
+                    x: baseX,
+                    y: baseY,
+                    vx: 0,
+                    vy: 0,
+                    targetX: baseX,
+                    targetY: baseY,
+                    scale: 1,
+                    alpha: 0
+                })
+            }
         }
 
-        // Continue rAF loop if still settling, otherwise sleep to consume 0% idle CPU
-        if (totalDelta > 0.15) {
-            requestAnimationFrame(renderTrail)
+        renderFrame(true)
+    }
+
+    function startLoop() {
+        if (!isLoopRunning) {
+            isLoopRunning = true
+            requestAnimationFrame(updateAndDraw)
+        }
+    }
+
+    function updateAndDraw() {
+        // Smoothly interpolate mouse position for extra fluid tracking
+        if (mouse.active) {
+            mouse.x += (mouse.targetX - mouse.x) * 0.28
+            mouse.y += (mouse.targetY - mouse.y) * 0.28
+        }
+
+        const colors = getColors()
+        let hasActiveMotion = false
+
+        ctx.clearRect(0, 0, width, height)
+
+        const mouseX = mouse.x
+        const mouseY = mouse.y
+        const isMouseActive = mouse.active
+
+        for (let i = 0; i < dots.length; i++) {
+            const dot = dots[i]
+
+            // Calculate magnetic influence if mouse is active
+            if (isMouseActive) {
+                const dx = mouseX - dot.baseX
+                const dy = mouseY - dot.baseY
+                const distSq = dx * dx + dy * dy
+
+                if (distSq < INFLUENCE_RADIUS * INFLUENCE_RADIUS) {
+                    const dist = Math.sqrt(distSq)
+                    const normalized = 1 - (dist / INFLUENCE_RADIUS)
+                    // Smooth Hermite S-curve falloff
+                    const influence = normalized * normalized * (3 - 2 * normalized)
+
+                    // Soft magnetic pull toward cursor
+                    const pull = influence * MAX_PULL
+                    dot.targetX = dot.baseX + (dist > 0.001 ? (dx / dist) * pull : 0)
+                    dot.targetY = dot.baseY + (dist > 0.001 ? (dy / dist) * pull : 0)
+                    dot.targetScale = 1 + influence * 0.65
+                    dot.targetAlphaBoost = influence
+                } else {
+                    dot.targetX = dot.baseX
+                    dot.targetY = dot.baseY
+                    dot.targetScale = 1
+                    dot.targetAlphaBoost = 0
+                }
+            } else {
+                dot.targetX = dot.baseX
+                dot.targetY = dot.baseY
+                dot.targetScale = 1
+                dot.targetAlphaBoost = 0
+            }
+
+            // Spring physics integration
+            const ax = (dot.targetX - dot.x) * SPRING_TENSION
+            const ay = (dot.targetY - dot.y) * SPRING_TENSION
+            dot.vx = (dot.vx + ax) * DAMPING
+            dot.vy = (dot.vy + ay) * DAMPING
+            dot.x += dot.vx
+            dot.y += dot.vy
+
+            // Interpolate scale and alpha
+            dot.scale += ((dot.targetScale || 1) - dot.scale) * 0.15
+            dot.alpha += ((dot.targetAlphaBoost || 0) - dot.alpha) * 0.15
+
+            // Check if still moving
+            const isMoving = Math.abs(dot.vx) > 0.008 ||
+                             Math.abs(dot.vy) > 0.008 ||
+                             Math.abs(dot.x - dot.baseX) > 0.05 ||
+                             Math.abs(dot.y - dot.baseY) > 0.05 ||
+                             dot.alpha > 0.01
+
+            if (isMoving) {
+                hasActiveMotion = true
+            }
+
+            // Compute visual attributes
+            const radius = BASE_DOT_RADIUS * dot.scale
+            const alphaWeight = Math.min(Math.max(dot.alpha, 0), 1)
+
+            const r = Math.round(colors.baseR + (colors.activeR - colors.baseR) * alphaWeight)
+            const g = Math.round(colors.baseG + (colors.activeG - colors.baseG) * alphaWeight)
+            const b = Math.round(colors.baseB + (colors.activeB - colors.baseB) * alphaWeight)
+            const a = colors.baseA + (colors.activeA - colors.baseA) * alphaWeight
+
+            ctx.beginPath()
+            ctx.arc(dot.x, dot.y, radius, 0, Math.PI * 2)
+            ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${a.toFixed(3)})`
+            ctx.fill()
+        }
+
+        // Keep loop running if mouse is active or dots are settling
+        if (isMouseActive || hasActiveMotion) {
+            requestAnimationFrame(updateAndDraw)
         } else {
+            // Render final clean static state and pause loop to preserve 0% CPU
+            renderFrame(true)
             isLoopRunning = false
         }
     }
 
-    function onMouseMove(e) {
-        targetX = e.clientX
-        targetY = e.clientY
+    function renderFrame(isStaticClean = false) {
+        const colors = getColors()
+        ctx.clearRect(0, 0, width, height)
 
-        if (!hasMoved) {
-            hasMoved = true
-            // Snap all dots to initial cursor position so trail doesn't fly in from off-screen
-            dots.forEach(d => {
-                d.x = targetX
-                d.y = targetY
-            })
-            container.classList.add('is-visible')
-        }
-
-        // Interactive hover state check on clickable elements
-        const isHover = Boolean(e.target && e.target.closest('a, button, input, textarea, [role="button"], .button, .projects-card, .cert-gallery-card, .skills-content, .feedback-card, .logo'))
-        container.classList.toggle('is-hovering', isHover)
-
-        if (!isLoopRunning) {
-            isLoopRunning = true
-            requestAnimationFrame(renderTrail)
+        ctx.fillStyle = `rgba(${colors.baseR}, ${colors.baseG}, ${colors.baseB}, ${colors.baseA})`
+        for (let i = 0; i < dots.length; i++) {
+            const dot = dots[i]
+            if (isStaticClean) {
+                dot.x = dot.baseX
+                dot.y = dot.baseY
+                dot.vx = 0
+                dot.vy = 0
+                dot.scale = 1
+                dot.alpha = 0
+            }
+            ctx.beginPath()
+            ctx.arc(dot.x, dot.y, BASE_DOT_RADIUS * dot.scale, 0, Math.PI * 2)
+            ctx.fill()
         }
     }
 
-    window.addEventListener('mousemove', onMouseMove, { passive: true })
+    // Pointer events on desktop
+    window.addEventListener('pointermove', (e) => {
+        // Only track real mouse/pen pointers (ignore touch to prevent mobile conflict)
+        if (e.pointerType === 'touch') return
 
-    document.addEventListener('mouseleave', () => {
-        container.classList.remove('is-visible')
-    })
-
-    document.addEventListener('mouseenter', () => {
-        if (hasMoved) {
-            container.classList.add('is-visible')
+        mouse.targetX = e.clientX
+        mouse.targetY = e.clientY
+        if (!mouse.active) {
+            mouse.x = e.clientX
+            mouse.y = e.clientY
+            mouse.active = true
         }
-    })
+        startLoop()
+    }, { passive: true })
+
+    window.addEventListener('pointerleave', () => {
+        mouse.active = false
+        startLoop()
+    }, { passive: true })
+
+    window.addEventListener('blur', () => {
+        mouse.active = false
+        startLoop()
+    }, { passive: true })
+
+    // Theme changes re-render colors
+    if (themeButton) {
+        themeButton.addEventListener('click', () => {
+            setTimeout(() => {
+                if (!isLoopRunning) renderFrame(true)
+            }, 50)
+        })
+    }
+
+    // Debounced window resize
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout)
+        resizeTimeout = setTimeout(buildGrid, 100)
+    }, { passive: true })
+
+    // Initialize
+    buildGrid()
 }
 
-// Initialize Cursor Trail
-initCursorTrail()
+// Initialize Interactive Dotted Grid Canvas
+initDottedGridCanvas()

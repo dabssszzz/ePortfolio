@@ -160,6 +160,23 @@ body {
     position: relative;
 }
 
+/*=============== INTERACTIVE DOTTED GRID CANVAS BACKGROUND ===============*/
+.bg-grid-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.85;
+    transition: opacity .35s ease;
+}
+
+body.dark-theme .bg-grid-canvas {
+    opacity: 0.75;
+}
+
 
 h1,
 h2,
@@ -6543,76 +6560,6 @@ body.dark-theme .contact-form-status--info {
 
     .projects-card-title {
         font-size: 1.05rem;
-    }
-}
-
-/* ==========================================================================
-   INTERACTIVE DOTTED CURSOR TRAIL
-   ========================================================================== */
-.cursor-trail-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-    z-index: 99999;
-    overflow: hidden;
-    opacity: 0;
-    transition: opacity 0.35s ease;
-}
-
-.cursor-trail-container.is-visible {
-    opacity: 1;
-}
-
-.cursor-dot {
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-radius: 50%;
-    pointer-events: none;
-    will-change: transform;
-    background: #0055ff;
-    box-shadow: 0 0 6px rgba(0, 85, 255, 0.45);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Light Mode Dot Colors */
-body:not(.dark-theme) .cursor-dot {
-    background: #0062ff;
-    box-shadow: 0 0 6px rgba(0, 98, 255, 0.4);
-}
-
-body:not(.dark-theme) .cursor-dot-lead {
-    background: #0055ff;
-    box-shadow: 0 0 8px rgba(0, 85, 255, 0.55), 0 0 2px rgba(255, 255, 255, 0.8);
-}
-
-/* Dark Mode Dot Colors */
-body.dark-theme .cursor-dot {
-    background: #38bdf8;
-    box-shadow: 0 0 8px rgba(56, 189, 248, 0.6), 0 0 3px rgba(0, 102, 255, 0.7);
-}
-
-body.dark-theme .cursor-dot-lead {
-    background: #60a5fa;
-    box-shadow: 0 0 12px rgba(96, 165, 250, 0.8), 0 0 4px rgba(255, 255, 255, 0.9);
-}
-
-/* Hover State on Interactive Elements */
-.cursor-trail-container.is-hovering .cursor-dot-lead {
-    box-shadow: 0 0 14px rgba(0, 85, 255, 0.7), 0 0 4px rgba(255, 255, 255, 0.9);
-}
-
-body.dark-theme .cursor-trail-container.is-hovering .cursor-dot-lead {
-    box-shadow: 0 0 16px rgba(56, 189, 248, 0.9), 0 0 6px rgba(96, 165, 250, 1);
-}
-
-/* Touch-only and Reduced Motion Devices */
-@media (pointer: coarse), (prefers-reduced-motion: reduce) {
-    .cursor-trail-container {
-        display: none !important;
     }
 }
 
