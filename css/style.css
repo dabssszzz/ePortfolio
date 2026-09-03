@@ -2798,8 +2798,61 @@ body.dark-theme .cert-modal-counter {
 .projects-carousel-track {
     display: flex;
     gap: 1.5rem;
+    transition: transform 0.62s cubic-bezier(0.18, 0.9, 0.32, 1.05);
     will-change: transform;
-    transform: translate3d(0, 0, 0);
+}
+
+/* Individual Card Magnetic Anticipation & Snap Motion */
+.projects-card.animate-magnetic-next {
+    animation: magneticCardNext 0.58s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.projects-card.animate-magnetic-prev {
+    animation: magneticCardPrev 0.58s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes magneticCardNext {
+    0% {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+    14% {
+        /* Subtle anticipation in opposite direction */
+        transform: translate3d(4px, 0, 0) scale(0.988);
+    }
+    58% {
+        /* Momentum pull with delicate overshoot */
+        transform: translate3d(-9px, 0, 0) scale(1.006);
+    }
+    82% {
+        /* Gentle rebound */
+        transform: translate3d(2px, 0, 0) scale(0.998);
+    }
+    100% {
+        /* Precise magnetic snap into slot */
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+}
+
+@keyframes magneticCardPrev {
+    0% {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+    14% {
+        /* Subtle anticipation in opposite direction */
+        transform: translate3d(-4px, 0, 0) scale(0.988);
+    }
+    58% {
+        /* Momentum pull with delicate overshoot */
+        transform: translate3d(9px, 0, 0) scale(1.006);
+    }
+    82% {
+        /* Gentle rebound */
+        transform: translate3d(-2px, 0, 0) scale(0.998);
+    }
+    100% {
+        /* Precise magnetic snap into slot */
+        transform: translate3d(0, 0, 0) scale(1);
+    }
 }
 
 /* Full-Height Liquid Glass Edge Overlays (Covering Complete Height of Key Projects Section) */
@@ -2897,10 +2950,8 @@ body.dark-theme .projects-carousel-nav:hover {
     box-shadow: 0 8px 24px rgba(0, 85, 255, 0.5);
 }
 
-.projects-carousel-nav:active,
-.projects-carousel-nav.is-active-press {
-    transform: translateY(-50%) scale(0.88) !important;
-    box-shadow: 0 2px 10px rgba(0, 82, 255, 0.5) !important;
+.projects-carousel-nav:active {
+    transform: translateY(-50%) scale(0.95);
 }
 
 /* Card Geometry: 3 visible cards + intentional subtle peek on desktop */
@@ -2919,15 +2970,7 @@ body.dark-theme .projects-carousel-nav:hover {
     overflow: hidden;
     cursor: pointer;
     outline: none;
-    transition: transform .35s cubic-bezier(0.25, 1, 0.5, 1), box-shadow .35s cubic-bezier(0.25, 1, 0.5, 1), border-color .3s ease, opacity .35s ease;
-}
-
-.projects-card.is-peek-slide {
-    opacity: 0.88;
-}
-
-.projects-card.is-active-slide {
-    opacity: 1;
+    transition: transform .35s cubic-bezier(0.25, 1, 0.5, 1), box-shadow .35s cubic-bezier(0.25, 1, 0.5, 1), border-color .3s ease;
 }
 
 .projects-card:hover,
