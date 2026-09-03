@@ -3091,3 +3091,119 @@ function initContactForm() {
 
 // Initialize Contact Form
 initContactForm()
+
+/*==================== INTERACTIVE DOTTED CURSOR TRAIL ====================*/
+function initCursorTrail() {
+    // Only initialize on desktop/devices with a fine pointer and no reduced motion preference
+    if (!window.matchMedia('(pointer: fine)').matches || prefersReducedMotion.matches) return
+
+    const DOT_CONFIGS = [
+        { size: 7.5, alpha: 0.92, lerp: 0.44, isLead: true },
+        { size: 6.2, alpha: 0.80, lerp: 0.36 },
+        { size: 5.2, alpha: 0.68, lerp: 0.30 },
+        { size: 4.2, alpha: 0.55, lerp: 0.25 },
+        { size: 3.4, alpha: 0.42, lerp: 0.20 },
+        { size: 2.6, alpha: 0.30, lerp: 0.16 },
+        { size: 2.0, alpha: 0.20, lerp: 0.12 }
+    ]
+
+    const container = document.createElement('div')
+    container.className = 'cursor-trail-container'
+    container.id = 'cursor-trail-container'
+    container.setAttribute('aria-hidden', 'true')
+
+    const dots = DOT_CONFIGS.map((cfg) => {
+        const el = document.createElement('div')
+        el.className = `cursor-dot ${cfg.isLead ? 'cursor-dot-lead' : ''}`
+        el.style.width = `${cfg.size}px`
+        el.style.height = `${cfg.size}px`
+        el.style.opacity = `${cfg.alpha}`
+        container.appendChild(el)
+
+        return {
+            el,
+            x: -100,
+            y: -100,
+            size: cfg.size,
+            lerp: cfg.lerp
+        }
+    })
+
+    document.body.appendChild(container)
+
+    let targetX = -100
+    let targetY = -100
+    let isLoopRunning = false
+    let hasMoved = false
+
+    function renderTrail() {
+        let totalDelta = 0
+
+        // Lead dot follows target cursor
+        const lead = dots[0]
+        const dx0 = targetX - lead.x
+        const dy0 = targetY - lead.y
+        lead.x += dx0 * lead.lerp
+        lead.y += dy0 * lead.lerp
+        totalDelta += Math.abs(dx0) + Math.abs(dy0)
+        lead.el.style.transform = `translate3d(${(lead.x - lead.size / 2).toFixed(1)}px, ${(lead.y - lead.size / 2).toFixed(1)}px, 0)`
+
+        // Subsequent dots follow the dot in front of them
+        for (let i = 1; i < dots.length; i++) {
+            const prev = dots[i - 1]
+            const curr = dots[i]
+            const dx = prev.x - curr.x
+            const dy = prev.y - curr.y
+            curr.x += dx * curr.lerp
+            curr.y += dy * curr.lerp
+            totalDelta += Math.abs(dx) + Math.abs(dy)
+            curr.el.style.transform = `translate3d(${(curr.x - curr.size / 2).toFixed(1)}px, ${(curr.y - curr.size / 2).toFixed(1)}px, 0)`
+        }
+
+        // Continue rAF loop if still settling, otherwise sleep to consume 0% idle CPU
+        if (totalDelta > 0.15) {
+            requestAnimationFrame(renderTrail)
+        } else {
+            isLoopRunning = false
+        }
+    }
+
+    function onMouseMove(e) {
+        targetX = e.clientX
+        targetY = e.clientY
+
+        if (!hasMoved) {
+            hasMoved = true
+            // Snap all dots to initial cursor position so trail doesn't fly in from off-screen
+            dots.forEach(d => {
+                d.x = targetX
+                d.y = targetY
+            })
+            container.classList.add('is-visible')
+        }
+
+        // Interactive hover state check on clickable elements
+        const isHover = Boolean(e.target && e.target.closest('a, button, input, textarea, [role="button"], .button, .projects-card, .cert-gallery-card, .skills-content, .feedback-card, .logo'))
+        container.classList.toggle('is-hovering', isHover)
+
+        if (!isLoopRunning) {
+            isLoopRunning = true
+            requestAnimationFrame(renderTrail)
+        }
+    }
+
+    window.addEventListener('mousemove', onMouseMove, { passive: true })
+
+    document.addEventListener('mouseleave', () => {
+        container.classList.remove('is-visible')
+    })
+
+    document.addEventListener('mouseenter', () => {
+        if (hasMoved) {
+            container.classList.add('is-visible')
+        }
+    })
+}
+
+// Initialize Cursor Trail
+initCursorTrail()
