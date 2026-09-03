@@ -260,11 +260,15 @@ function scrollHeader() {
 }
 
 function checkRevealElements() {
-    const triggerY = window.innerHeight + 80
+    const triggerY = window.innerHeight - 20
+    const scrollBottom = window.innerHeight + window.scrollY
+    const docHeight = Math.max(document.documentElement.scrollHeight, document.body.offsetHeight)
+    const isNearBottom = scrollBottom >= docHeight - 60
+
     revealElements.forEach(el => {
         if (!el.classList.contains('is-revealed')) {
             const rect = el.getBoundingClientRect()
-            if (rect.top < triggerY) {
+            if (rect.top < triggerY || isNearBottom) {
                 el.classList.add('is-revealed')
             }
         }
@@ -434,6 +438,7 @@ if (prefersReducedMotion.matches) {
     // Immediately reveal all elements without animation if user prefers reduced motion
     revealElements.forEach(el => el.classList.add('is-revealed'))
 } else if ('IntersectionObserver' in window) {
+    const isMobile = window.innerWidth <= 768
     const revealObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -444,14 +449,14 @@ if (prefersReducedMotion.matches) {
         })
     }, {
         root: null,
-        rootMargin: '50px 0px 50px 0px',
-        threshold: 0.05
+        rootMargin: isMobile ? '0px 0px -20px 0px' : '0px 0px -38px 0px',
+        threshold: 0.06
     })
 
     revealElements.forEach(el => {
-        // Reveal any element that is currently within or above the viewport (already reached/passed)
         const rect = el.getBoundingClientRect()
-        if (rect.top < window.innerHeight + 60) {
+        // If element is already in the top visible viewport on initial load, reveal immediately
+        if (rect.top < window.innerHeight * 0.75) {
             el.classList.add('is-revealed')
         } else {
             revealObserver.observe(el)
