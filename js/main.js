@@ -433,6 +433,10 @@ if (themeButton) {
 
         updateFavicon(isDark ? 'dark' : 'light')
 
+        if (typeof window.updateDottedGridTheme === 'function') {
+            window.updateDottedGridTheme()
+        }
+
         // Save preference to localStorage
         localStorage.setItem('selected-theme', getCurrentTheme())
 
@@ -3092,54 +3096,52 @@ function initContactForm() {
 // Initialize Contact Form
 initContactForm()
 
-/*==================== INTERACTIVE DOTTED GRID CANVAS ====================*/
-function initDottedGridCanvas() {
-    const canvas = document.getElementById('bg-grid-canvas')
+/*==================== LOCALIZED INTERACTIVE DOTTED GRID ====================*/
+function initDottedGrid() {
+    const canvas = document.getElementById('dotted-grid-canvas')
     if (!canvas) return
 
-    const ctx = canvas.getContext('2d')
+    const ctx = canvas.getContext('2d', { alpha: true })
     if (!ctx) return
+
+    // Configurable parameters
+    const SPACING = 34 // Uniform grid spacing in CSS px
+    const BASE_RADIUS = 1.2 // Base dot radius in CSS px
+    const INFLUENCE_RADIUS = 135 // Localized magnetic radius around cursor
+    const MAX_DISPLACEMENT = 6.5 // Maximum subtle pull towards cursor
+    const MAX_SCALE = 1.55 // Maximum scale multiplier near cursor
+    const EASING = 0.12 // Spring return interpolation factor
 
     let width = 0
     let height = 0
     let dpr = 1
+    let cols = 0
+    let rows = 0
     let dots = []
 
-    const GRID_SPACING = 32
-    const BASE_DOT_RADIUS = 1.15
-    const INFLUENCE_RADIUS = 135
-    const MAX_PULL = 8.5
-    const SPRING_TENSION = 0.09
-    const DAMPING = 0.80
+    // Mouse tracking state
+    let mouseX = -10000
+    let mouseY = -10000
+    let targetMouseX = -10000
+    let targetMouseY = -10000
+    let isMouseActive = false
+    let isAnimating = false
+    let animationFrameId = null
 
-    const mouse = {
-        x: -9999,
-        y: -9999,
-        targetX: -9999,
-        targetY: -9999,
-        active: false
-    }
-
-    let isLoopRunning = false
-    let resizeTimeout = null
-
-    // Theme color palettes
-    const getColors = () => {
+    // Theme colors
+    function getPalette() {
         const isDark = document.body.classList.contains('dark-theme')
-        if (isDark) {
-            return {
-                baseR: 148, baseG: 163, baseB: 184, baseA: 0.16,
-                activeR: 96, activeG: 165, activeB: 250, activeA: 0.65
-            }
-        } else {
-            return {
-                baseR: 0, baseG: 85, baseB: 255, baseA: 0.14,
-                activeR: 0, activeG: 102, activeB: 255, activeA: 0.55
-            }
+        return {
+            isDark,
+            baseColor: isDark ? 'rgba(255, 255, 255, 0.11)' : 'rgba(0, 50, 140, 0.09)',
+            activeGlowColor: isDark ? 'rgba(0, 145, 255, 0.45)' : 'rgba(0, 102, 255, 0.38)',
+            activeCoreColor: isDark ? 'rgba(255, 255, 255, 0.45)' : 'rgba(0, 85, 255, 0.35)'
         }
     }
 
-    function buildGrid() {
+    let palette = getPalette()
+
+    function createGrid() {
         dpr = Math.min(window.devicePixelRatio || 1, 2)
         width = window.innerWidth
         height = window.innerHeight
@@ -3149,206 +3151,232 @@ function initDottedGridCanvas() {
         canvas.style.width = `${width}px`
         canvas.style.height = `${height}px`
 
-        ctx.setTransform(1, 0, 0, 1, 0, 0)
         ctx.scale(dpr, dpr)
 
-        const cols = Math.ceil(width / GRID_SPACING) + 2
-        const rows = Math.ceil(height / GRID_SPACING) + 2
-        const offsetX = (width - (cols - 1) * GRID_SPACING) / 2
-        const offsetY = (height - (rows - 1) * GRID_SPACING) / 2
+        cols = Math.ceil(width / SPACING) + 1
+        rows = Math.ceil(height / SPACING) + 1
+
+        // Center the grid pattern evenly across the viewport
+        const offsetX = (width - (cols - 1) * SPACING) / 2
+        const offsetY = (height - (rows - 1) * SPACING) / 2
 
         dots = []
         for (let r = 0; r < rows; r++) {
             for (let c = 0; c < cols; c++) {
-                const baseX = Math.round(offsetX + c * GRID_SPACING)
-                const baseY = Math.round(offsetY + r * GRID_SPACING)
+                const ox = offsetX + c * SPACING
+                const oy = offsetY + r * SPACING
                 dots.push({
-                    baseX,
-                    baseY,
-                    x: baseX,
-                    y: baseY,
-                    vx: 0,
-                    vy: 0,
-                    targetX: baseX,
-                    targetY: baseY,
+                    ox, // original X
+                    oy, // original Y
+                    x: ox, // current X
+                    y: oy, // current Y
+                    targetX: ox,
+                    targetY: oy,
                     scale: 1,
-                    alpha: 0
+                    targetScale: 1,
+                    glow: 0,
+                    targetGlow: 0,
+                    col: c,
+                    row: r
                 })
             }
         }
-
-        renderFrame(true)
     }
 
-    function startLoop() {
-        if (!isLoopRunning) {
-            isLoopRunning = true
-            requestAnimationFrame(updateAndDraw)
-        }
-    }
-
-    function updateAndDraw() {
-        // Smoothly interpolate mouse position for extra fluid tracking
-        if (mouse.active) {
-            mouse.x += (mouse.targetX - mouse.x) * 0.28
-            mouse.y += (mouse.targetY - mouse.y) * 0.28
+    function updateTargets() {
+        if (!isMouseActive) {
+            for (let i = 0; i < dots.length; i++) {
+                const d = dots[i]
+                d.targetX = d.ox
+                d.targetY = d.oy
+                d.targetScale = 1
+                d.targetGlow = 0
+            }
+            return
         }
 
-        const colors = getColors()
-        let hasActiveMotion = false
+        // Calculate active column and row bounding box around cursor
+        const minX = mouseX - INFLUENCE_RADIUS
+        const maxX = mouseX + INFLUENCE_RADIUS
+        const minY = mouseY - INFLUENCE_RADIUS
+        const maxY = mouseY + INFLUENCE_RADIUS
 
-        ctx.clearRect(0, 0, width, height)
-
-        const mouseX = mouse.x
-        const mouseY = mouse.y
-        const isMouseActive = mouse.active
+        const influenceRadiusSq = INFLUENCE_RADIUS * INFLUENCE_RADIUS
 
         for (let i = 0; i < dots.length; i++) {
-            const dot = dots[i]
+            const d = dots[i]
 
-            // Calculate magnetic influence if mouse is active
-            if (isMouseActive) {
-                const dx = mouseX - dot.baseX
-                const dy = mouseY - dot.baseY
+            // Fast bounding box check
+            if (d.ox >= minX && d.ox <= maxX && d.oy >= minY && d.oy <= maxY) {
+                const dx = mouseX - d.ox
+                const dy = mouseY - d.oy
                 const distSq = dx * dx + dy * dy
 
-                if (distSq < INFLUENCE_RADIUS * INFLUENCE_RADIUS) {
+                if (distSq < influenceRadiusSq) {
                     const dist = Math.sqrt(distSq)
-                    const normalized = 1 - (dist / INFLUENCE_RADIUS)
-                    // Smooth Hermite S-curve falloff
-                    const influence = normalized * normalized * (3 - 2 * normalized)
+                    const norm = 1 - (dist / INFLUENCE_RADIUS)
+                    // Smooth cubic Hermite falloff (zero hard boundary)
+                    const falloff = norm * norm * (3 - 2 * norm)
 
-                    // Soft magnetic pull toward cursor
-                    const pull = influence * MAX_PULL
-                    dot.targetX = dot.baseX + (dist > 0.001 ? (dx / dist) * pull : 0)
-                    dot.targetY = dot.baseY + (dist > 0.001 ? (dy / dist) * pull : 0)
-                    dot.targetScale = 1 + influence * 0.65
-                    dot.targetAlphaBoost = influence
-                } else {
-                    dot.targetX = dot.baseX
-                    dot.targetY = dot.baseY
-                    dot.targetScale = 1
-                    dot.targetAlphaBoost = 0
+                    const angle = Math.atan2(dy, dx)
+                    const displacement = MAX_DISPLACEMENT * falloff
+
+                    d.targetX = d.ox + Math.cos(angle) * displacement
+                    d.targetY = d.oy + Math.sin(angle) * displacement
+                    d.targetScale = 1 + (MAX_SCALE - 1) * falloff
+                    d.targetGlow = falloff
+                    continue
                 }
-            } else {
-                dot.targetX = dot.baseX
-                dot.targetY = dot.baseY
-                dot.targetScale = 1
-                dot.targetAlphaBoost = 0
             }
 
-            // Spring physics integration
-            const ax = (dot.targetX - dot.x) * SPRING_TENSION
-            const ay = (dot.targetY - dot.y) * SPRING_TENSION
-            dot.vx = (dot.vx + ax) * DAMPING
-            dot.vy = (dot.vy + ay) * DAMPING
-            dot.x += dot.vx
-            dot.y += dot.vy
-
-            // Interpolate scale and alpha
-            dot.scale += ((dot.targetScale || 1) - dot.scale) * 0.15
-            dot.alpha += ((dot.targetAlphaBoost || 0) - dot.alpha) * 0.15
-
-            // Check if still moving
-            const isMoving = Math.abs(dot.vx) > 0.008 ||
-                             Math.abs(dot.vy) > 0.008 ||
-                             Math.abs(dot.x - dot.baseX) > 0.05 ||
-                             Math.abs(dot.y - dot.baseY) > 0.05 ||
-                             dot.alpha > 0.01
-
-            if (isMoving) {
-                hasActiveMotion = true
-            }
-
-            // Compute visual attributes
-            const radius = BASE_DOT_RADIUS * dot.scale
-            const alphaWeight = Math.min(Math.max(dot.alpha, 0), 1)
-
-            const r = Math.round(colors.baseR + (colors.activeR - colors.baseR) * alphaWeight)
-            const g = Math.round(colors.baseG + (colors.activeG - colors.baseG) * alphaWeight)
-            const b = Math.round(colors.baseB + (colors.activeB - colors.baseB) * alphaWeight)
-            const a = colors.baseA + (colors.activeA - colors.baseA) * alphaWeight
-
-            ctx.beginPath()
-            ctx.arc(dot.x, dot.y, radius, 0, Math.PI * 2)
-            ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${a.toFixed(3)})`
-            ctx.fill()
-        }
-
-        // Keep loop running if mouse is active or dots are settling
-        if (isMouseActive || hasActiveMotion) {
-            requestAnimationFrame(updateAndDraw)
-        } else {
-            // Render final clean static state and pause loop to preserve 0% CPU
-            renderFrame(true)
-            isLoopRunning = false
+            // Outside influence radius
+            d.targetX = d.ox
+            d.targetY = d.oy
+            d.targetScale = 1
+            d.targetGlow = 0
         }
     }
 
-    function renderFrame(isStaticClean = false) {
-        const colors = getColors()
+    function render() {
         ctx.clearRect(0, 0, width, height)
 
-        ctx.fillStyle = `rgba(${colors.baseR}, ${colors.baseG}, ${colors.baseB}, ${colors.baseA})`
+        let hasDisplacement = false
+
+        // Smoothly interpolate mouse position
+        if (isMouseActive) {
+            mouseX += (targetMouseX - mouseX) * 0.25
+            mouseY += (targetMouseY - mouseY) * 0.25
+        }
+
+        updateTargets()
+
+        // Batch rendering for maximum performance
         for (let i = 0; i < dots.length; i++) {
-            const dot = dots[i]
-            if (isStaticClean) {
-                dot.x = dot.baseX
-                dot.y = dot.baseY
-                dot.vx = 0
-                dot.vy = 0
-                dot.scale = 1
-                dot.alpha = 0
+            const d = dots[i]
+
+            // Spring interpolation
+            d.x += (d.targetX - d.x) * EASING
+            d.y += (d.targetY - d.y) * EASING
+            d.scale += (d.targetScale - d.scale) * EASING
+            d.glow += (d.targetGlow - d.glow) * EASING
+
+            const dx = Math.abs(d.x - d.ox)
+            const dy = Math.abs(d.y - d.oy)
+            const dScale = Math.abs(d.scale - 1)
+
+            if (dx > 0.02 || dy > 0.02 || dScale > 0.01) {
+                hasDisplacement = true
             }
+
+            // Draw dot
+            const radius = BASE_RADIUS * d.scale
             ctx.beginPath()
-            ctx.arc(dot.x, dot.y, BASE_DOT_RADIUS * dot.scale, 0, Math.PI * 2)
-            ctx.fill()
+            ctx.arc(d.x, d.y, radius, 0, Math.PI * 2)
+
+            if (d.glow > 0.05) {
+                // Subtle localized magnetic illumination
+                ctx.fillStyle = palette.activeCoreColor
+                ctx.fill()
+
+                ctx.beginPath()
+                ctx.arc(d.x, d.y, radius + 1.2 * d.glow, 0, Math.PI * 2)
+                ctx.fillStyle = palette.activeGlowColor
+                ctx.fill()
+            } else {
+                ctx.fillStyle = palette.baseColor
+                ctx.fill()
+            }
+        }
+
+        // If mouse is active or dots are still moving back to rest, continue loop
+        if (isMouseActive || hasDisplacement) {
+            animationFrameId = requestAnimationFrame(render)
+        } else {
+            // Settle all dots cleanly to exact resting positions
+            for (let i = 0; i < dots.length; i++) {
+                const d = dots[i]
+                d.x = d.ox
+                d.y = d.oy
+                d.scale = 1
+                d.glow = 0
+            }
+            drawStaticFrame()
+            isAnimating = false
+            animationFrameId = null
         }
     }
 
-    // Pointer events on desktop
-    window.addEventListener('pointermove', (e) => {
-        // Only track real mouse/pen pointers (ignore touch to prevent mobile conflict)
-        if (e.pointerType === 'touch') return
-
-        mouse.targetX = e.clientX
-        mouse.targetY = e.clientY
-        if (!mouse.active) {
-            mouse.x = e.clientX
-            mouse.y = e.clientY
-            mouse.active = true
+    function drawStaticFrame() {
+        ctx.clearRect(0, 0, width, height)
+        ctx.fillStyle = palette.baseColor
+        ctx.beginPath()
+        for (let i = 0; i < dots.length; i++) {
+            const d = dots[i]
+            ctx.moveTo(d.ox + BASE_RADIUS, d.oy)
+            ctx.arc(d.ox, d.oy, BASE_RADIUS, 0, Math.PI * 2)
         }
-        startLoop()
-    }, { passive: true })
-
-    window.addEventListener('pointerleave', () => {
-        mouse.active = false
-        startLoop()
-    }, { passive: true })
-
-    window.addEventListener('blur', () => {
-        mouse.active = false
-        startLoop()
-    }, { passive: true })
-
-    // Theme changes re-render colors
-    if (themeButton) {
-        themeButton.addEventListener('click', () => {
-            setTimeout(() => {
-                if (!isLoopRunning) renderFrame(true)
-            }, 50)
-        })
+        ctx.fill()
     }
 
-    // Debounced window resize
+    function startAnimation() {
+        if (!isAnimating) {
+            isAnimating = true
+            animationFrameId = requestAnimationFrame(render)
+        }
+    }
+
+    function handlePointerMove(e) {
+        targetMouseX = e.clientX
+        targetMouseY = e.clientY
+        if (!isMouseActive) {
+            mouseX = targetMouseX
+            mouseY = targetMouseY
+            isMouseActive = true
+        }
+        startAnimation()
+    }
+
+    function handlePointerLeave() {
+        isMouseActive = false
+        targetMouseX = -10000
+        targetMouseY = -10000
+        startAnimation()
+    }
+
+    // Initialize grid
+    createGrid()
+    drawStaticFrame()
+
+    // Event listeners
+    const isTouchDevice = window.matchMedia('(pointer: coarse)').matches
+    if (!isTouchDevice) {
+        window.addEventListener('pointermove', handlePointerMove, { passive: true })
+        document.addEventListener('pointerleave', handlePointerLeave, { passive: true })
+        window.addEventListener('blur', handlePointerLeave, { passive: true })
+    }
+
+    let resizeTimeout
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimeout)
-        resizeTimeout = setTimeout(buildGrid, 100)
+        resizeTimeout = setTimeout(() => {
+            palette = getPalette()
+            createGrid()
+            if (isAnimating) {
+                startAnimation()
+            } else {
+                drawStaticFrame()
+            }
+        }, 100)
     }, { passive: true })
 
-    // Initialize
-    buildGrid()
+    // Expose theme updater
+    window.updateDottedGridTheme = () => {
+        palette = getPalette()
+        if (!isAnimating) {
+            drawStaticFrame()
+        }
+    }
 }
 
-// Initialize Interactive Dotted Grid Canvas
-initDottedGridCanvas()
+// Initialize Interactive Dotted Grid
+initDottedGrid()
