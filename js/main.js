@@ -433,10 +433,6 @@ if (themeButton) {
 
         updateFavicon(isDark ? 'dark' : 'light')
 
-        if (typeof window.updateDottedGridTheme === 'function') {
-            window.updateDottedGridTheme()
-        }
-
         // Save preference to localStorage
         localStorage.setItem('selected-theme', getCurrentTheme())
 
@@ -3096,287 +3092,147 @@ function initContactForm() {
 // Initialize Contact Form
 initContactForm()
 
-/*==================== LOCALIZED INTERACTIVE DOTTED GRID ====================*/
-function initDottedGrid() {
-    const canvas = document.getElementById('dotted-grid-canvas')
+/*==================== LOCALIZED CURSOR-REACTIVE DOTTED GRID SPOTLIGHT ====================*/
+function initCursorDottedSpotlight() {
+    const canvas = document.getElementById('cursor-grid-canvas')
     if (!canvas) return
+
+    // Disable completely on coarse touch-only devices to save resources
+    if (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) {
+        canvas.style.display = 'none'
+        return
+    }
 
     const ctx = canvas.getContext('2d', { alpha: true })
     if (!ctx) return
 
-    // Configurable parameters
-    const SPACING = 34 // Uniform grid spacing in CSS px
-    const BASE_RADIUS = 1.2 // Base dot radius in CSS px
-    const INFLUENCE_RADIUS = 135 // Localized magnetic radius around cursor
-    const MAX_DISPLACEMENT = 6.5 // Maximum subtle pull towards cursor
-    const MAX_SCALE = 1.55 // Maximum scale multiplier near cursor
-    const EASING = 0.12 // Spring return interpolation factor
+    let width = (canvas.width = window.innerWidth)
+    let height = (canvas.height = window.innerHeight)
+    let dpr = Math.min(window.devicePixelRatio || 1, 2)
 
-    let width = 0
-    let height = 0
-    let dpr = 1
-    let cols = 0
-    let rows = 0
-    let dots = []
-
-    // Mouse tracking state
-    let mouseX = -10000
-    let mouseY = -10000
-    let targetMouseX = -10000
-    let targetMouseY = -10000
-    let isMouseActive = false
-    let isAnimating = false
-    let animationFrameId = null
-
-    // Theme colors
-    function getPalette() {
-        const isDark = document.body.classList.contains('dark-theme')
-        return {
-            isDark,
-            baseColor: isDark ? 'rgba(255, 255, 255, 0.11)' : 'rgba(0, 50, 140, 0.09)',
-            activeGlowColor: isDark ? 'rgba(0, 145, 255, 0.45)' : 'rgba(0, 102, 255, 0.38)',
-            activeCoreColor: isDark ? 'rgba(255, 255, 255, 0.45)' : 'rgba(0, 85, 255, 0.35)'
-        }
-    }
-
-    let palette = getPalette()
-
-    function createGrid() {
-        dpr = Math.min(window.devicePixelRatio || 1, 2)
+    function resize() {
         width = window.innerWidth
         height = window.innerHeight
-
+        dpr = Math.min(window.devicePixelRatio || 1, 2)
         canvas.width = Math.round(width * dpr)
         canvas.height = Math.round(height * dpr)
-        canvas.style.width = `${width}px`
-        canvas.style.height = `${height}px`
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+    }
+    resize()
+    window.addEventListener('resize', resize, { passive: true })
 
-        ctx.scale(dpr, dpr)
+    const gridSpacing = 28 // Distance between dot grid points (px)
+    const spotlightRadius = 140 // Localized radius strictly around cursor (px)
+    const baseDotRadius = 1.35 // Base radius of dot (px)
 
-        cols = Math.ceil(width / SPACING) + 1
-        rows = Math.ceil(height / SPACING) + 1
+    let targetX = -9999
+    let targetY = -9999
+    let currentX = -9999
+    let currentY = -9999
 
-        // Center the grid pattern evenly across the viewport
-        const offsetX = (width - (cols - 1) * SPACING) / 2
-        const offsetY = (height - (rows - 1) * SPACING) / 2
+    let targetOpacity = 0
+    let currentOpacity = 0
+    let idleTimer = null
+    let animId = null
 
-        dots = []
-        for (let r = 0; r < rows; r++) {
-            for (let c = 0; c < cols; c++) {
-                const ox = offsetX + c * SPACING
-                const oy = offsetY + r * SPACING
-                dots.push({
-                    ox, // original X
-                    oy, // original Y
-                    x: ox, // current X
-                    y: oy, // current Y
-                    targetX: ox,
-                    targetY: oy,
-                    scale: 1,
-                    targetScale: 1,
-                    glow: 0,
-                    targetGlow: 0,
-                    col: c,
-                    row: r
-                })
-            }
+    function onMouseMove(e) {
+        targetX = e.clientX
+        targetY = e.clientY
+        targetOpacity = 1
+
+        // If starting from offscreen, jump closer to avoid sweeping across page
+        if (currentX < -500 || currentY < -500) {
+            currentX = targetX
+            currentY = targetY
+        }
+
+        clearTimeout(idleTimer)
+        // Softly fade out if cursor remains completely stationary for 3.5s
+        idleTimer = setTimeout(() => {
+            targetOpacity = 0
+        }, 3500)
+
+        if (!animId) {
+            render()
         }
     }
 
-    function updateTargets() {
-        if (!isMouseActive) {
-            for (let i = 0; i < dots.length; i++) {
-                const d = dots[i]
-                d.targetX = d.ox
-                d.targetY = d.oy
-                d.targetScale = 1
-                d.targetGlow = 0
-            }
-            return
-        }
-
-        // Calculate active column and row bounding box around cursor
-        const minX = mouseX - INFLUENCE_RADIUS
-        const maxX = mouseX + INFLUENCE_RADIUS
-        const minY = mouseY - INFLUENCE_RADIUS
-        const maxY = mouseY + INFLUENCE_RADIUS
-
-        const influenceRadiusSq = INFLUENCE_RADIUS * INFLUENCE_RADIUS
-
-        for (let i = 0; i < dots.length; i++) {
-            const d = dots[i]
-
-            // Fast bounding box check
-            if (d.ox >= minX && d.ox <= maxX && d.oy >= minY && d.oy <= maxY) {
-                const dx = mouseX - d.ox
-                const dy = mouseY - d.oy
-                const distSq = dx * dx + dy * dy
-
-                if (distSq < influenceRadiusSq) {
-                    const dist = Math.sqrt(distSq)
-                    const norm = 1 - (dist / INFLUENCE_RADIUS)
-                    // Smooth cubic Hermite falloff (zero hard boundary)
-                    const falloff = norm * norm * (3 - 2 * norm)
-
-                    const angle = Math.atan2(dy, dx)
-                    const displacement = MAX_DISPLACEMENT * falloff
-
-                    d.targetX = d.ox + Math.cos(angle) * displacement
-                    d.targetY = d.oy + Math.sin(angle) * displacement
-                    d.targetScale = 1 + (MAX_SCALE - 1) * falloff
-                    d.targetGlow = falloff
-                    continue
-                }
-            }
-
-            // Outside influence radius
-            d.targetX = d.ox
-            d.targetY = d.oy
-            d.targetScale = 1
-            d.targetGlow = 0
-        }
+    function onMouseLeave() {
+        targetOpacity = 0
     }
+
+    window.addEventListener('mousemove', onMouseMove, { passive: true })
+    document.addEventListener('mouseleave', onMouseLeave, { passive: true })
+    window.addEventListener('blur', onMouseLeave, { passive: true })
 
     function render() {
+        // Smooth cursor lerp (fluid organic lag)
+        currentX += (targetX - currentX) * 0.16
+        currentY += (targetY - currentY) * 0.16
+        currentOpacity += (targetOpacity - currentOpacity) * 0.1
+
+        // Clear canvas
         ctx.clearRect(0, 0, width, height)
 
-        let hasDisplacement = false
+        if (currentOpacity > 0.005 && currentX > -spotlightRadius && currentX < width + spotlightRadius && currentY > -spotlightRadius && currentY < height + spotlightRadius) {
+            const isDark = document.body.classList.contains('dark-theme')
 
-        // Smoothly interpolate mouse position
-        if (isMouseActive) {
-            mouseX += (targetMouseX - mouseX) * 0.25
-            mouseY += (targetMouseY - mouseY) * 0.25
+            // Color palette: Clean luminous sky in dark mode, refined slate/indigo in light mode
+            const r = isDark ? 115 : 55
+            const g = isDark ? 175 : 85
+            const b = isDark ? 255 : 155
+            const maxAlpha = isDark ? 0.75 : 0.55
+
+            // Compute localized grid bounding box strictly around the cursor
+            const startCol = Math.floor((currentX - spotlightRadius) / gridSpacing)
+            const endCol = Math.ceil((currentX + spotlightRadius) / gridSpacing)
+            const startRow = Math.floor((currentY - spotlightRadius) / gridSpacing)
+            const endRow = Math.ceil((currentY + spotlightRadius) / gridSpacing)
+
+            for (let c = startCol; c <= endCol; c++) {
+                const dotX = c * gridSpacing
+                for (let rIdx = startRow; rIdx <= endRow; rIdx++) {
+                    const dotY = rIdx * gridSpacing
+
+                    const dx = dotX - currentX
+                    const dy = dotY - currentY
+                    const dist = Math.hypot(dx, dy)
+
+                    if (dist < spotlightRadius) {
+                        const normDist = dist / spotlightRadius // 0 at cursor, 1 at perimeter
+                        // Smooth cubic falloff curve for soft boundary
+                        const falloff = Math.pow(1 - normDist, 1.85)
+                        const dotAlpha = falloff * currentOpacity * maxAlpha
+
+                        if (dotAlpha > 0.008) {
+                            // Gentle organic interactive displacement reacting to cursor distance
+                            const angle = Math.atan2(dy, dx)
+                            const displacement = Math.sin(normDist * Math.PI) * 4.5
+                            const renderX = dotX + Math.cos(angle) * displacement
+                            const renderY = dotY + Math.sin(angle) * displacement
+
+                            // Dynamic dot size scaling slightly closer to center
+                            const radius = baseDotRadius + falloff * 0.4
+
+                            ctx.beginPath()
+                            ctx.arc(renderX, renderY, radius, 0, Math.PI * 2)
+                            ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${dotAlpha})`
+                            ctx.fill()
+                        }
+                    }
+                }
+            }
         }
 
-        updateTargets()
-
-        // Batch rendering for maximum performance
-        for (let i = 0; i < dots.length; i++) {
-            const d = dots[i]
-
-            // Spring interpolation
-            d.x += (d.targetX - d.x) * EASING
-            d.y += (d.targetY - d.y) * EASING
-            d.scale += (d.targetScale - d.scale) * EASING
-            d.glow += (d.targetGlow - d.glow) * EASING
-
-            const dx = Math.abs(d.x - d.ox)
-            const dy = Math.abs(d.y - d.oy)
-            const dScale = Math.abs(d.scale - 1)
-
-            if (dx > 0.02 || dy > 0.02 || dScale > 0.01) {
-                hasDisplacement = true
-            }
-
-            // Draw dot
-            const radius = BASE_RADIUS * d.scale
-            ctx.beginPath()
-            ctx.arc(d.x, d.y, radius, 0, Math.PI * 2)
-
-            if (d.glow > 0.05) {
-                // Subtle localized magnetic illumination
-                ctx.fillStyle = palette.activeCoreColor
-                ctx.fill()
-
-                ctx.beginPath()
-                ctx.arc(d.x, d.y, radius + 1.2 * d.glow, 0, Math.PI * 2)
-                ctx.fillStyle = palette.activeGlowColor
-                ctx.fill()
-            } else {
-                ctx.fillStyle = palette.baseColor
-                ctx.fill()
-            }
-        }
-
-        // If mouse is active or dots are still moving back to rest, continue loop
-        if (isMouseActive || hasDisplacement) {
-            animationFrameId = requestAnimationFrame(render)
+        // Keep loop running if opacity is still transitioning or mouse is active
+        if (currentOpacity > 0.005 || targetOpacity > 0.005) {
+            animId = requestAnimationFrame(render)
         } else {
-            // Settle all dots cleanly to exact resting positions
-            for (let i = 0; i < dots.length; i++) {
-                const d = dots[i]
-                d.x = d.ox
-                d.y = d.oy
-                d.scale = 1
-                d.glow = 0
-            }
-            drawStaticFrame()
-            isAnimating = false
-            animationFrameId = null
-        }
-    }
-
-    function drawStaticFrame() {
-        ctx.clearRect(0, 0, width, height)
-        ctx.fillStyle = palette.baseColor
-        ctx.beginPath()
-        for (let i = 0; i < dots.length; i++) {
-            const d = dots[i]
-            ctx.moveTo(d.ox + BASE_RADIUS, d.oy)
-            ctx.arc(d.ox, d.oy, BASE_RADIUS, 0, Math.PI * 2)
-        }
-        ctx.fill()
-    }
-
-    function startAnimation() {
-        if (!isAnimating) {
-            isAnimating = true
-            animationFrameId = requestAnimationFrame(render)
-        }
-    }
-
-    function handlePointerMove(e) {
-        targetMouseX = e.clientX
-        targetMouseY = e.clientY
-        if (!isMouseActive) {
-            mouseX = targetMouseX
-            mouseY = targetMouseY
-            isMouseActive = true
-        }
-        startAnimation()
-    }
-
-    function handlePointerLeave() {
-        isMouseActive = false
-        targetMouseX = -10000
-        targetMouseY = -10000
-        startAnimation()
-    }
-
-    // Initialize grid
-    createGrid()
-    drawStaticFrame()
-
-    // Event listeners
-    const isTouchDevice = window.matchMedia('(pointer: coarse)').matches
-    if (!isTouchDevice) {
-        window.addEventListener('pointermove', handlePointerMove, { passive: true })
-        document.addEventListener('pointerleave', handlePointerLeave, { passive: true })
-        window.addEventListener('blur', handlePointerLeave, { passive: true })
-    }
-
-    let resizeTimeout
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout)
-        resizeTimeout = setTimeout(() => {
-            palette = getPalette()
-            createGrid()
-            if (isAnimating) {
-                startAnimation()
-            } else {
-                drawStaticFrame()
-            }
-        }, 100)
-    }, { passive: true })
-
-    // Expose theme updater
-    window.updateDottedGridTheme = () => {
-        palette = getPalette()
-        if (!isAnimating) {
-            drawStaticFrame()
+            animId = null
+            ctx.clearRect(0, 0, width, height)
         }
     }
 }
 
-// Initialize Interactive Dotted Grid
-initDottedGrid()
+// Initialize Localized Cursor Dotted Spotlight
+initCursorDottedSpotlight()

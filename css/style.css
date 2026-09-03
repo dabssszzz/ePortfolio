@@ -248,22 +248,22 @@ textarea {
     gap: 1.5rem;
 }
 
-/*=============== INTERACTIVE DOTTED GRID BACKGROUND ===============*/
-.dotted-grid-canvas {
+/*=============== LOCALIZED CURSOR-REACTIVE DOTTED GRID SPOTLIGHT ===============*/
+.cursor-grid-canvas {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
     pointer-events: none;
-    z-index: 0;
+    z-index: 1;
     display: block;
-    opacity: 0.9;
-    transition: opacity .35s ease;
 }
 
-body.dark-theme .dotted-grid-canvas {
-    opacity: 1;
+@media (pointer: coarse) {
+    .cursor-grid-canvas {
+        display: none !important;
+    }
 }
 
 /*=============== COMPACT NAVIGATION LIQUID GLASS BACKDROP ===============*/
