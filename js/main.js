@@ -1882,10 +1882,17 @@ const projectsData = [
     }
 ]
 
-/* Carousel Controller */
+/*==================== PROJECTS CAROUSEL CONTROLLER & MAGNETIC SPRING ENGINE ====================*/
 let currentProjectSlide = 0
 let activeProjectModalIndex = 0
 let activeModalMediaIndex = 0
+
+let carouselSpringRAF = null
+let currentCarouselX = 0
+let carouselVelocity = 0
+let carouselTargetX = 0
+let isCarouselSpringActive = false
+let carouselActionTimeout = null
 
 const projectsCarouselTrack = document.getElementById('projects-carousel-track')
 const projectsCarouselPrev = document.getElementById('projects-carousel-prev')
@@ -1917,33 +1924,94 @@ function getMaxProjectSlide() {
     return Math.max(0, projectsData.length - visibleCards)
 }
 
-function updateProjectsCarousel() {
+function getCarouselTargetTranslatePx(slideIndex) {
+    if (!projectsCarouselTrack) return 0
+    const firstCard = projectsCarouselTrack.querySelector('.projects-card')
+    if (!firstCard) return 0
+
+    const cardRect = firstCard.getBoundingClientRect()
+    const computedStyle = window.getComputedStyle(projectsCarouselTrack)
+    const gap = parseFloat(computedStyle.gap) || 24
+
+    const isDesktop = window.innerWidth > 968
+    const peekAmount = isDesktop ? 56 : (window.innerWidth > 600 ? 40 : 36)
+    const maxSlide = getMaxProjectSlide()
+
+    let peekOffset = 0
+    if (slideIndex === 0) {
+        peekOffset = 0
+    } else if (slideIndex === maxSlide) {
+        peekOffset = peekAmount
+    } else {
+        peekOffset = peekAmount / 2
+    }
+
+    return Math.max(0, slideIndex * (cardRect.width + gap) - peekOffset)
+}
+
+function updateCardFocusStates() {
+    if (!projectsCarouselTrack) return
+    const cards = projectsCarouselTrack.querySelectorAll('.projects-card')
+    const visibleCount = getVisibleCardsCount()
+
+    cards.forEach((card, index) => {
+        const isVisible = index >= currentProjectSlide && index < currentProjectSlide + visibleCount
+        card.classList.toggle('is-active-slide', isVisible)
+        card.classList.toggle('is-peek-slide', !isVisible)
+    })
+}
+
+function animateCarouselSpring() {
+    cancelAnimationFrame(carouselSpringRAF)
+    isCarouselSpringActive = true
+
+    // Damped harmonic spring physics (tuned for tactile Google Labs magnetic snap)
+    const stiffness = 250
+    const damping = 20
+    const mass = 1
+    let lastTime = performance.now()
+
+    function springStep(currentTime) {
+        let dt = (currentTime - lastTime) / 1000
+        lastTime = currentTime
+
+        if (dt > 0.05) dt = 0.016
+        if (dt <= 0) dt = 0.016
+
+        const displacement = currentCarouselX - carouselTargetX
+        const springForce = -stiffness * displacement
+        const dampingForce = -damping * carouselVelocity
+        const acceleration = (springForce + dampingForce) / mass
+
+        carouselVelocity += acceleration * dt
+        currentCarouselX += carouselVelocity * dt
+
+        projectsCarouselTrack.style.transform = `translate3d(-${currentCarouselX.toFixed(2)}px, 0, 0)`
+
+        const currentDistance = Math.abs(currentCarouselX - carouselTargetX)
+        const currentSpeed = Math.abs(carouselVelocity)
+
+        if (currentDistance < 0.25 && currentSpeed < 0.4) {
+            // Magnetic lock into exact target position
+            currentCarouselX = carouselTargetX
+            carouselVelocity = 0
+            isCarouselSpringActive = false
+            projectsCarouselTrack.style.transform = `translate3d(-${carouselTargetX.toFixed(2)}px, 0, 0)`
+            updateCardFocusStates()
+        } else {
+            carouselSpringRAF = requestAnimationFrame(springStep)
+        }
+    }
+
+    carouselSpringRAF = requestAnimationFrame(springStep)
+}
+
+function updateProjectsCarousel(animate = true) {
     if (!projectsCarouselTrack) return
 
     const maxSlide = getMaxProjectSlide()
     currentProjectSlide = Math.max(0, Math.min(currentProjectSlide, maxSlide))
-
-    const firstCard = projectsCarouselTrack.querySelector('.projects-card')
-    if (firstCard) {
-        const cardRect = firstCard.getBoundingClientRect()
-        const computedStyle = window.getComputedStyle(projectsCarouselTrack)
-        const gap = parseFloat(computedStyle.gap) || 24
-
-        const isDesktop = window.innerWidth > 968
-        const peekAmount = isDesktop ? 56 : (window.innerWidth > 600 ? 40 : 36)
-
-        let peekOffset = 0
-        if (currentProjectSlide === 0) {
-            peekOffset = 0
-        } else if (currentProjectSlide === maxSlide) {
-            peekOffset = peekAmount
-        } else {
-            peekOffset = peekAmount / 2
-        }
-
-        const translatePx = currentProjectSlide * (cardRect.width + gap) - peekOffset
-        projectsCarouselTrack.style.transform = `translateX(-${Math.max(0, translatePx)}px)`
-    }
+    carouselTargetX = getCarouselTargetTranslatePx(currentProjectSlide)
 
     // Dynamic show/hide of navigation buttons & liquid glass edge overlays
     const shouldHidePrev = currentProjectSlide <= 0
@@ -1956,38 +2024,69 @@ function updateProjectsCarousel() {
     if (projectsGlassEdgeRight) {
         projectsGlassEdgeRight.classList.toggle('is-hidden', shouldHideNext)
     }
-}
 
-function slideProjectsPrev() {
-    if (currentProjectSlide > 0) {
-        currentProjectSlide--
-        updateProjectsCarousel()
+    if (prefersReducedMotion.matches || !animate) {
+        cancelAnimationFrame(carouselSpringRAF)
+        isCarouselSpringActive = false
+        currentCarouselX = carouselTargetX
+        carouselVelocity = 0
+        projectsCarouselTrack.style.transform = `translate3d(-${carouselTargetX.toFixed(2)}px, 0, 0)`
+        updateCardFocusStates()
+    } else {
+        animateCarouselSpring()
     }
 }
 
-function slideProjectsNext() {
+function triggerCarouselSlide(direction, triggerButton) {
     const maxSlide = getMaxProjectSlide()
-    if (currentProjectSlide < maxSlide) {
-        currentProjectSlide++
-        updateProjectsCarousel()
+    let nextSlide = currentProjectSlide
+
+    if (direction === 'next' && currentProjectSlide < maxSlide) {
+        nextSlide++
+    } else if (direction === 'prev' && currentProjectSlide > 0) {
+        nextSlide--
+    } else {
+        return
     }
+
+    currentProjectSlide = nextSlide
+
+    // Immediate tactile button press response
+    if (triggerButton) {
+        triggerButton.classList.add('is-active-press')
+        setTimeout(() => triggerButton.classList.remove('is-active-press'), 140)
+    }
+
+    // Subtle 50ms anticipation pause before spring acceleration
+    clearTimeout(carouselActionTimeout)
+    carouselActionTimeout = setTimeout(() => {
+        updateProjectsCarousel(true)
+    }, 50)
+}
+
+function slideProjectsPrev(triggerButton) {
+    triggerCarouselSlide('prev', triggerButton)
+}
+
+function slideProjectsNext(triggerButton) {
+    triggerCarouselSlide('next', triggerButton)
 }
 
 if (projectsCarouselPrev) {
     projectsCarouselPrev.addEventListener('click', (e) => {
         e.stopPropagation()
-        slideProjectsPrev()
+        slideProjectsPrev(projectsCarouselPrev)
     })
 }
 
 if (projectsCarouselNext) {
     projectsCarouselNext.addEventListener('click', (e) => {
         e.stopPropagation()
-        slideProjectsNext()
+        slideProjectsNext(projectsCarouselNext)
     })
 }
 
-// Touch swipe gesture support for projects carousel
+// Touch swipe gesture support with tactile spring physics for projects carousel
 if (projectsCarouselTrack) {
     let touchStartX = 0
     let touchEndX = 0
@@ -2001,9 +2100,9 @@ if (projectsCarouselTrack) {
         const diff = touchStartX - touchEndX
         if (Math.abs(diff) > 40) {
             if (diff > 0) {
-                slideProjectsNext()
+                slideProjectsNext(null)
             } else {
-                slideProjectsPrev()
+                slideProjectsPrev(null)
             }
         }
     }, { passive: true })
@@ -2011,11 +2110,11 @@ if (projectsCarouselTrack) {
 
 // Window resize handler for carousels
 window.addEventListener('resize', () => {
-    updateProjectsCarousel()
+    updateProjectsCarousel(false)
     if (projectsModal && projectsModal.classList.contains('active')) {
         positionModalTrack(false)
     }
-})
+}, { passive: true })
 
 /*==================== EXPANDED MEDIA LIGHTBOX ENGINE ====================*/
 let currentLightboxMediaIndex = 0
