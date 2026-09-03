@@ -563,7 +563,7 @@ body.dark-theme .nav-indicator-pill {
     border: 1px solid var(--glass-secondary-border);
     box-shadow: var(--glass-secondary-shadow);
     top: 1rem;
-    transition: all .4s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: top .35s cubic-bezier(0.25, 1, 0.5, 1), box-shadow .35s ease, border-color .35s ease, background-color .35s ease;
 }
 
 @media screen and (max-width: 767px) {
@@ -1330,16 +1330,18 @@ body.dark-theme .contact::before {
 /*=============== SCROLL ENTRANCE REVEAL ANIMATIONS ===============*/
 .reveal-on-scroll {
     opacity: 0;
-    transform: translateY(28px);
-    transition: opacity .7s cubic-bezier(0.16, 1, 0.3, 1), transform .7s cubic-bezier(0.16, 1, 0.3, 1);
-    will-change: opacity, transform;
+    transform: translate3d(0, 24px, 0);
+    transition: opacity .65s cubic-bezier(0.16, 1, 0.3, 1), transform .65s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
     z-index: 2;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 .reveal-on-scroll.is-revealed {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
+    will-change: auto;
 }
 
 .reveal-delay-1 {

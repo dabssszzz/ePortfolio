@@ -92,10 +92,17 @@ document.addEventListener('keydown', event => {
 })
 
 function setActiveLink(sectionId) {
+    let hasChanged = false
     navLinks.forEach(link => {
-        link.classList.toggle('active-link', link.getAttribute('href') === `#${sectionId}`)
+        const shouldBeActive = link.getAttribute('href') === `#${sectionId}`
+        if (link.classList.contains('active-link') !== shouldBeActive) {
+            link.classList.toggle('active-link', shouldBeActive)
+            hasChanged = true
+        }
     })
-    updateIndicators()
+    if (hasChanged) {
+        updateIndicators()
+    }
 }
 
 function scrollToSection(target) {
@@ -149,12 +156,18 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 
 /*==================== SCROLL SECTIONS ACTIVE LINK & TIMELINE PROGRESS ====================*/
 let ticking = false
+let currentActiveSectionId = null
 
 /* Education Timeline Continuous Scroll-Driven Progress */
 function updateEducationTimelineProgress() {
     const timeline = document.getElementById('education-timeline')
     const trackFill = document.getElementById('education-track-fill')
     if (!timeline || !trackFill) return
+
+    const viewportHeight = window.innerHeight
+    const timelineRect = timeline.getBoundingClientRect()
+    // Skip expensive calculations if education timeline is well outside viewport
+    if (timelineRect.bottom < -50 || timelineRect.top > viewportHeight + 50) return
 
     const milestones = timeline.querySelectorAll('.education-milestone')
     if (!milestones.length) return
@@ -170,7 +183,7 @@ function updateEducationTimelineProgress() {
     if (totalDistance <= 0) return
 
     // Trigger line in viewport: ~62% down from viewport top
-    const triggerY = window.innerHeight * 0.62
+    const triggerY = viewportHeight * 0.62
     const currentProgressPx = Math.min(Math.max(triggerY - firstRect.top, 0), totalDistance)
     const progressPercent = (currentProgressPx / totalDistance) * 100
 
@@ -200,32 +213,11 @@ function updateActiveSection() {
         activeSectionId = sections[sections.length - 1].id
     }
 
-    if (activeSectionId) {
+    if (activeSectionId && activeSectionId !== currentActiveSectionId) {
+        currentActiveSectionId = activeSectionId
         setActiveLink(activeSectionId)
     }
 }
-
-function requestActiveSectionUpdate() {
-    if (ticking) return
-
-    window.requestAnimationFrame(() => {
-        updateActiveSection()
-        updateEducationTimelineProgress()
-        ticking = false
-    })
-
-    ticking = true
-}
-
-window.addEventListener('scroll', requestActiveSectionUpdate)
-window.addEventListener('resize', () => {
-    requestActiveSectionUpdate()
-    updateIndicators()
-})
-window.addEventListener('load', () => {
-    requestActiveSectionUpdate()
-    updateIndicators()
-})
 
 /*==================== COMPACT HEADER & LIQUID GLASS BACKDROP ====================*/
 const navGlassBackdrop = document.getElementById('nav-glass-backdrop')
@@ -240,18 +232,40 @@ function scrollHeader() {
         if (navGlassBackdrop) {
             navGlassBackdrop.classList.toggle('is-active', isScrolled)
         }
-        setTimeout(updateIndicators, 60)
+        updateIndicators()
     }
 }
 
-window.addEventListener('scroll', scrollHeader)
-window.addEventListener('load', scrollHeader)
+function requestActiveSectionUpdate() {
+    if (ticking) return
+
+    window.requestAnimationFrame(() => {
+        scrollHeader()
+        updateActiveSection()
+        updateEducationTimelineProgress()
+        ticking = false
+    })
+
+    ticking = true
+}
+
+window.addEventListener('scroll', requestActiveSectionUpdate, { passive: true })
+window.addEventListener('resize', () => {
+    requestActiveSectionUpdate()
+    updateIndicators()
+}, { passive: true })
+window.addEventListener('load', () => {
+    requestActiveSectionUpdate()
+    updateIndicators()
+})
 
 /*==================== SLIDING ACTIVE INDICATORS ====================*/
 const indicatorTop = document.getElementById('nav-indicator-top')
 const indicatorPill = document.getElementById('nav-indicator-pill')
 const navContainer = document.querySelector('.nav-container')
 const navList = document.querySelector('.nav-list')
+
+let lastTopWidth = -1, lastTopTransform = '', lastPillWidth = -1, lastPillHeight = -1, lastPillTransform = ''
 
 function updateIndicators() {
     const activeLink = document.querySelector('.nav-link.active-link')
@@ -262,17 +276,37 @@ function updateIndicators() {
     const listRect = navList.getBoundingClientRect()
 
     if (indicatorTop) {
-        const leftOffset = linkRect.left - containerRect.left
-        indicatorTop.style.width = `${linkRect.width}px`
-        indicatorTop.style.transform = `translateX(${leftOffset}px)`
+        const leftOffset = Math.round(linkRect.left - containerRect.left)
+        const width = Math.round(linkRect.width)
+        const transform = `translateX(${leftOffset}px)`
+        if (lastTopWidth !== width) {
+            indicatorTop.style.width = `${width}px`
+            lastTopWidth = width
+        }
+        if (lastTopTransform !== transform) {
+            indicatorTop.style.transform = transform
+            lastTopTransform = transform
+        }
     }
 
     if (indicatorPill) {
-        const leftOffset = linkRect.left - listRect.left
-        const topOffset = linkRect.top - listRect.top
-        indicatorPill.style.width = `${linkRect.width}px`
-        indicatorPill.style.height = `${linkRect.height}px`
-        indicatorPill.style.transform = `translate(${leftOffset}px, ${topOffset}px)`
+        const leftOffset = Math.round(linkRect.left - listRect.left)
+        const topOffset = Math.round(linkRect.top - listRect.top)
+        const width = Math.round(linkRect.width)
+        const height = Math.round(linkRect.height)
+        const transform = `translate3d(${leftOffset}px, ${topOffset}px, 0)`
+        if (lastPillWidth !== width) {
+            indicatorPill.style.width = `${width}px`
+            lastPillWidth = width
+        }
+        if (lastPillHeight !== height) {
+            indicatorPill.style.height = `${height}px`
+            lastPillHeight = height
+        }
+        if (lastPillTransform !== transform) {
+            indicatorPill.style.transform = transform
+            lastPillTransform = transform
+        }
     }
 }
 
@@ -356,22 +390,29 @@ if (prefersReducedMotion.matches) {
     // Immediately reveal all elements without animation if user prefers reduced motion
     revealElements.forEach(el => el.classList.add('is-revealed'))
 } else if ('IntersectionObserver' in window) {
-    const revealObserver = new IntersectionObserver((entries) => {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('is-revealed')
-            } else {
-                // Reset animation state when element leaves the viewport
-                entry.target.classList.remove('is-revealed')
+                // Keep the revealed state permanently to eliminate flickering, stuttering, and re-triggers on scroll
+                observer.unobserve(entry.target)
             }
         })
     }, {
         root: null,
-        rootMargin: '0px 0px -40px 0px',
-        threshold: 0.15
+        rootMargin: '0px 0px -20px 0px',
+        threshold: 0.08
     })
 
-    revealElements.forEach(el => revealObserver.observe(el))
+    revealElements.forEach(el => {
+        // If element is already in the viewport on initial load, reveal immediately without delay
+        const rect = el.getBoundingClientRect()
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+            el.classList.add('is-revealed')
+        } else {
+            revealObserver.observe(el)
+        }
+    })
 } else {
     revealElements.forEach(el => el.classList.add('is-revealed'))
 }
