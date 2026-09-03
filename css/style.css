@@ -2798,66 +2798,8 @@ body.dark-theme .cert-modal-counter {
 .projects-carousel-track {
     display: flex;
     gap: 1.5rem;
-    transition: transform 0.65s cubic-bezier(0.18, 0.92, 0.3, 1.06), gap 0.62s cubic-bezier(0.22, 1, 0.36, 1);
-    will-change: transform, gap;
-}
-
-/* Temporary subtle gap expansion during transition */
-.projects-carousel-track.is-separating {
-    gap: 1.85rem;
-}
-
-/* Individual Card Magnetic Separation, Momentum & Snap Motion */
-.projects-card.animate-magnetic-next {
-    animation: magneticSeparationNext 0.62s cubic-bezier(0.2, 0.95, 0.3, 1.05) both;
-}
-
-.projects-card.animate-magnetic-prev {
-    animation: magneticSeparationPrev 0.62s cubic-bezier(0.2, 0.95, 0.3, 1.05) both;
-}
-
-@keyframes magneticSeparationNext {
-    0% {
-        transform: translate3d(0, 0, 0) scale(1);
-    }
-    12% {
-        /* Subtle anticipation in opposite direction */
-        transform: translate3d(4px, 0, 0) scale(0.988);
-    }
-    48% {
-        /* Temporary space expansion & magnetic pull forward */
-        transform: translate3d(calc(var(--sep-offset, 0px) - 10px), 0, 0) scale(1.008);
-    }
-    78% {
-        /* Subtle overshoot and gentle rebound */
-        transform: translate3d(3px, 0, 0) scale(0.998);
-    }
-    100% {
-        /* Soft magnetic snap into resting slot */
-        transform: translate3d(0, 0, 0) scale(1);
-    }
-}
-
-@keyframes magneticSeparationPrev {
-    0% {
-        transform: translate3d(0, 0, 0) scale(1);
-    }
-    12% {
-        /* Subtle anticipation in opposite direction */
-        transform: translate3d(-4px, 0, 0) scale(0.988);
-    }
-    48% {
-        /* Temporary space expansion & magnetic pull forward */
-        transform: translate3d(calc(var(--sep-offset, 0px) + 10px), 0, 0) scale(1.008);
-    }
-    78% {
-        /* Subtle overshoot and gentle rebound */
-        transform: translate3d(-3px, 0, 0) scale(0.998);
-    }
-    100% {
-        /* Soft magnetic snap into resting slot */
-        transform: translate3d(0, 0, 0) scale(1);
-    }
+    transition: transform 0.48s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
 }
 
 /* Full-Height Liquid Glass Edge Overlays (Covering Complete Height of Key Projects Section) */

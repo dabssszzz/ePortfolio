@@ -1958,62 +1958,9 @@ function updateProjectsCarousel() {
     }
 }
 
-let carouselAnimationTimeout = null
-
-function triggerMagneticCardAnimation(direction) {
-    if (!projectsCarouselTrack) return
-
-    const cards = Array.from(projectsCarouselTrack.querySelectorAll('.projects-card'))
-    if (!cards.length) return
-
-    if (carouselAnimationTimeout) {
-        clearTimeout(carouselAnimationTimeout)
-    }
-
-    const animClass = direction === 'next' ? 'animate-magnetic-next' : 'animate-magnetic-prev'
-    const isMobile = window.innerWidth <= 600
-    const staggerDelay = isMobile ? 32 : 44
-    const visibleCards = getVisibleCardsCount()
-
-    // 1. Brief temporary track gap expansion
-    projectsCarouselTrack.classList.add('is-separating')
-
-    const cardCount = cards.length
-    cards.forEach((card, idx) => {
-        card.classList.remove('animate-magnetic-next', 'animate-magnetic-prev')
-        void card.offsetWidth // Force reflow for crisp animation restart on rapid clicks
-
-        const orderIndex = direction === 'next' ? idx : (cardCount - 1 - idx)
-
-        // Compute subtle differential separation offset (leading cards pull ahead, trailing cards lag)
-        let sepOffset = 0
-        const relPos = (idx - currentProjectSlide + cardCount) % cardCount
-        if (direction === 'next') {
-            sepOffset = (relPos === 0) ? -10 : (relPos === 1 ? -3 : 6)
-        } else {
-            sepOffset = (relPos === visibleCards - 1) ? 10 : (relPos === visibleCards - 2 ? 3 : -6)
-        }
-
-        card.style.setProperty('--sep-offset', `${sepOffset}px`)
-        card.style.animationDelay = `${orderIndex * staggerDelay}ms`
-        card.classList.add(animClass)
-    })
-
-    const totalDuration = 620 + (cardCount * staggerDelay)
-    carouselAnimationTimeout = setTimeout(() => {
-        projectsCarouselTrack.classList.remove('is-separating')
-        cards.forEach(card => {
-            card.classList.remove('animate-magnetic-next', 'animate-magnetic-prev')
-            card.style.animationDelay = ''
-            card.style.removeProperty('--sep-offset')
-        })
-    }, totalDuration)
-}
-
 function slideProjectsPrev() {
     if (currentProjectSlide > 0) {
         currentProjectSlide--
-        triggerMagneticCardAnimation('prev')
         updateProjectsCarousel()
     }
 }
@@ -2022,7 +1969,6 @@ function slideProjectsNext() {
     const maxSlide = getMaxProjectSlide()
     if (currentProjectSlide < maxSlide) {
         currentProjectSlide++
-        triggerMagneticCardAnimation('next')
         updateProjectsCarousel()
     }
 }
