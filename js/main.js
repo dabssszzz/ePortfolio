@@ -260,16 +260,26 @@ function scrollHeader() {
 }
 
 function checkRevealElements() {
-    const triggerY = window.innerHeight - 20
-    const scrollBottom = window.innerHeight + window.scrollY
+    const vh = window.innerHeight
+    const triggerY = vh - 20
+    const scrollBottom = vh + window.scrollY
     const docHeight = Math.max(document.documentElement.scrollHeight, document.body.offsetHeight)
     const isNearBottom = scrollBottom >= docHeight - 60
+    const isNearTop = window.scrollY <= 60
 
     revealElements.forEach(el => {
-        if (!el.classList.contains('is-revealed')) {
-            const rect = el.getBoundingClientRect()
-            if (rect.top < triggerY || isNearBottom) {
+        const rect = el.getBoundingClientRect()
+        const isRevealed = el.classList.contains('is-revealed')
+
+        if (!isRevealed) {
+            // Animate in when entering viewport from bottom, top, or near boundaries
+            if ((rect.top < triggerY && rect.bottom > 20) || isNearBottom || (isNearTop && rect.top < vh)) {
                 el.classList.add('is-revealed')
+            }
+        } else {
+            // Hysteresis buffer: only reset when completely outside viewport by at least 100px
+            if (rect.bottom < -100 || rect.top > vh + 100) {
+                el.classList.remove('is-revealed')
             }
         }
     })
@@ -439,12 +449,19 @@ if (prefersReducedMotion.matches) {
     revealElements.forEach(el => el.classList.add('is-revealed'))
 } else if ('IntersectionObserver' in window) {
     const isMobile = window.innerWidth <= 768
-    const revealObserver = new IntersectionObserver((entries, observer) => {
+    const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
+            const rect = entry.boundingClientRect
+            const vh = window.innerHeight
+
             if (entry.isIntersecting) {
                 entry.target.classList.add('is-revealed')
-                // Keep the revealed state permanently to eliminate flickering, stuttering, and re-triggers on scroll
-                observer.unobserve(entry.target)
+            } else {
+                // Hysteresis buffer: only reset when element is well outside the viewport (at least 80px above or below)
+                // This prevents micro-flickering while enabling smooth bidirectional animations when scrolling up and down
+                if (rect.bottom < -80 || rect.top > vh + 80) {
+                    entry.target.classList.remove('is-revealed')
+                }
             }
         })
     }, {
@@ -456,11 +473,10 @@ if (prefersReducedMotion.matches) {
     revealElements.forEach(el => {
         const rect = el.getBoundingClientRect()
         // If element is already in the top visible viewport on initial load, reveal immediately
-        if (rect.top < window.innerHeight * 0.75) {
+        if (rect.top < window.innerHeight * 0.75 && rect.bottom > 0) {
             el.classList.add('is-revealed')
-        } else {
-            revealObserver.observe(el)
         }
+        revealObserver.observe(el)
     })
 } else {
     revealElements.forEach(el => el.classList.add('is-revealed'))
