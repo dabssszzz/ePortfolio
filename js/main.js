@@ -1972,7 +1972,11 @@ function triggerMagneticCardAnimation(direction) {
 
     const animClass = direction === 'next' ? 'animate-magnetic-next' : 'animate-magnetic-prev'
     const isMobile = window.innerWidth <= 600
-    const staggerDelay = isMobile ? 30 : 42
+    const staggerDelay = isMobile ? 32 : 44
+    const visibleCards = getVisibleCardsCount()
+
+    // 1. Brief temporary track gap expansion
+    projectsCarouselTrack.classList.add('is-separating')
 
     const cardCount = cards.length
     cards.forEach((card, idx) => {
@@ -1980,15 +1984,28 @@ function triggerMagneticCardAnimation(direction) {
         void card.offsetWidth // Force reflow for crisp animation restart on rapid clicks
 
         const orderIndex = direction === 'next' ? idx : (cardCount - 1 - idx)
+
+        // Compute subtle differential separation offset (leading cards pull ahead, trailing cards lag)
+        let sepOffset = 0
+        const relPos = (idx - currentProjectSlide + cardCount) % cardCount
+        if (direction === 'next') {
+            sepOffset = (relPos === 0) ? -10 : (relPos === 1 ? -3 : 6)
+        } else {
+            sepOffset = (relPos === visibleCards - 1) ? 10 : (relPos === visibleCards - 2 ? 3 : -6)
+        }
+
+        card.style.setProperty('--sep-offset', `${sepOffset}px`)
         card.style.animationDelay = `${orderIndex * staggerDelay}ms`
         card.classList.add(animClass)
     })
 
-    const totalDuration = 600 + (cardCount * staggerDelay)
+    const totalDuration = 620 + (cardCount * staggerDelay)
     carouselAnimationTimeout = setTimeout(() => {
+        projectsCarouselTrack.classList.remove('is-separating')
         cards.forEach(card => {
             card.classList.remove('animate-magnetic-next', 'animate-magnetic-prev')
             card.style.animationDelay = ''
+            card.style.removeProperty('--sep-offset')
         })
     }, totalDuration)
 }

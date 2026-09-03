@@ -2798,59 +2798,64 @@ body.dark-theme .cert-modal-counter {
 .projects-carousel-track {
     display: flex;
     gap: 1.5rem;
-    transition: transform 0.62s cubic-bezier(0.18, 0.9, 0.32, 1.05);
-    will-change: transform;
+    transition: transform 0.65s cubic-bezier(0.18, 0.92, 0.3, 1.06), gap 0.62s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform, gap;
 }
 
-/* Individual Card Magnetic Anticipation & Snap Motion */
+/* Temporary subtle gap expansion during transition */
+.projects-carousel-track.is-separating {
+    gap: 1.85rem;
+}
+
+/* Individual Card Magnetic Separation, Momentum & Snap Motion */
 .projects-card.animate-magnetic-next {
-    animation: magneticCardNext 0.58s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation: magneticSeparationNext 0.62s cubic-bezier(0.2, 0.95, 0.3, 1.05) both;
 }
 
 .projects-card.animate-magnetic-prev {
-    animation: magneticCardPrev 0.58s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation: magneticSeparationPrev 0.62s cubic-bezier(0.2, 0.95, 0.3, 1.05) both;
 }
 
-@keyframes magneticCardNext {
+@keyframes magneticSeparationNext {
     0% {
         transform: translate3d(0, 0, 0) scale(1);
     }
-    14% {
+    12% {
         /* Subtle anticipation in opposite direction */
         transform: translate3d(4px, 0, 0) scale(0.988);
     }
-    58% {
-        /* Momentum pull with delicate overshoot */
-        transform: translate3d(-9px, 0, 0) scale(1.006);
+    48% {
+        /* Temporary space expansion & magnetic pull forward */
+        transform: translate3d(calc(var(--sep-offset, 0px) - 10px), 0, 0) scale(1.008);
     }
-    82% {
-        /* Gentle rebound */
-        transform: translate3d(2px, 0, 0) scale(0.998);
+    78% {
+        /* Subtle overshoot and gentle rebound */
+        transform: translate3d(3px, 0, 0) scale(0.998);
     }
     100% {
-        /* Precise magnetic snap into slot */
+        /* Soft magnetic snap into resting slot */
         transform: translate3d(0, 0, 0) scale(1);
     }
 }
 
-@keyframes magneticCardPrev {
+@keyframes magneticSeparationPrev {
     0% {
         transform: translate3d(0, 0, 0) scale(1);
     }
-    14% {
+    12% {
         /* Subtle anticipation in opposite direction */
         transform: translate3d(-4px, 0, 0) scale(0.988);
     }
-    58% {
-        /* Momentum pull with delicate overshoot */
-        transform: translate3d(9px, 0, 0) scale(1.006);
+    48% {
+        /* Temporary space expansion & magnetic pull forward */
+        transform: translate3d(calc(var(--sep-offset, 0px) + 10px), 0, 0) scale(1.008);
     }
-    82% {
-        /* Gentle rebound */
-        transform: translate3d(-2px, 0, 0) scale(0.998);
+    78% {
+        /* Subtle overshoot and gentle rebound */
+        transform: translate3d(-3px, 0, 0) scale(0.998);
     }
     100% {
-        /* Precise magnetic snap into slot */
+        /* Soft magnetic snap into resting slot */
         transform: translate3d(0, 0, 0) scale(1);
     }
 }
