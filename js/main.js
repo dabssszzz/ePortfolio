@@ -157,6 +157,7 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 /*==================== SCROLL SECTIONS ACTIVE LINK & TIMELINE PROGRESS ====================*/
 let ticking = false
 let currentActiveSectionId = null
+let lastTimelineProgress = -1
 
 /* Education Timeline Continuous Scroll-Driven Progress */
 function updateEducationTimelineProgress() {
@@ -166,11 +167,28 @@ function updateEducationTimelineProgress() {
 
     const viewportHeight = window.innerHeight
     const timelineRect = timeline.getBoundingClientRect()
-    // Skip expensive calculations if education timeline is well outside viewport
-    if (timelineRect.bottom < -50 || timelineRect.top > viewportHeight + 50) return
-
     const milestones = timeline.querySelectorAll('.education-milestone')
     if (!milestones.length) return
+
+    // When timeline has completely scrolled past viewport (scrolled further down to skills/projects/contact)
+    if (timelineRect.bottom < viewportHeight * 0.1) {
+        if (lastTimelineProgress !== 100) {
+            trackFill.style.height = '100%'
+            milestones.forEach(m => m.classList.add('is-active'))
+            lastTimelineProgress = 100
+        }
+        return
+    }
+
+    // When timeline has not entered the trigger zone yet (scrolled further up to hero/about)
+    if (timelineRect.top > viewportHeight * 0.95) {
+        if (lastTimelineProgress !== 0) {
+            trackFill.style.height = '0%'
+            milestones.forEach(m => m.classList.remove('is-active'))
+            lastTimelineProgress = 0
+        }
+        return
+    }
 
     const firstNode = milestones[0].querySelector('.education-milestone-node')
     const lastNode = milestones[milestones.length - 1].querySelector('.education-milestone-node')
@@ -185,22 +203,24 @@ function updateEducationTimelineProgress() {
     // Trigger line in viewport: ~62% down from viewport top
     const triggerY = viewportHeight * 0.62
     const currentProgressPx = Math.min(Math.max(triggerY - firstRect.top, 0), totalDistance)
-    const progressPercent = (currentProgressPx / totalDistance) * 100
+    const progressPercent = Math.round((currentProgressPx / totalDistance) * 100)
 
-    trackFill.style.height = `${progressPercent}%`
+    if (lastTimelineProgress !== progressPercent) {
+        trackFill.style.height = `${progressPercent}%`
+        lastTimelineProgress = progressPercent
 
-    // Activate milestone nodes reached by scroll progress
-    milestones.forEach(milestone => {
-        const node = milestone.querySelector('.education-milestone-node')
-        if (!node) return
-        const nodeRect = node.getBoundingClientRect()
-        const isReached = triggerY >= nodeRect.top - 8
-        milestone.classList.toggle('is-active', isReached)
-    })
+        milestones.forEach(milestone => {
+            const node = milestone.querySelector('.education-milestone-node')
+            if (!node) return
+            const nodeRect = node.getBoundingClientRect()
+            const isReached = triggerY >= nodeRect.top - 8
+            milestone.classList.toggle('is-active', isReached)
+        })
+    }
 }
 
 function updateActiveSection() {
-    const scrollPosition = window.scrollY + 120
+    const scrollPosition = window.scrollY + 140
     let activeSectionId = sections[0] ? sections[0].id : null
 
     sections.forEach(section => {
@@ -209,7 +229,10 @@ function updateActiveSection() {
         }
     })
 
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 2 && sections.length) {
+    // Robust bottom-of-page detection: guarantees contact section is active at page bottom on all screens
+    const scrollBottom = window.innerHeight + window.scrollY
+    const docHeight = Math.max(document.documentElement.scrollHeight, document.body.offsetHeight)
+    if (scrollBottom >= docHeight - 30 && sections.length) {
         activeSectionId = sections[sections.length - 1].id
     }
 
@@ -236,6 +259,18 @@ function scrollHeader() {
     }
 }
 
+function checkRevealElements() {
+    const triggerY = window.innerHeight + 80
+    revealElements.forEach(el => {
+        if (!el.classList.contains('is-revealed')) {
+            const rect = el.getBoundingClientRect()
+            if (rect.top < triggerY) {
+                el.classList.add('is-revealed')
+            }
+        }
+    })
+}
+
 function requestActiveSectionUpdate() {
     if (ticking) return
 
@@ -243,6 +278,7 @@ function requestActiveSectionUpdate() {
         scrollHeader()
         updateActiveSection()
         updateEducationTimelineProgress()
+        checkRevealElements()
         ticking = false
     })
 
@@ -258,6 +294,14 @@ window.addEventListener('load', () => {
     requestActiveSectionUpdate()
     updateIndicators()
 })
+
+// Yield programmatic scroll immediately if user scrolls manually
+window.addEventListener('wheel', () => {
+    if (isProgrammaticScrollActive) finishProgrammaticScroll()
+}, { passive: true })
+window.addEventListener('touchstart', () => {
+    if (isProgrammaticScrollActive) finishProgrammaticScroll()
+}, { passive: true })
 
 /*==================== SLIDING ACTIVE INDICATORS ====================*/
 const indicatorTop = document.getElementById('nav-indicator-top')
@@ -400,14 +444,14 @@ if (prefersReducedMotion.matches) {
         })
     }, {
         root: null,
-        rootMargin: '0px 0px -20px 0px',
-        threshold: 0.08
+        rootMargin: '50px 0px 50px 0px',
+        threshold: 0.05
     })
 
     revealElements.forEach(el => {
-        // If element is already in the viewport on initial load, reveal immediately without delay
+        // Reveal any element that is currently within or above the viewport (already reached/passed)
         const rect = el.getBoundingClientRect()
-        if (rect.top < window.innerHeight && rect.bottom > 0) {
+        if (rect.top < window.innerHeight + 60) {
             el.classList.add('is-revealed')
         } else {
             revealObserver.observe(el)
