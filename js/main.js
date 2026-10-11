@@ -485,160 +485,208 @@ if (prefersReducedMotion.matches) {
 /*==================== CERTIFICATIONS INTERACTIVE ENGINE ====================*/
 const certificatesData = [
     {
-        title: "Preparing Future IT Professionals Through Enterprise Networking, Cybersecurity And Security Operations Center (SOC) Exposure Seminar",
-        issuer: "Ardent Networks Inc.",
-        date: "Jan 2026",
-        image: "assets/certification/previews/Preparing Future IT Professionals Through Enterprise Networking, Cybersecurity, and Security Operations Center (SOC) Exposure Seminar.pdf.png"
+        "title": "Design User Experiences with Figma",
+        "issuer": "LinkedIn",
+        "date": "Oct 2026",
+        "image": "assets/certification/previews/CertificateOfCompletion_Design User Experiences with Figma.pdf.png"
     },
     {
-        title: "Machine Learning using Python",
-        issuer: "Simplilearn",
-        date: "Apr 2025",
-        image: "assets/certification/previews/Machine Learning using Python.pdf.png"
+        "title": "Figma for UX Design",
+        "issuer": "LinkedIn",
+        "date": "Sep 2026",
+        "image": "assets/certification/previews/CertificateOfCompletion_Figma for UX Design.pdf.png"
     },
     {
-        title: "Kwentuhang Cybersecurity: The Role of Artificial Intelligence in Predicting and Mitigating Cyber Threats",
-        issuer: "PICSPro (Philippine Institute of Cybersecurity Professionals)",
-        date: "Oct 2025",
-        image: "assets/certification/previews/Kwentuhang Cybersecurity The Role of Artificial Intelligence in Predicting and Mitigating Cyber Threats.pdf.png"
+        "title": "UX Foundations: Prototyping",
+        "issuer": "LinkedIn",
+        "date": "Oct 2026",
+        "image": "assets/certification/previews/CertificateOfCompletion_UX Foundations Prototyping.pdf.png"
     },
     {
-        title: "10th National Research Conference on Information Technology Education",
-        issuer: "Integrated Society of Information Technology Enthusiasts (SITE) Inc.",
-        date: "May 2025",
-        image: "assets/certification/previews/10th National Research Conference on Information Technology Education.jpg"
+        "title": "Figma: From Design to CSS Implementation",
+        "issuer": "LinkedIn",
+        "date": "Oct 2026",
+        "image": "assets/certification/previews/CertificateOfCompletion_Figma From Design to CSS Implementation.pdf.png"
     },
     {
-        title: "Kwentuhang Cybersecurity: Digital Privacy and Cyber Laws in the Philippines: Understanding Your Rights Under RA 10173 and RA 10175",
-        issuer: "PICSPro (Philippine Institute of Cybersecurity Professionals)",
-        date: "Mar 2025",
-        image: "assets/certification/previews/Kwentuhang Cybersecurity Digital Privacy and Cyber Laws in the Philippines Understanding Your Rights Under RA 10173 and RA 10175.pdf.png"
+        "title": "Designing Microinteractions with Figma",
+        "issuer": "LinkedIn",
+        "date": "Oct 2026",
+        "image": "assets/certification/previews/CertificateOfCompletion_Designing Microinteractions with Figma.pdf.png"
     },
     {
-        title: "Networking Foundations: Networking Basics",
-        issuer: "LinkedIn",
-        date: "Nov 2023",
-        image: "assets/certification/previews/Networking Foundations Networking Basics.pdf.png"
+        "title": "Figma: Designing with Variables and Conditionals",
+        "issuer": "LinkedIn",
+        "date": "Oct 2026",
+        "image": "assets/certification/previews/CertificateOfCompletion_Figma Designing with Variables and Conditionals.pdf.png"
     },
     {
-        title: "Artificial Intelligence Foundations: Thinking Machines",
-        issuer: "LinkedIn",
-        date: "Nov 2023",
-        image: "assets/certification/previews/Artificial Intelligence Foundations Thinking Machines.jpeg"
+        "title": "Figma Essential Training",
+        "issuer": "LinkedIn",
+        "date": "Sep 2026",
+        "image": "assets/certification/previews/CertificateOfCompletion_Figma Essential Training.pdf.png"
     },
     {
-        title: "\"Data Analytics & How to become a Data Analyst and Creating a Video Presentation and \"Developing a Mobile Cross-Platform Application\"",
-        issuer: "Polytechnic University of the Philippines",
-        date: "Jan 2023",
-        image: "assets/certification/previews/Data Analytics and Mobile App.png"
+        "title": "Tech Career Skills: Communication for Developers",
+        "issuer": "LinkedIn",
+        "date": "Nov 2023",
+        "image": "assets/certification/previews/Tech Career Skills Communication for Developers.jpeg"
     },
     {
-        title: "Digital Literacy Training: Introduction to Data Analytics",
-        issuer: "Department of Information and Communications Technology - Philippines",
-        date: "Jan 2023",
-        image: "assets/certification/previews/Digital Literacy Training Introduction to Data Analytics.pdf.png"
+        "title": "Tech Career Skills: Effective Technical Communication",
+        "issuer": "LinkedIn",
+        "date": "Nov 2023",
+        "image": "assets/certification/previews/Tech Career Skills Effective Technical Communication.pdf.png"
     },
     {
-        title: "Internet Media and Information Literacy Training",
-        issuer: "Department of Information and Communications Technology - Philippines",
-        date: "Jan 2023",
-        image: "assets/certification/previews/Internet Media and Information Literacy Training.pdf.png"
+        "title": "Data Analytics & How to Become a Data Analyst / Creating a Video Presentation / Developing a Mobile Cross-Platform Application",
+        "issuer": "Polytechnic University of the Philippines",
+        "date": "Jan 2023",
+        "image": "assets/certification/previews/Data Analytics and Mobile App.png"
     },
     {
-        title: "16th EdukCircle International Convention On Engineering and Computer Technology",
-        issuer: "The EdukCircle",
-        date: "May 2024",
-        image: "assets/certification/previews/16th EdukCircle International Convention On Engineering and Computer Technology.pdf.png"
+        "title": "Design a Compelling Presentation",
+        "issuer": "LinkedIn",
+        "date": "Nov 2023",
+        "image": "assets/certification/previews/Design a Compelling Presentation.pdf.png"
     },
     {
-        title: "Tech Career Skills: Effective Technical Communication",
-        issuer: "LinkedIn",
-        date: "Nov 2023",
-        image: "assets/certification/previews/Tech Career Skills Effective Technical Communication.pdf.png"
+        "title": "ASEAN Ahead – AI Career Readiness",
+        "issuer": "ASEAN Foundation",
+        "date": "Sep 2026",
+        "image": "assets/certification/previews/certificate_ai-career-readiness.png"
     },
     {
-        title: "Tech Career Skills: Communication for Developers",
-        issuer: "LinkedIn",
-        date: "Nov 2023",
-        image: "assets/certification/previews/Tech Career Skills Communication for Developers.jpeg"
+        "title": "Python Quick Start",
+        "issuer": "LinkedIn",
+        "date": "Nov 2023",
+        "image": "assets/certification/previews/Python Quick Start.jpeg"
     },
     {
-        title: "Python Quick Start",
-        issuer: "LinkedIn",
-        date: "Nov 2023",
-        image: "assets/certification/previews/Python Quick Start.jpeg"
+        "title": "Digital Literacy Training: Introduction to Data Analytics",
+        "issuer": "Department of Information and Communications Technology – Philippines",
+        "date": "Jan 2023",
+        "image": "assets/certification/previews/Digital Literacy Training Introduction to Data Analytics.pdf.png"
     },
     {
-        title: "The Future of Work: The Necessary Skills of Your Future Workforce",
-        issuer: "LinkedIn",
-        date: "Nov 2023",
-        image: "assets/certification/previews/The Future of Work The Necessary Skills of Your Future Workforce.pdf.png"
+        "title": "Internet Media and Information Literacy Training",
+        "issuer": "Department of Information and Communications Technology – Philippines",
+        "date": "Jan 2023",
+        "image": "assets/certification/previews/Internet Media and Information Literacy Training.pdf.png"
     },
     {
-        title: "Develop Interpersonal Skills for Inclusive Workplaces",
-        issuer: "LinkedIn",
-        date: "Nov 2023",
-        image: "assets/certification/previews/Develop Interpersonal Skills for Inclusive Workplaces.pdf.png"
+        "title": "Kwentuhang Cybersecurity: Digital Privacy and Cyber Laws in the Philippines — RA 10173 and RA 10175",
+        "issuer": "PICSPro",
+        "date": "Mar 2025",
+        "image": "assets/certification/previews/Kwentuhang Cybersecurity Digital Privacy and Cyber Laws in the Philippines Understanding Your Rights Under RA 10173 and RA 10175.pdf.png"
     },
     {
-        title: "Communication Skills for Modern Management",
-        issuer: "LinkedIn",
-        date: "Nov 2023",
-        image: "assets/certification/previews/Communication Skills for Modern Management.pdf.png"
+        "title": "Machine Learning using Python",
+        "issuer": "Simplilearn",
+        "date": "Apr 2025",
+        "image": "assets/certification/previews/Machine Learning using Python.pdf.png"
     },
     {
-        title: "Communication Foundations (2018)",
-        issuer: "LinkedIn",
-        date: "Nov 2023",
-        image: "assets/certification/previews/Communication Foundations (2018).pdf.png"
+        "title": "Artificial Intelligence Foundations: Thinking Machines",
+        "issuer": "LinkedIn",
+        "date": "Nov 2023",
+        "image": "assets/certification/previews/Artificial Intelligence Foundations Thinking Machines.jpeg"
     },
     {
-        title: "Business Writing Principles",
-        issuer: "LinkedIn",
-        date: "Nov 2023",
-        image: "assets/certification/previews/Business Writing Principles.pdf.png"
+        "title": "Develop Interpersonal Skills for Inclusive Workplaces",
+        "issuer": "LinkedIn",
+        "date": "Nov 2023",
+        "image": "assets/certification/previews/Develop Interpersonal Skills for Inclusive Workplaces.pdf.png"
     },
     {
-        title: "Writing Formal Business Letters and Emails",
-        issuer: "LinkedIn",
-        date: "Nov 2023",
-        image: "assets/certification/previews/Writing Formal Business Letters and Emails.pdf.png"
+        "title": "Skills for Inclusive Conversations",
+        "issuer": "LinkedIn",
+        "date": "Nov 2023",
+        "image": "assets/certification/previews/Skills for Inclusive Conversations.pdf.png"
     },
     {
-        title: "Tips for Writing Business Emails",
-        issuer: "LinkedIn",
-        date: "Nov 2023",
-        image: "assets/certification/previews/Tips for Writing Business Emails.pdf.png"
+        "title": "Preparing Future IT Professionals Through Enterprise Networking, Cybersecurity and SOC Exposure Seminar",
+        "issuer": "Ardent Networks Inc.",
+        "date": "Jan 2026",
+        "image": "assets/certification/previews/Preparing Future IT Professionals Through Enterprise Networking, Cybersecurity, and Security Operations Center (SOC) Exposure Seminar.pdf.png"
     },
     {
-        title: "Design a Compelling Presentation",
-        issuer: "LinkedIn",
-        date: "Nov 2023",
-        image: "assets/certification/previews/Design a Compelling Presentation.pdf.png"
+        "title": "Kwentuhang Cybersecurity: The Role of AI in Predicting and Mitigating Cyber Threats",
+        "issuer": "PICSPro",
+        "date": "Oct 2025",
+        "image": "assets/certification/previews/Kwentuhang Cybersecurity The Role of Artificial Intelligence in Predicting and Mitigating Cyber Threats.pdf.png"
     },
     {
-        title: "Video Writing: Using Humor to Communicate and Persuade",
-        issuer: "LinkedIn",
-        date: "Nov 2023",
-        image: "assets/certification/previews/Video Writing Using Humor to Communicate and Persuade.pdf.png"
+        "title": "Networking Foundations: Networking Basics",
+        "issuer": "LinkedIn",
+        "date": "Nov 2023",
+        "image": "assets/certification/previews/Networking Foundations Networking Basics.pdf.png"
     },
     {
-        title: "Skills for Inclusive Conversations",
-        issuer: "LinkedIn",
-        date: "Nov 2023",
-        image: "assets/certification/previews/Skills for Inclusive Conversations.pdf.png"
+        "title": "10th National Research Conference on Information Technology Education",
+        "issuer": "Integrated Society of Information Technology Enthusiasts (SITE) Inc.",
+        "date": "May 2025",
+        "image": "assets/certification/previews/10th National Research Conference on Information Technology Education.jpg"
     },
     {
-        title: "Learning Premiere Pro (2019)",
-        issuer: "LinkedIn",
-        date: "Nov 2023",
-        image: "assets/certification/previews/Learning Premiere Pro (2019).jpeg"
+        "title": "16th EdukCircle International Convention on Engineering and Computer Technology",
+        "issuer": "The EdukCircle",
+        "date": "May 2024",
+        "image": "assets/certification/previews/16th EdukCircle International Convention On Engineering and Computer Technology.pdf.png"
     },
     {
-        title: "Introduction to Photography: Lightroom Classic CC and Photoshop",
-        issuer: "LinkedIn",
-        date: "Nov 2023",
-        image: "assets/certification/previews/Introduction to Photography Lightroom Classic CC and Photoshop.jpeg"
+        "title": "Business Writing Principles",
+        "issuer": "LinkedIn",
+        "date": "Nov 2023",
+        "image": "assets/certification/previews/Business Writing Principles.pdf.png"
+    },
+    {
+        "title": "Communication Foundations (2018)",
+        "issuer": "LinkedIn",
+        "date": "Nov 2023",
+        "image": "assets/certification/previews/Communication Foundations (2018).pdf.png"
+    },
+    {
+        "title": "Writing Formal Business Letters and Emails",
+        "issuer": "LinkedIn",
+        "date": "Nov 2023",
+        "image": "assets/certification/previews/Writing Formal Business Letters and Emails.pdf.png"
+    },
+    {
+        "title": "Tips for Writing Business Emails",
+        "issuer": "LinkedIn",
+        "date": "Nov 2023",
+        "image": "assets/certification/previews/Tips for Writing Business Emails.pdf.png"
+    },
+    {
+        "title": "The Future of Work: The Necessary Skills of Your Future Workforce",
+        "issuer": "LinkedIn",
+        "date": "Nov 2023",
+        "image": "assets/certification/previews/The Future of Work The Necessary Skills of Your Future Workforce.pdf.png"
+    },
+    {
+        "title": "Communication Skills for Modern Management",
+        "issuer": "LinkedIn",
+        "date": "Nov 2023",
+        "image": "assets/certification/previews/Communication Skills for Modern Management.pdf.png"
+    },
+    {
+        "title": "Introduction to Photography: Lightroom Classic CC and Photoshop",
+        "issuer": "LinkedIn",
+        "date": "Nov 2023",
+        "image": "assets/certification/previews/Introduction to Photography Lightroom Classic CC and Photoshop.jpeg"
+    },
+    {
+        "title": "Learning Premiere Pro (2019)",
+        "issuer": "LinkedIn",
+        "date": "Nov 2023",
+        "image": "assets/certification/previews/Learning Premiere Pro (2019).jpeg"
+    },
+    {
+        "title": "Video Writing: Using Humor to Communicate and Persuade",
+        "issuer": "LinkedIn",
+        "date": "Nov 2023",
+        "image": "assets/certification/previews/Video Writing Using Humor to Communicate and Persuade.pdf.png"
     }
 ]
 
@@ -651,11 +699,65 @@ const certToggleList = document.getElementById('cert-toggle-list')
 const certToggleGallery = document.getElementById('cert-toggle-gallery')
 const certListView = document.getElementById('cert-list-view')
 const certGalleryView = document.getElementById('cert-gallery-view')
-const certListItems = document.querySelectorAll('.cert-list-item')
-const certGalleryCards = document.querySelectorAll('.cert-gallery-card')
+let certListItems = document.querySelectorAll('.cert-list-item')
+let certGalleryCards = document.querySelectorAll('.cert-gallery-card')
 const certPrevPageBtn = document.getElementById('cert-prev-page')
 const certNextPageBtn = document.getElementById('cert-next-page')
 const certPageNumbersContainer = document.getElementById('cert-page-numbers')
+
+function renderCertifications() {
+    const certListGroup = document.getElementById('cert-list-group')
+    const certGalleryGrid = document.getElementById('cert-gallery-grid')
+
+    if (certListGroup) {
+        certListGroup.innerHTML = certificatesData.map((cert, index) => `
+            <div class="cert-list-item" data-cert-index="${index}" role="button" tabindex="0"
+                aria-label="View certificate: ${cert.title}">
+                <div class="cert-list-main">
+                    <div class="cert-list-icon-wrapper">
+                        <i class="ri-award-line cert-list-icon"></i>
+                    </div>
+                    <div class="cert-list-text">
+                        <h3 class="cert-list-title">${cert.title}</h3>
+                        <div class="cert-list-meta">
+                            <span class="cert-list-issuer"><i class="ri-building-line"></i> ${cert.issuer}</span>
+                            <span class="cert-meta-dot">&bull;</span>
+                            <span class="cert-list-date"><i class="ri-calendar-line"></i> ${cert.date}</span>
+                        </div>
+                    </div>
+                </div>
+                <span class="cert-list-action"><i class="ri-eye-line"></i> View</span>
+            </div>
+        `).join('')
+    }
+
+    if (certGalleryGrid) {
+        certGalleryGrid.innerHTML = certificatesData.map((cert, index) => `
+            <div class="cert-gallery-card reveal-on-scroll" data-cert-index="${index}" role="button" tabindex="0"
+                aria-label="View certificate: ${cert.title}">
+                <div class="cert-card-media">
+                    <img src="${cert.image}"
+                        alt="${cert.title}" class="cert-card-img" loading="lazy">
+                    <div class="cert-card-overlay">
+                        <span class="cert-card-badge"><i class="ri-eye-line"></i> View Certificate</span>
+                    </div>
+                </div>
+                <div class="cert-card-body">
+                    <h3 class="cert-card-title">${cert.title}</h3>
+                    <div class="cert-card-meta">
+                        <span class="cert-card-issuer">${cert.issuer}</span>
+                        <span class="cert-meta-dot">&bull;</span>
+                        <span class="cert-card-date">${cert.date}</span>
+                    </div>
+                </div>
+            </div>
+        `).join('')
+    }
+
+    certListItems = document.querySelectorAll('.cert-list-item')
+    certGalleryCards = document.querySelectorAll('.cert-gallery-card')
+    bindCertCardEvents()
+}
 
 function updateCertPagination(pageNumber) {
     currentCertPage = Math.max(1, Math.min(pageNumber, totalCertPages))
@@ -780,9 +882,6 @@ if (certToggleGallery) {
     certToggleGallery.addEventListener('click', () => switchCertView('gallery'))
 }
 
-// Initialize pagination on load
-initPaginationControls()
-
 /* 2. Lightbox Modal Viewer */
 const certModal = document.getElementById('cert-modal')
 const certModalBackdrop = document.getElementById('cert-modal-backdrop')
@@ -842,21 +941,28 @@ function showPrevCert() {
     renderModalCert(prevIndex)
 }
 
-// Bind interactive click/keyboard open events on List and Gallery items
-document.querySelectorAll('.cert-list-item, .cert-gallery-card').forEach(item => {
-    item.addEventListener('click', () => {
-        const index = parseInt(item.getAttribute('data-cert-index'), 10)
-        if (!isNaN(index)) openCertModal(index)
-    })
-
-    item.addEventListener('keydown', event => {
-        if (event.key === 'Enter' || event.key === ' ') {
-            event.preventDefault()
+function bindCertCardEvents() {
+    document.querySelectorAll('.cert-list-item, .cert-gallery-card').forEach(item => {
+        item.addEventListener('click', () => {
             const index = parseInt(item.getAttribute('data-cert-index'), 10)
             if (!isNaN(index)) openCertModal(index)
-        }
+        })
+
+        item.addEventListener('keydown', event => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault()
+                const index = parseInt(item.getAttribute('data-cert-index'), 10)
+                if (!isNaN(index)) openCertModal(index)
+            }
+        })
     })
-})
+}
+
+// Render dynamic items from shared source of truth
+renderCertifications()
+
+// Initialize pagination on load
+initPaginationControls()
 
 if (certModalClose) {
     certModalClose.addEventListener('click', closeCertModal)
