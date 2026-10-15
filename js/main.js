@@ -1,3 +1,8 @@
+import { inject } from '@vercel/analytics'
+
+// Initialize Vercel Web Analytics
+inject()
+
 const header = document.getElementById('header')
 const navMenu = document.getElementById('nav-menu')
 const navToggle = document.getElementById('nav-toggle')
