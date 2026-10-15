@@ -392,25 +392,33 @@ const iconMoon = 'ri-moon-line'
 // Retrieve user's previous preference (if any)
 const selectedTheme = localStorage.getItem('selected-theme')
 
-// Detect system preference
-const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-
 // Current theme helper
 const getCurrentTheme = () => document.body.classList.contains(darkThemeClass) ? 'dark' : 'light'
 
 // Favicon theme helper
 const updateFavicon = (theme) => {
+    const isDark = theme === 'dark'
+    const iconPath = isDark
+        ? 'assets/img/ERM eportfolio LOGO Dark Mode.png'
+        : 'assets/img/ERM eportfolio LOGO Light Mode.png'
+
     const favicon = document.getElementById('favicon')
     if (favicon) {
-        favicon.href = theme === 'dark'
-            ? 'assets/img/ERM eportfolio LOGO Dark Mode.png'
-            : 'assets/img/ERM eportfolio LOGO Light Mode.png'
+        favicon.href = iconPath
     }
+
+    document.querySelectorAll("link[rel*='icon']").forEach(link => {
+        link.href = iconPath
+    })
 }
 
-// Initialize Theme based on saved selection or system setting
-if (selectedTheme === 'dark' || (!selectedTheme && systemPrefersDark)) {
+// Priority: 1. Saved preference (if any) -> 2. Default to Dark Mode
+const isDarkTheme = selectedTheme ? selectedTheme === 'dark' : true
+
+// Initialize Theme based on priority
+if (isDarkTheme) {
     document.body.classList.add(darkThemeClass)
+    document.documentElement.classList.add(darkThemeClass)
     if (themeIcon) {
         themeIcon.classList.remove(iconMoon)
         themeIcon.classList.add(iconSun)
@@ -418,6 +426,7 @@ if (selectedTheme === 'dark' || (!selectedTheme && systemPrefersDark)) {
     updateFavicon('dark')
 } else {
     document.body.classList.remove(darkThemeClass)
+    document.documentElement.classList.remove(darkThemeClass)
     if (themeIcon) {
         themeIcon.classList.remove(iconSun)
         themeIcon.classList.add(iconMoon)
@@ -429,6 +438,7 @@ if (selectedTheme === 'dark' || (!selectedTheme && systemPrefersDark)) {
 if (themeButton) {
     themeButton.addEventListener('click', () => {
         document.body.classList.toggle(darkThemeClass)
+        document.documentElement.classList.toggle(darkThemeClass)
         const isDark = document.body.classList.contains(darkThemeClass)
 
         if (themeIcon) {

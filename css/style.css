@@ -88,6 +88,7 @@
 }
 
 /*========== Dark Theme Overrides (Deep Black Base) ==========*/
+html.dark-theme,
 body.dark-theme {
     --title-color: #f8fafc;
     --text-color: #cbd5e1;
@@ -148,6 +149,7 @@ body.dark-theme {
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 5rem;
+    background-color: var(--body-color);
 }
 
 body {

@@ -9,10 +9,7 @@
         content="Portfolio of Engelbert R. Morales - Software Developer & BSIT Professional specializing in ReactJS, ASP.NET Core, and Web Applications.">
 
     <!-- Favicon: Personal Portfolio Logo -->
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/ERM eportfolio LOGO Dark Mode.png"
-        media="(prefers-color-scheme: dark)">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/ERM eportfolio LOGO Light Mode.png"
-        media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/ERM eportfolio LOGO Dark Mode.png">
     <link rel="icon" type="image/png" href="assets/img/ERM eportfolio LOGO Dark Mode.png" id="favicon">
     <link rel="apple-touch-icon" href="assets/img/ERM eportfolio LOGO Dark Mode.png">
 
@@ -26,9 +23,28 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- Early Theme Initialization: Default to Dark Mode without flash -->
+    <script>
+        (function () {
+            var theme = localStorage.getItem('selected-theme');
+            if (theme !== 'light') {
+                document.documentElement.classList.add('dark-theme');
+            }
+        })();
+    </script>
 </head>
 
-<body>
+<body class="dark-theme">
+    <script>
+        (function () {
+            var theme = localStorage.getItem('selected-theme');
+            if (theme === 'light') {
+                document.body.classList.remove('dark-theme');
+                document.documentElement.classList.remove('dark-theme');
+            }
+        })();
+    </script>
 
     <!-- Localized Interactive Cursor-Reactive Dotted Grid Spotlight Canvas -->
     <canvas id="cursor-grid-canvas" class="cursor-grid-canvas" aria-hidden="true"></canvas>
@@ -65,8 +81,14 @@
 
             <!-- Theme Toggle Button -->
             <button class="nav-theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
-                <i class="ri-moon-line" id="theme-icon"></i>
+                <i class="ri-sun-line" id="theme-icon"></i>
             </button>
+            <script>
+                if (localStorage.getItem('selected-theme') === 'light') {
+                    var ti = document.getElementById('theme-icon');
+                    if (ti) { ti.className = 'ri-moon-line'; }
+                }
+            </script>
 
             <div class="nav-toggle" id="nav-toggle" role="button" tabindex="0" aria-label="Open navigation menu"
                 aria-expanded="false" aria-controls="nav-menu">
